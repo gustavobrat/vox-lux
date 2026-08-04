@@ -38,7 +38,6 @@ body {
     overflow-x: hidden;
     line-height: 1.8; /* Aumento sutil no respiro de leitura */
 }
-
 /* Camada Fixa para o Efeito Holográfico na Rolagem */
 .hologram-overlay {
     position: fixed;
@@ -66,7 +65,6 @@ body {
     margin: 0 auto;
     padding: 0 40px;
 }
-
 /* Títulos Brutalistas e de Alto Impacto */
 h2.section-title, h2.commercial-title {
     font-family: var(--font-brutal);
@@ -81,12 +79,10 @@ h2.section-title, h2.commercial-title {
     line-height: 0.9;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
-
 /* Block de Entrada de Seção */
 .section-header-block {
     margin-bottom: 70px;
 }
-
 /* ==========================================================================
    2. HEADER PREMIUM COM ESPAÇO PARA GIF + LOGO SOBREPOSTA
    ========================================================================== */
@@ -105,7 +101,6 @@ h2.section-title, h2.commercial-title {
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
-
 /* Container de Brand Centralizado no Header com sobreposição */
 .header-brand-container {
     position: relative;
@@ -118,7 +113,6 @@ h2.section-title, h2.commercial-title {
     border-radius: 4px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
-
 /* GIF de Fundo Animado dentro do Header */
 .header-bg-gif {
     position: absolute;
@@ -130,7 +124,6 @@ h2.section-title, h2.commercial-title {
     opacity: 0.6; /* Saturação atmosférica contida para não quebrar leitura */
     pointer-events: none;
 }
-
 /* Imagem da Logo por cima do GIF */
 .brand-logo-img {
     position: relative;
@@ -162,7 +155,6 @@ h2.section-title, h2.commercial-title {
     color: var(--silver-pure);
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
 }
-
 /* Menu Toggle Responsivo */
 .menu-toggle {
     display: none;
@@ -181,7 +173,6 @@ h2.section-title, h2.commercial-title {
     background-color: var(--silver-pure);
     transition: var(--transition-smooth);
 }
-
 /* ==========================================================================
    3. SEÇÕES INDEPENDENTES E ESTRUTURAS DE CONTEÚDO
    ========================================================================== */
@@ -194,7 +185,6 @@ h2.section-title, h2.commercial-title {
     border-top: 1px solid rgba(255,255,255,0.01);
     border-bottom: 1px solid rgba(255,255,255,0.01);
 }
-
 /* Hero Section */
 .hero-section {
     position: relative;
@@ -226,7 +216,6 @@ h2.section-title, h2.commercial-title {
     color: var(--silver-dark);
     margin-bottom: 60px;
 }
-
 /* Botões Comerciais */
 .hero-cta-group {
     display: flex;
@@ -273,7 +262,6 @@ h2.section-title, h2.commercial-title {
     background-color: rgba(255, 255, 255, 0.05);
     box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
 }
-
 /* Layouts de Grid de Texto e Imagem */
 .grid-two-columns {
     display: grid;
@@ -295,7 +283,6 @@ h2.section-title, h2.commercial-title {
     font-size: 1.05rem;
     color: var(--silver-metal);
 }
-
 /* Contêineres de Mídia Otimizados (Imagens e Vídeos) */
 .media-gallery {
     width: 100%;
@@ -355,7 +342,6 @@ h2.section-title, h2.commercial-title {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-
 /* Linha do Tempo da Narrativa */
 .narrative-timeline {
     display: flex;
@@ -391,7 +377,6 @@ h2.section-title, h2.commercial-title {
     grid-template-columns: repeat(3, 1fr);
     gap: 35px;
 }
-
 /* ==========================================================================
    4. NOVO ESPAÇO PARA CAPA EM FOTO (ÁLBUM HOMÔNIMO)
    ========================================================================== */
@@ -401,9 +386,305 @@ h2.section-title, h2.commercial-title {
     gap: 100px;
     align-items: center;
 }
-
 /* Container de Imagem da Capa Substituindo o Vinil Antigo */
 .album-media-cover {
     position: relative;
     width: 100%;
-aspect-ratio: 1 / 1; /* Quadrado perfeito para arte de capa */background-size: cover;background-position: center;border: 1px solid rgba(255, 255, 255, 0.1);box-shadow: 0 60px 110px rgba(0, 0, 0, 0.8);overflow: hidden;}/* Linhas Digitais de Scan (Efeito Sci-Fi EDM) */.media-scanline {position: absolute;top: 0; left: 0; width: 100%; height: 100%;background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));background-size: 100% 4px, 6px 100%;pointer-events: none;}.album-pitch {font-family: var(--font-display);font-weight: 800;color: var(--silver-pure);font-size: 1.1rem;letter-spacing: 1px;margin-bottom: 20px;text-transform: uppercase;}.album-narrative {margin-bottom: 35px;color: var(--silver-dark);}.commercial-tracklist {list-style: none;border-top: 1px solid rgba(255, 255, 255, 0.08);}.commercial-tracklist li {display: flex;justify-content: space-between;padding: 18px 0;border-bottom: 1px solid rgba(255, 255, 255, 0.04);font-family: var(--font-display);font-weight: 500;font-size: 0.95rem;letter-spacing: 1px;transition: var(--transition-smooth);}.commercial-tracklist li:hover {padding-left: 15px;color: var(--silver-pure);background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, transparent 100%);}.commercial-tracklist li span:last-child {color: var(--silver-dark);font-family: var(--font-body);}/* ==========================================================================5. ARQUITETURA SONORA INTERATIVA & EQUALIZADOR SCI-FI========================================================================== */.audio-profile-grid {display: grid;grid-template-columns: 1fr 1fr;gap: 40px;margin-bottom: 60px;}.profile-card {background-color: var(--bg-card);padding: 50px;border: 1px solid rgba(255, 255, 255, 0.03);position: relative;overflow: hidden;}.card-glow-edge {position: absolute;top: 0; left: 0; width: 100%; height: 3px;background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));opacity: 0.4;}.profile-card h3 {font-family: var(--font-display);font-size: 1.6rem;color: var(--silver-pure);margin-bottom: 20px;text-transform: uppercase;letter-spacing: 1px;}/* Console Hub */.console-frequency-hub {background-color: #0b0b10;border: 1px solid rgba(255,255,255,0.06);padding: 60px;position: relative;}.console-border-decor {position: absolute;top: -1px; left: 30px; width: 120px; height: 1px;background-color: var(--neon-cyan);box-shadow: 0 0 10px var(--neon-cyan);}.console-frequency-hub h3 {font-family: var(--font-brutal);font-size: 1.3rem;color: var(--silver-pure);margin-bottom: 15px;}.console-desc {color: var(--silver-dark);margin-bottom: 40px;}.console-action-row {display: flex;gap: 20px;margin-bottom: 50px;}.console-tab-btn {padding: 16px 30px;background: transparent;border: 1px solid rgba(255,255,255,0.1);color: var(--silver-dark);font-family: var(--font-display);font-weight: 800;text-transform: uppercase;font-size: 0.8rem;letter-spacing: 1.5px;cursor: pointer;transition: var(--transition-smooth);}.console-tab-btn:hover {color: var(--silver-pure);border-color: rgba(255,255,255,0.4);}.console-tab-btn.active {background-color: var(--silver-pure);color: #000;border-color: var(--silver-pure);box-shadow: 0 0 30px rgba(255,255,255,0.15);}/* Equalizador Gráfico Animado */.graphic-equalizer {display: flex;align-items: flex-end;gap: 12px;height: 140px;margin-bottom: 35px;border-bottom: 1px solid rgba(255,255,255,0.05);padding-bottom: 10px;}.bar-node {flex: 1;height: 50%;background: linear-gradient(180deg, var(--neon-cyan) 0%, rgba(0,242,254,0.1) 100%);transition: height 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);}/* Variações de cor nos nós para efeito sônico avançado */.bar-node:nth-child(even) {background: linear-gradient(180deg, var(--neon-magenta) 0%, rgba(253,38,121,0.1) 100%);}.console-status {font-family: monospace;font-size: 0.85rem;color: var(--neon-cyan);letter-spacing: 1px;}/* ==========================================================================6. RODAPÉ INSTITUCIONAL CENTRALIZADO E TÉCNICO========================================================================== /.luxury-footer {background-color: #020203;padding: 90px 0 60px 0;border-top: 1px solid rgba(255,255,255,0.05);text-align: center; / Centralização absoluta solicitada */}.footer-inner-bounds {max-width: 800px;margin: 0 auto;padding: 0 20px;}.footer-logo-text {font-family: var(--font-brutal);font-size: 2.2rem;color: var(--silver-pure);letter-spacing: 6px;margin-bottom: 35px;}.footer-divider-line {width: 60px;height: 1px;background-color: rgba(255, 255, 255, 0.15);margin: 0 auto 35px auto;}.footer-info-block {display: flex;flex-direction: column;gap: 18px; /* Organização limpa e espaçada das informações técnicas */}.footer-copyright-notice {font-size: 0.9rem;color: var(--silver-metal);font-family: var(--font-display);font-weight: 500;}.footer-distribution, .footer-technical-specs {font-size: 0.8rem;color: var(--silver-dark);letter-spacing: 0.5px;}.footer-technical-specs {font-family: monospace;color: rgba(100, 116, 139, 0.7);margin-top: 10px;}/* ==========================================================================7. SISTEMA DE CARREGAMENTO ESTROBOSCÓPICO (TELA BRAT 4S)========================================================================== */.strobe-loader-screen {position: fixed;top: 0;left: 0;width: 100vw;height: 100vh;background-color: var(--bg-main);z-index: 10000;display: flex;align-items: center;justify-content: center;transition: opacity 0.6s ease, visibility 0.6s ease;}/* Classe controlada pelo JavaScript para gerar o Flash Estroboscópico Ultra-Rápido */.strobe-loader-screen.strobe-flash {background-color: var(--brat-green);}.strobe-text-wrapper {display: flex;flex-direction: column;align-items: center;gap: 15px;text-align: center;}.strobe-word {font-family: var(--font-brutal);font-size: 5rem;font-weight: 900;letter-spacing: -3px;line-height: 0.9;transition: var(--transition-fast);}/* Alternância de cores agressiva no texto durante o flash */.strobe-loader-screen.strobe-flash .strobe-word {color: #000000;}.strobe-loader-screen:not(.strobe-flash) .strobe-word {color: var(--silver-pure);}/* Efeito de saída controlado por JS no fim dos 4 segundos */.fade-out-loader {opacity: 0;visibility: hidden;pointer-events: none;}/* ==========================================================================8. COMPORTAMENTO DE SOBRECARGA (MODO GLITCH)========================================================================== */body.glitch-overload-mode {filter: invert(1) hue-rotate(180deg) contrast(1.2);animation: micro-jitter 0.2s infinite;}@keyframes micro-jitter {0% { transform: translate(0, 0); }50% { transform: translate(1px, -1px); }100% { transform: translate(-1px, 1px); }}/* ==========================================================================9. MEDIA QUERIES (DESIGN RESPONSIVO)========================================================================== */@media (max-width: 1100px) {.main-title { font-size: 5.5rem; letter-spacing: -3px; }.grid-two-columns, .album-showcase-grid { grid-template-columns: 1fr; gap: 60px; }.audio-profile-grid { grid-template-columns: 1fr; }h2.section-title { font-size: 2.2rem; }.strobe-word { font-size: 3.5rem; }}@media (max-width: 768px) {.site-header { padding: 20px 30px; }.nav-menu {position: fixed;top: 90px; left: 0; width: 100%; height: calc(100vh - 90px);background-color: var(--bg-main);padding: 50px;display: none;}.nav-menu.open { display: block; }.nav-menu ul { flex-direction: column; gap: 35px; }.menu-toggle { display: flex; }.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }.menu-toggle.active span:nth-child(2) { opacity: 0; }.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }.timeline-item { grid-template-columns: 1fr; gap: 15px; }.photo-grid-three { grid-template-columns: 1fr; }.main-title { font-size: 4rem; }.strobe-word { font-size: 2.5rem; }}
+
+aspect-ratio: 1 / 1; /* Quadrado perfeito para arte de capa */
+background-size: cover;
+background-position: center;
+border: 1px solid rgba(255, 255, 255, 0.1);
+box-shadow: 0 60px 110px rgba(0, 0, 0, 0.8);
+overflow: hidden;
+}
+/* Linhas Digitais de Scan (Efeito Sci-Fi EDM) */
+.media-scanline {
+position: absolute;
+top: 0; left: 0; width: 100%; height: 100%;
+background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+background-size: 100% 4px, 6px 100%;
+pointer-events: none;
+}
+.album-pitch {
+font-family: var(--font-display);
+font-weight: 800;
+color: var(--silver-pure);
+font-size: 1.1rem;
+letter-spacing: 1px;
+margin-bottom: 20px;
+text-transform: uppercase;
+}
+.album-narrative {
+margin-bottom: 35px;
+color: var(--silver-dark);
+}
+.commercial-tracklist {
+list-style: none;
+border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.commercial-tracklist li {
+display: flex;
+justify-content: space-between;
+padding: 18px 0;
+border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+font-family: var(--font-display);
+font-weight: 500;
+font-size: 0.95rem;
+letter-spacing: 1px;
+transition: var(--transition-smooth);
+}
+.commercial-tracklist li:hover {
+padding-left: 15px;
+color: var(--silver-pure);
+background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+}
+.commercial-tracklist li span:last-child {
+color: var(--silver-dark);
+font-family: var(--font-body);
+}
+/* ==========================================================================
+5. ARQUITETURA SONORA INTERATIVA & EQUALIZADOR SCI-FI
+========================================================================== */
+.audio-profile-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 40px;
+margin-bottom: 60px;
+}
+.profile-card {
+background-color: var(--bg-card);
+padding: 50px;
+border: 1px solid rgba(255, 255, 255, 0.03);
+position: relative;
+overflow: hidden;
+}
+.card-glow-edge {
+position: absolute;
+top: 0; left: 0; width: 100%; height: 3px;
+background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+opacity: 0.4;
+}
+.profile-card h3 {
+font-family: var(--font-display);
+font-size: 1.6rem;
+color: var(--silver-pure);
+margin-bottom: 20px;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+/* Console Hub */
+.console-frequency-hub {
+background-color: #0b0b10;
+border: 1px solid rgba(255,255,255,0.06);
+padding: 60px;
+position: relative;
+}
+.console-border-decor {
+position: absolute;
+top: -1px; left: 30px; width: 120px; height: 1px;
+background-color: var(--neon-cyan);
+box-shadow: 0 0 10px var(--neon-cyan);
+}
+.console-frequency-hub h3 {
+font-family: var(--font-brutal);
+font-size: 1.3rem;
+color: var(--silver-pure);
+margin-bottom: 15px;
+}
+.console-desc {
+color: var(--silver-dark);
+margin-bottom: 40px;
+}
+.console-action-row {
+display: flex;
+gap: 20px;
+margin-bottom: 50px;
+}
+.console-tab-btn {
+padding: 16px 30px;
+background: transparent;
+border: 1px solid rgba(255,255,255,0.1);
+color: var(--silver-dark);
+font-family: var(--font-display);
+font-weight: 800;
+text-transform: uppercase;
+font-size: 0.8rem;
+letter-spacing: 1.5px;
+cursor: pointer;
+transition: var(--transition-smooth);
+}
+.console-tab-btn:hover {
+color: var(--silver-pure);
+border-color: rgba(255,255,255,0.4);
+}
+.console-tab-btn.active {
+background-color: var(--silver-pure);
+color: #000;
+border-color: var(--silver-pure);
+box-shadow: 0 0 30px rgba(255,255,255,0.15);
+}
+/* Equalizador Gráfico Animado */
+.graphic-equalizer {
+display: flex;
+align-items: flex-end;
+gap: 12px;
+height: 140px;
+margin-bottom: 35px;
+border-bottom: 1px solid rgba(255,255,255,0.05);
+padding-bottom: 10px;
+}
+.bar-node {
+flex: 1;
+height: 50%;
+background: linear-gradient(180deg, var(--neon-cyan) 0%, rgba(0,242,254,0.1) 100%);
+transition: height 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+/* Variações de cor nos nós para efeito sônico avançado */
+.bar-node:nth-child(even) {
+background: linear-gradient(180deg, var(--neon-magenta) 0%, rgba(253,38,121,0.1) 100%);
+}
+.console-status {
+font-family: monospace;
+font-size: 0.85rem;
+color: var(--neon-cyan);
+letter-spacing: 1px;
+}
+/* ==========================================================================
+6. RODAPÉ INSTITUCIONAL CENTRALIZADO E TÉCNICO
+========================================================================== /
+.luxury-footer {
+background-color: #020203;
+padding: 90px 0 60px 0;
+border-top: 1px solid rgba(255,255,255,0.05);
+text-align: center; / Centralização absoluta solicitada */
+}
+.footer-inner-bounds {
+max-width: 800px;
+margin: 0 auto;
+padding: 0 20px;
+}
+.footer-logo-text {
+font-family: var(--font-brutal);
+font-size: 2.2rem;
+color: var(--silver-pure);
+letter-spacing: 6px;
+margin-bottom: 35px;
+}
+.footer-divider-line {
+width: 60px;
+height: 1px;
+background-color: rgba(255, 255, 255, 0.15);
+margin: 0 auto 35px auto;
+}
+.footer-info-block {
+display: flex;
+flex-direction: column;
+gap: 18px; /* Organização limpa e espaçada das informações técnicas */
+}
+.footer-copyright-notice {
+font-size: 0.9rem;
+color: var(--silver-metal);
+font-family: var(--font-display);
+font-weight: 500;
+}
+.footer-distribution, .footer-technical-specs {
+font-size: 0.8rem;
+color: var(--silver-dark);
+letter-spacing: 0.5px;
+}
+.footer-technical-specs {
+font-family: monospace;
+color: rgba(100, 116, 139, 0.7);
+margin-top: 10px;
+}
+/* ==========================================================================
+7. SISTEMA DE CARREGAMENTO ESTROBOSCÓPICO (TELA BRAT 4S)
+========================================================================== */
+.strobe-loader-screen {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background-color: var(--bg-main);
+z-index: 10000;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+/* Classe controlada pelo JavaScript para gerar o Flash Estroboscópico Ultra-Rápido */
+.strobe-loader-screen.strobe-flash {
+background-color: var(--brat-green);
+}
+.strobe-text-wrapper {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 15px;
+text-align: center;
+}
+.strobe-word {
+font-family: var(--font-brutal);
+font-size: 5rem;
+font-weight: 900;
+letter-spacing: -3px;
+line-height: 0.9;
+transition: var(--transition-fast);
+}
+/* Alternância de cores agressiva no texto durante o flash */
+.strobe-loader-screen.strobe-flash .strobe-word {
+color: #000000;
+}
+.strobe-loader-screen:not(.strobe-flash) .strobe-word {
+color: var(--silver-pure);
+}
+/* Efeito de saída controlado por JS no fim dos 4 segundos */
+.fade-out-loader {
+opacity: 0;
+visibility: hidden;
+pointer-events: none;
+}
+/* ==========================================================================
+8. COMPORTAMENTO DE SOBRECARGA (MODO GLITCH)
+========================================================================== */
+body.glitch-overload-mode {
+filter: invert(1) hue-rotate(180deg) contrast(1.2);
+animation: micro-jitter 0.2s infinite;
+}
+@keyframes micro-jitter {
+0% { transform: translate(0, 0); }
+50% { transform: translate(1px, -1px); }
+100% { transform: translate(-1px, 1px); }
+}
+/* ==========================================================================
+9. MEDIA QUERIES (DESIGN RESPONSIVO)
+========================================================================== */
+@media (max-width: 1100px) {
+.main-title { font-size: 5.5rem; letter-spacing: -3px; }
+.grid-two-columns, .album-showcase-grid { grid-template-columns: 1fr; gap: 60px; }
+.audio-profile-grid { grid-template-columns: 1fr; }
+h2.section-title { font-size: 2.2rem; }
+.strobe-word { font-size: 3.5rem; }
+}
+@media (max-width: 768px) {
+.site-header { padding: 20px 30px; }
+.nav-menu {
+position: fixed;
+top: 90px; left: 0; width: 100%; height: calc(100vh - 90px);
+background-color: var(--bg-main);
+padding: 50px;
+display: none;
+}
+.nav-menu.open { display: block; }
+.nav-menu ul { flex-direction: column; gap: 35px; }
+.menu-toggle { display: flex; }
+.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
+.timeline-item { grid-template-columns: 1fr; gap: 15px; }
+.photo-grid-three { grid-template-columns: 1fr; }
+.main-title { font-size: 4rem; }
+.strobe-word { font-size: 2.5rem; }
+}
