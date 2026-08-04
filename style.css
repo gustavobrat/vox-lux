@@ -84,7 +84,7 @@ h2.section-title, h2.commercial-title {
     margin-bottom: 70px;
 }
 /* ==========================================================================
-   2. HEADER PREMIUM COM ESPAÇO PARA GIF + LOGO SOBREPOSTA
+   2. HEADER PREMIUM FLUTUANTE (SOBRE O HERO)
    ========================================================================== */
 .site-header {
     position: absolute;
@@ -93,45 +93,10 @@ h2.section-title, h2.commercial-title {
     width: 100%;
     z-index: 1000;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Menu alinhado à direita de forma minimalista */
     align-items: center;
     padding: 30px 50px;
-    background: transparent;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-}
-/* Container de Brand Centralizado no Header com sobreposição */
-.header-brand-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 180px; /* Largura controlada para o GIF/Logo */
-    height: 50px;
-    overflow: hidden;
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-/* GIF de Fundo Animado dentro do Header */
-.header-bg-gif {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.6; /* Saturação atmosférica contida para não quebrar leitura */
-    pointer-events: none;
-}
-/* Imagem da Logo por cima do GIF */
-.brand-logo-img {
-    position: relative;
-    z-index: 2;
-    height: 22px; /* Redução para visual mais Premium/Clean */
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.8)) brightness(1.3);
+    background: transparent; /* Remove a barra sólida preta para integrar com o fundo */
 }
 
 .nav-menu ul {
@@ -174,47 +139,58 @@ h2.section-title, h2.commercial-title {
     transition: var(--transition-smooth);
 }
 /* ==========================================================================
-   3. SEÇÕES INDEPENDENTES E ESTRUTURAS DE CONTEÚDO
+   3. SEÇÃO 1: HERO MANIFESTO COM GIF INTEGRADO NO FUNDO
    ========================================================================== */
-.content-section, .luxury-section {
-    padding: 160px 0; /* Aumento de padding para maior respiro e impacto Sci-Fi */
-}
-
-.accent-bg {
-    background-color: var(--bg-secondary);
-    border-top: 1px solid rgba(255,255,255,0.01);
-    border-bottom: 1px solid rgba(255,255,255,0.01);
-}
-/* Hero Section */
 .hero-section {
     position: relative;
     height: 100vh;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: radial-gradient(circle at center, #0f1017 0%, var(--bg-main) 100%);
+    overflow: hidden;
+    background: #000;
+}
+/* O GIF agora preenche perfeitamente 100% da primeira dobra de tela */
+.hero-bg-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.45; /* Mantém a legibilidade e a atmosfera escura sci-fi */
+    pointer-events: none;
+}
+/* Caixa centralizada flutuando sobre o GIF contendo a Logo e os CTAs */
+.hero-content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+}
+/* Container que reserva o espaço centralizado para a Logo substituindo os textos antigos */
+.brand-logo-container {
+    width: 100%;
+    max-width: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.main-title {
-    font-family: var(--font-brutal);
-    font-size: 8rem;
-    letter-spacing: -5px;
-    line-height: 0.8;
-    color: var(--silver-pure);
-    margin-bottom: 25px;
-    background: linear-gradient(180deg, #ffffff 30%, #334155 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero-subtitle {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    color: var(--silver-dark);
-    margin-bottom: 60px;
+.brand-logo-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.15));
 }
 /* Botões Comerciais */
 .hero-cta-group {
@@ -390,29 +366,32 @@ h2.section-title, h2.commercial-title {
 .album-media-cover {
     position: relative;
     width: 100%;
-
-aspect-ratio: 1 / 1; /* Quadrado perfeito para arte de capa */
-background-size: cover;
-background-position: center;
-border: 1px solid rgba(255, 255, 255, 0.1);
-box-shadow: 0 60px 110px rgba(0, 0, 0, 0.8);
-overflow: hidden;
+    aspect-ratio: 1 / 1; /* Quadrado perfeito para arte de capa */
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 60px 110px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
 }
 /* Linhas Digitais de Scan (Efeito Sci-Fi EDM) */
 .media-scanline {
-position: absolute;
-top: 0; left: 0; width: 100%; height: 100%;
-background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-background-size: 100% 4px, 6px 100%;
-pointer-events: none;
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
 }
+
+oisa? Podemos construir a estrutura da **Seção de Crônicas/Narrativa** no HTML ou revisar as funções do **JavaScript**!
+
 .album-pitch {
-font-family: var(--font-display);
-font-weight: 800;
-color: var(--silver-pure);
-font-size: 1.1rem;
-letter-spacing: 1px;
-margin-bottom: 20px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--silver-pure);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+
 text-transform: uppercase;
 }
 .album-narrative {
@@ -550,11 +529,9 @@ font-size: 0.85rem;
 color: var(--neon-cyan);
 letter-spacing: 1px;
 }
-
 /* ==========================================================================
 6. RODAPÉ INSTITUCIONAL CENTRALIZADO E TÉCNICO
-========================================================================== */
-
+========================================================================== /
 .luxury-footer {
 background-color: #020203;
 padding: 90px 0 60px 0;
@@ -633,20 +610,12 @@ font-size: 5rem;
 font-weight: 900;
 letter-spacing: -3px;
 line-height: 0.9;
+color: var(--silver-pure);
 transition: transform 0.05s linear, opacity 0.05s linear;
 }
 /* Alternância de cores agressiva no texto durante o flash */
 .strobe-loader-screen.strobe-flash .strobe-word {
 color: #000000 !important;
-}
-.strobe-loader-screen:not(.strobe-flash) .strobe-word {
-color:  #ffffff !important;
-}
-/* Efeito de saída controlado por JS no fim dos 4 segundos */
-.fade-out-loader {
-opacity: 0 !important;
-visibility: hidden !important;
-pointer-events: none !important;
 }
 /* ==========================================================================
 8. COMPORTAMENTO DE SOBRECARGA (MODO GLITCH)
@@ -662,9 +631,10 @@ animation: micro-jitter 0.2s infinite;
 }
 /* ==========================================================================
 9. MEDIA QUERIES (DESIGN RESPONSIVO)
-========================================================================== */
+========================================================================== /
 @media (max-width: 1100px) {
-.main-title { font-size: 5.5rem; letter-spacing: -3px; }
+/ Ajusta o container da logo no tablet para manter a proporção ideal */
+.brand-logo-container { max-width: 420px; }
 .grid-two-columns, .album-showcase-grid { grid-template-columns: 1fr; gap: 60px; }
 .audio-profile-grid { grid-template-columns: 1fr; }
 h2.section-title { font-size: 2.2rem; }
@@ -672,9 +642,14 @@ h2.section-title { font-size: 2.2rem; }
 }
 @media (max-width: 768px) {
 .site-header { padding: 20px 30px; }
+/* Faz a logo ficar ainda mais compacta em telas de celulares */
+.brand-logo-container { max-width: 290px; }
 .nav-menu {
 position: fixed;
-top: 90px; left: 0; width: 100%; height: calc(100vh - 90px);
+top: 90px;
+left: 0;
+width: 100%;
+height: calc(100vh - 90px);
 background-color: var(--bg-main);
 padding: 50px;
 display: none;
@@ -682,11 +657,11 @@ display: none;
 .nav-menu.open { display: block; }
 .nav-menu ul { flex-direction: column; gap: 35px; }
 .menu-toggle { display: flex; }
+/* Animação suave do menu hamburguer se transformando em X */
 .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .menu-toggle.active span:nth-child(2) { opacity: 0; }
 .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
 .timeline-item { grid-template-columns: 1fr; gap: 15px; }
 .photo-grid-three { grid-template-columns: 1fr; }
-.main-title { font-size: 4rem; }
 .strobe-word { font-size: 2.5rem; }
 }
