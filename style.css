@@ -618,7 +618,7 @@ transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 /* Classe controlada pelo JavaScript para gerar o Flash Estroboscópico Ultra-Rápido */
 .strobe-loader-screen.strobe-flash {
-background-color: #8ace00 !important;
+background-color: #1b172b !important;
 }
 .strobe-text-wrapper {
 display: flex;
