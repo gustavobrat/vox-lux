@@ -18,38 +18,41 @@
     <!-- Overlay Holográfico Fixo na Tela (Efeito de Rolagem) -->
     <div class="hologram-overlay" id="hologramOverlay"></div>
 
-    <!-- CABEÇALHO PREMIUM COM ESPAÇO PARA GIF + LOGO SOBREPOSTA -->
-    <header class="site-header">
-        <div class="header-brand-container">
-            <!-- Insira o link do seu GIF de fundo aqui -->
-            <img src="tumblr_pjbupa8Jjo1xlv8m3o4_540.jpg" alt="Fundo Animado" class="header-bg-gif">
-            <!-- Sua logo centralizada exatamente por cima do GIF -->
-            <img src="https://placehold.co" alt="Celeste Logo" class="brand-logo-img">
-        </div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
-            <span></span><span></span><span></span>
-        </button>
-        <nav class="nav-menu" id="navMenu">
-            <ul>
-                <li><a href="#manifesto">Manifesto</a></li>
-                <li><a href="#persona">A Persona</a></li>
-                <li><a href="#narrativa">A Crônica</a></li>
-                <li><a href="#album">O Álbum</a></li>
-                <li><a href="#audio">Arquitetura Sonora</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- SEÇÃO 1: HERO MANIFESTO (Abertura Comercial de Alto Impacto) -->
+    <!-- SEÇÃO 1: HERO MANIFESTO (Abertura com GIF de fundo, Menu e Logo sobrepostos) -->
     <section id="manifesto" class="hero-section">
+        
+        <!-- O GIF agora serve de plano de fundo absoluto para toda a seção de abertura -->
+        <img src="tumblr_pjbupa8Jjo1xlv8m3o4_540.jpg" alt="Fundo Animado" class="hero-bg-gif">
+
+        <!-- MENU DE NAVEGAÇÃO SOBREPOSTO NO TOPO DA SEÇÃO -->
+        <header class="site-header">
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#manifesto">Manifesto</a></li>
+                    <li><a href="#persona">A Persona</a></li>
+                    <li><a href="#narrativa">A Crônica</a></li>
+                    <li><a href="#album">O Álbum</a></li>
+                    <li><a href="#audio">Arquitetura Sonora</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- CONTEÚDO CENTRAL: Textos removidos, mantendo o espaço da Logo + Botões -->
         <div class="hero-content">
-            <h1 class="main-title">VOX LUX</h1>
-            <p class="hero-subtitle">Um Retrato do Século XXI</p>
+            <div class="brand-logo-container">
+                <!-- Espaço reservado para a logo no centro do GIF (substituindo o antigo VOX LUX) -->
+                <img src="https://placehold.co" alt="Celeste Logo" class="brand-logo-img">
+            </div>
+            
             <div class="hero-cta-group">
                 <a href="#album" class="btn-chrome">Adquirir Álbum</a>
                 <button id="glitchTrigger" class="btn-outline">Sobrecarga Estética</button>
             </div>
         </div>
+
     </section>
 
     <!-- SEÇÃO 2: A PERSONA DA CELESTE (Análise Profunda da Identidade Pop) -->
