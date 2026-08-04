@@ -7,29 +7,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const strobeWords = document.querySelectorAll('.strobe-word');
     
     if (strobeLoader) {
-        // Bloqueia a rolagem da página durante o carregamento
+        // Força o bloqueio do scroll no início
         document.body.style.overflow = 'hidden';
 
-        // Intervalo de piscada rápida em alta velocidade (Inspirado no BRAT)
+        // Intervalo de piscada rápida (50ms)
         const strobeInterval = setInterval(() => {
             strobeLoader.classList.toggle('strobe-flash');
             
             strobeWords.forEach(word => {
-                // Alterna a visibilidade das palavras de forma agressiva e aleatória
-                word.style.opacity = Math.random() > 0.5 ? '1' : '0';
-                word.style.transform = `scale(${0.95 + Math.random() * 0.1}) skew(${Math.random() * 5}deg)`;
+                // Em vez de sumir (opacity 0), alterna entre opacidade alta e média para efeito estroboscópico visível
+                word.style.opacity = Math.random() > 0.5 ? '1' : '0.2';
+                word.style.transform = `scale(${0.98 + Math.random() * 0.04}) skew(${Math.random() * 4}deg)`;
             });
-        }, 50); // Velocidade do Strobe (50ms)
+        }, 50);
 
-        // Finaliza o carregamento após exatamente 4 segundos (4000ms)
+        // Garante a liberação do site após 4 segundos, sem travar
         setTimeout(() => {
             clearInterval(strobeInterval);
             strobeLoader.classList.add('fade-out-loader');
-            document.body.style.overflow = ''; // Libera o scroll do site
+            document.body.style.overflow = ''; // Libera a rolagem do site
             
-            // Remove o elemento do DOM após a animação de fade-out acabar
+            // Remove o loader do DOM após o término da transição de opacidade
             setTimeout(() => {
-                strobeLoader.remove();
+                if (strobeLoader) strobeLoader.remove();
             }, 600);
         }, 4000);
     }
@@ -39,17 +39,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const hologramOverlay = document.getElementById('hologramOverlay');
     
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        const opacityModifier = 0.2 + (Math.sin(scrollPosition * 0.005) * 0.15);
-        const hueModifier = (scrollPosition * 0.15) % 360;
-        
-        if (hologramOverlay) {
+    if (hologramOverlay) {
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const opacityModifier = 0.2 + (Math.sin(scrollPosition * 0.005) * 0.15);
+            const hueModifier = (scrollPosition * 0.15) % 360;
+            
             hologramOverlay.style.opacity = opacityModifier;
             hologramOverlay.style.background = `linear-gradient(${135 + (scrollPosition * 0.08)}deg, rgba(255,255,255,0.02) 0%, rgba(0,242,254,0.05) 50%, rgba(253,38,121,0.05) 100%)`;
             hologramOverlay.style.backdropFilter = `hue-rotate(${hueModifier}deg)`;
-        }
-    });
+        });
+    }
 
     // ==========================================
     // 3. CONTROLE DO MENU DE NAVEGAÇÃO MOBILE
@@ -67,21 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-menu a');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (navMenu) {
-                navMenu.classList.remove('open');
-                if (menuToggle) menuToggle.classList.remove('active');
-            }
+            if (navMenu) navMenu.classList.remove('open');
+            if (menuToggle) menuToggle.classList.remove('active');
         });
     });
 
     // ==========================================
-    // 4. CONSOLE DE ÁUDIO INTERATIVO EDM / SCI-FI
+    // 4. CONSOLE DE ÁUDIO INTERATIVO EDM
     // ==========================================
     const consoleButtons = document.querySelectorAll('.console-tab-btn');
     const consoleStatusText = document.getElementById('consoleStatusText');
     const barNodes = document.querySelectorAll('.bar-node');
 
-    // Mapeamento de picos sônicos para o equalizador gráfico (7 nós de frequência)
     const trackFrequencies = {
         sia: ['40%', '95%', '70%', '100%', '55%', '85%', '60%'],
         walker: ['95%', '30%', '85%', '20%', '90%', '40%', '80%']
@@ -91,19 +88,20 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', (event) => {
             consoleButtons.forEach(btn => btn.classList.remove('active'));
             
-            // Garante a captura do botão correto mesmo se houver clique interno
             const targetBtn = event.target.closest('.console-tab-btn');
+            if (!targetBtn) return;
+            
             targetBtn.classList.add('active');
-
             const stream = targetBtn.getAttribute('data-stream');
 
-            if (stream === 'sia') {
-                consoleStatusText.textContent = '// CANAL ATIVO: EMISSÃO POP SINTÉTICA OTIMIZADA // MAX-EDM-OUTPUT';
-            } else {
-                consoleStatusText.textContent = '// CANAL ATIVO: RESSONÂNCIA E TENSÃO ORQUESTRAL DISSONANTE // WARNING-HIGH-PITCH';
+            if (consoleStatusText) {
+                if (stream === 'sia') {
+                    consoleStatusText.textContent = '// CANAL ATIVO: EMISSÃO POP SINTÉTICA OTIMIZADA // MAX-EDM-OUTPUT';
+                } else {
+                    consoleStatusText.textContent = '// CANAL ATIVO: RESSONÂNCIA E TENSÃO ORQUESTRAL DISSONANTE // WARNING-HIGH-PITCH';
+                }
             }
 
-            // Altera as alturas das barras com transição suave via CSS
             barNodes.forEach((bar, index) => {
                 if (trackFrequencies[stream] && trackFrequencies[stream][index]) {
                     bar.style.height = trackFrequencies[stream][index];
