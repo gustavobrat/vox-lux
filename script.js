@@ -26,9 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(strobeInterval);
             
             // Aplica a transição de saída suave
-            strobeLoader.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s';
-            strobeLoader.style.opacity = '0';
-            strobeLoader.style.visibility = 'hidden';
+strobeLoader.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s';
+strobeLoader.style.opacity = '0';
+strobeLoader.style.visibility = 'hidden';
+
             
             document.body.style.overflow = ''; // Libera a rolagem do site
             
