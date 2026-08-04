@@ -8,23 +8,20 @@
 }
 
 :root {
-    --bg-main: #040405; /* Tom preto puro ainda mais profundo para contraste EDM */
+    --bg-main: #040405;
     --bg-secondary: #09090d;
     --bg-card: #111116;
     --silver-pure: #ffffff;
     --silver-metal: #cbd5e1;
     --silver-dark: #64748b;
     
-    /* Tons de Iluminação Sci-Fi Neon */
     --neon-cyan: #00f2fe;
     --neon-magenta: #fd2679;
-    --brat-green: #8ace00; /* Referência estética à paleta eletrônica */
     
     --font-brutal: 'Syncopate', sans-serif;
     --font-display: 'Syne', sans-serif;
     --font-body: 'Work Sans', sans-serif;
     --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-fast: all 0.15s linear;
 }
 
 html {
@@ -36,36 +33,26 @@ body {
     color: var(--silver-metal);
     font-family: var(--font-body);
     overflow-x: hidden;
-    line-height: 1.8; /* Aumento sutil no respiro de leitura */
+    line-height: 1.8;
 }
-/* Camada Fixa para o Efeito Holográfico na Rolagem */
+
 .hologram-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
     pointer-events: none;
     z-index: 999;
     background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(0,242,254,0.01) 50%, rgba(253,38,121,0.02) 100%);
     opacity: 0.5;
-    transition: opacity 0.2s linear;
 }
 
-.container {
-    width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 40px; /* Maior espaçamento nas laterais */
-}
-
-.site-bounds {
+.container, .site-bounds {
     width: 100%;
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 40px;
 }
-/* Títulos Brutalistas e de Alto Impacto */
+
 h2.section-title, h2.commercial-title {
     font-family: var(--font-brutal);
     font-size: 2.8rem;
@@ -73,30 +60,28 @@ h2.section-title, h2.commercial-title {
     text-transform: uppercase;
     color: var(--silver-pure);
     letter-spacing: -1px;
-    margin-bottom: 60px; /* Maior respiro vertical */
+    margin-bottom: 60px;
     border-left: 6px solid var(--silver-pure);
     padding-left: 24px;
     line-height: 0.9;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
-/* Block de Entrada de Seção */
+
 .section-header-block {
     margin-bottom: 70px;
 }
+
 /* ==========================================================================
-   2. HEADER PREMIUM FLUTUANTE (SOBRE O HERO)
+   2. HEADER PREMIUM FLUTUANTE
    ========================================================================== */
 .site-header {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 0; left: 0; width: 100%;
     z-index: 1000;
     display: flex;
-    justify-content: flex-end; /* Menu alinhado à direita de forma minimalista */
+    justify-content: flex-end;
     align-items: center;
     padding: 30px 50px;
-    background: transparent; /* Remove a barra sólida preta para integrar com o fundo */
+    background: transparent;
 }
 
 .nav-menu ul {
@@ -120,31 +105,29 @@ h2.section-title, h2.commercial-title {
     color: var(--silver-pure);
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
 }
-/* Menu Toggle Responsivo */
+
 .menu-toggle {
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    width: 26px;
-    height: 18px;
+    width: 26px; height: 18px;
     background: transparent;
     border: none;
     cursor: pointer;
 }
 
 .menu-toggle span {
-    width: 100%;
-    height: 2px;
+    width: 100%; height: 2px;
     background-color: var(--silver-pure);
     transition: var(--transition-smooth);
 }
+
 /* ==========================================================================
-   3. SEÇÃO 1: HERO MANIFESTO COM GIF INTEGRADO NO FUNDO
+   3. SEÇÃO 1: HERO MANIFESTO COM GIF ABSOLUTO NO FUNDO
    ========================================================================== */
 .hero-section {
     position: relative;
-    height: 100vh;
-    width: 100%;
+    height: 100vh; width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -153,19 +136,16 @@ h2.section-title, h2.commercial-title {
     overflow: hidden;
     background: #000;
 }
-/* O GIF agora preenche perfeitamente 100% da primeira dobra de tela */
+
 .hero-bg-gif {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
-    opacity: 0.45; /* Mantém a legibilidade e a atmosfera escura sci-fi */
+    opacity: 0.45;
     pointer-events: none;
 }
-/* Caixa centralizada flutuando sobre o GIF contendo a Logo e os CTAs */
+
 .hero-content {
     position: relative;
     z-index: 5;
@@ -174,28 +154,20 @@ h2.section-title, h2.commercial-title {
     align-items: center;
     gap: 40px;
     width: 100%;
-    max-width: 800px;
-    padding: 0 20px;
 }
-/* Container que reserva o espaço centralizado para a Logo substituindo os textos antigos */
+
 .brand-logo-container {
     width: 100%;
     max-width: 550px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .brand-logo-img {
-    width: 100%;
-    height: auto;
+    width: 100%; height: auto;
     object-fit: contain;
-    filter: drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.15));
 }
-/* Botões Comerciais */
+
 .hero-cta-group {
     display: flex;
-    gap: 25px;
     justify-content: center;
 }
 
@@ -206,44 +178,31 @@ h2.section-title, h2.commercial-title {
     font-family: var(--font-display);
     font-weight: 800;
     text-transform: uppercase;
-    border: none;
-    letter-spacing: 2px;
     text-decoration: none;
-    cursor: pointer;
-    box-shadow: 0 0 0 rgba(255,255,255,0);
+    letter-spacing: 2px;
     transition: var(--transition-smooth);
 }
 
 .btn-chrome:hover {
     transform: translateY(-4px);
     box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25);
-    background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
 }
 
-.btn-outline {
-    padding: 20px 45px;
-    background: transparent;
-    color: var(--silver-pure);
-    font-family: var(--font-display);
-    font-weight: 800;
-    text-transform: uppercase;
-    border: 1px solid var(--silver-dark);
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: var(--transition-smooth);
+/* ==========================================================================
+   4. ESTRUTURAS DE CONTEÚDO, ALBUM E ARQUITETURA SONORA
+   ========================================================================== */
+.content-section, .luxury-section {
+    padding: 160px 0;
 }
 
-.btn-outline:hover {
-    border-color: var(--silver-pure);
-    background-color: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+.accent-bg {
+    background-color: var(--bg-secondary);
 }
-/* Layouts de Grid de Texto e Imagem */
-.grid-two-columns {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 100px; /* Mais espaço separando blocos de informação */
-    align-items: center;
+
+.text-block p {
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+    color: var(--silver-metal);
 }
 
 .lead-text {
@@ -254,71 +213,7 @@ h2.section-title, h2.commercial-title {
     margin-bottom: 35px;
 }
 
-.text-block p {
-    margin-bottom: 25px;
-    font-size: 1.05rem;
-    color: var(--silver-metal);
-}
-/* Contêineres de Mídia Otimizados (Imagens e Vídeos) */
-.media-gallery {
-    width: 100%;
-}
-
-.photo-placeholder {
-    background-size: cover;
-    background-position: center;
-    border: 1px solid rgba(255,255,255,0.08);
-    position: relative;
-    box-shadow: 0 50px 100px rgba(0,0,0,0.7);
-    overflow: hidden;
-}
-
-.photo-placeholder::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.8) 100%);
-    z-index: 1;
-}
-
-.photo-placeholder.large {
-    height: 580px;
-    width: 100%;
-}
-
-.photo-placeholder.small {
-    height: 420px;
-    width: 100%;
-}
-
-.media-tag {
-    position: absolute;
-    bottom: 25px;
-    left: 25px;
-    background-color: var(--bg-main);
-    color: var(--silver-pure);
-    padding: 8px 18px;
-    font-size: 0.65rem;
-    font-family: var(--font-brutal);
-    letter-spacing: 2px;
-    border: 1px solid rgba(255,255,255,0.1);
-    z-index: 2;
-}
-
-.video-container-section {
-    margin: 80px 0;
-    border: 1px solid rgba(255,255,255,0.04);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-}
-
-.caption-text {
-    font-size: 0.75rem;
-    color: var(--silver-dark);
-    margin-top: 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-/* Linha do Tempo da Narrativa */
+/* Grid da Crônica */
 .narrative-timeline {
     display: flex;
     flex-direction: column;
@@ -338,7 +233,6 @@ h2.section-title, h2.commercial-title {
     font-family: var(--font-brutal);
     color: var(--silver-pure);
     font-size: 1.2rem;
-    letter-spacing: 1px;
 }
 
 .timeline-body h3 {
@@ -348,41 +242,38 @@ h2.section-title, h2.commercial-title {
     margin-bottom: 25px;
 }
 
+.video-container-section {
+    margin: 80px 0;
+}
+
+.caption-text {
+    font-size: 0.75rem;
+    color: var(--silver-dark);
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 .photo-grid-three {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 35px;
 }
-/* ==========================================================================
-   4. NOVO ESPAÇO PARA CAPA EM FOTO (ÁLBUM HOMÔNIMO)
-   ========================================================================== */
+
+.photo-placeholder {
+    background-size: cover;
+    background-position: center;
+    height: 420px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* GRID DO ÁLBUM (Garante a Capa no Lado Direito) */
 .album-showcase-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 100px;
     align-items: center;
 }
-/* Container de Imagem da Capa Substituindo o Vinil Antigo */
-.album-media-cover {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1; /* Quadrado perfeito para arte de capa */
-    background-size: cover;
-    background-position: center;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 60px 110px rgba(0, 0, 0, 0.8);
-    overflow: hidden;
-}
-/* Linhas Digitais de Scan (Efeito Sci-Fi EDM) */
-.media-scanline {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 4px, 6px 100%;
-    pointer-events: none;
-}
-
-oisa? Podemos construir a estrutura da **Seção de Crônicas/Narrativa** no HTML ou revisar as funções do **JavaScript**!
 
 .album-pitch {
     font-family: var(--font-display);
@@ -391,277 +282,171 @@ oisa? Podemos construir a estrutura da **Seção de Crônicas/Narrativa** no HTM
     font-size: 1.1rem;
     letter-spacing: 1px;
     margin-bottom: 20px;
+    text-transform: uppercase;
+}
 
-text-transform: uppercase;
-}
 .album-narrative {
-margin-bottom: 35px;
-color: var(--silver-dark);
+    margin-bottom: 35px;
+    color: var(--silver-dark);
 }
+
 .commercial-tracklist {
-list-style: none;
-border-top: 1px solid rgba(255, 255, 255, 0.08);
+    list-style: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 .commercial-tracklist li {
-display: flex;
-justify-content: space-between;
-padding: 18px 0;
-border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-font-family: var(--font-display);
-font-weight: 500;
-font-size: 0.95rem;
-letter-spacing: 1px;
-transition: var(--transition-smooth);
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
 }
-.commercial-tracklist li:hover {
-padding-left: 15px;
-color: var(--silver-pure);
-background: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+
+.album-media-cover {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 60px 110px rgba(0, 0, 0, 0.8);
 }
-.commercial-tracklist li span:last-child {
-color: var(--silver-dark);
-font-family: var(--font-body);
+
+.media-scanline {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
 }
-/* ==========================================================================
-5. ARQUITETURA SONORA INTERATIVA & EQUALIZADOR SCI-FI
-========================================================================== */
+
+/* Arquitetura Sonora */
 .audio-profile-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 40px;
-margin-bottom: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
 }
+
 .profile-card {
-background-color: var(--bg-card);
-padding: 50px;
-border: 1px solid rgba(255, 255, 255, 0.03);
-position: relative;
-overflow: hidden;
+    background-color: var(--bg-card);
+    padding: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
 }
-.card-glow-edge {
-position: absolute;
-top: 0; left: 0; width: 100%; height: 3px;
-background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-opacity: 0.4;
-}
+
 .profile-card h3 {
-font-family: var(--font-display);
-font-size: 1.6rem;
-color: var(--silver-pure);
-margin-bottom: 20px;
-text-transform: uppercase;
-letter-spacing: 1px;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--silver-pure);
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
-/* Console Hub */
+
 .console-frequency-hub {
-background-color: #0b0b10;
-border: 1px solid rgba(255,255,255,0.06);
-padding: 60px;
-position: relative;
+    background-color: #0b0b10;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 60px;
 }
-.console-border-decor {
-position: absolute;
-top: -1px; left: 30px; width: 120px; height: 1px;
-background-color: var(--neon-cyan);
-box-shadow: 0 0 10px var(--neon-cyan);
-}
+
 .console-frequency-hub h3 {
-font-family: var(--font-brutal);
-font-size: 1.3rem;
-color: var(--silver-pure);
-margin-bottom: 15px;
+    font-family: var(--font-brutal);
+    font-size: 1.3rem;
+    color: var(--silver-pure);
+    margin-bottom: 15px;
 }
+
 .console-desc {
-color: var(--silver-dark);
-margin-bottom: 40px;
+    color: var(--silver-dark);
+    margin-bottom: 40px;
 }
+
 .console-action-row {
-display: flex;
-gap: 20px;
-margin-bottom: 50px;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 50px;
 }
+
 .console-tab-btn {
-padding: 16px 30px;
-background: transparent;
-border: 1px solid rgba(255,255,255,0.1);
-color: var(--silver-dark);
-font-family: var(--font-display);
-font-weight: 800;
-text-transform: uppercase;
-font-size: 0.8rem;
-letter-spacing: 1.5px;
-cursor: pointer;
-transition: var(--transition-smooth);
+    padding: 16px 30px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--silver-dark);
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-smooth);
 }
-.console-tab-btn:hover {
-color: var(--silver-pure);
-border-color: rgba(255,255,255,0.4);
-}
+
 .console-tab-btn.active {
-background-color: var(--silver-pure);
-color: #000;
-border-color: var(--silver-pure);
-box-shadow: 0 0 30px rgba(255,255,255,0.15);
+    background-color: var(--silver-pure);
+    color: #000;
 }
-/* Equalizador Gráfico Animado */
+
 .graphic-equalizer {
-display: flex;
-align-items: flex-end;
-gap: 12px;
-height: 140px;
-margin-bottom: 35px;
-border-bottom: 1px solid rgba(255,255,255,0.05);
-padding-bottom: 10px;
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 140px;
+    margin-bottom: 35px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 10px;
 }
+
 .bar-node {
-flex: 1;
-height: 50%;
-background: linear-gradient(180deg, var(--neon-cyan) 0%, rgba(0,242,254,0.1) 100%);
-transition: height 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+    flex: 1;
+    height: 50%;
+    background: linear-gradient(180deg, var(--neon-cyan) 0%, rgba(0,242,254,0.1) 100%);
+    transition: height 0.3s ease;
 }
-/* Variações de cor nos nós para efeito sônico avançado */
+
 .bar-node:nth-child(even) {
-background: linear-gradient(180deg, var(--neon-magenta) 0%, rgba(253,38,121,0.1) 100%);
+    background: linear-gradient(180deg, var(--neon-magenta) 0%, rgba(253,38,121,0.1) 100%);
 }
+
 .console-status {
-font-family: monospace;
-font-size: 0.85rem;
-color: var(--neon-cyan);
-letter-spacing: 1px;
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--neon-cyan);
 }
+
 /* ==========================================================================
-6. RODAPÉ INSTITUCIONAL CENTRALIZADO E TÉCNICO
-========================================================================== /
+   5. RODAPÉ INSTITUCIONAL CENTRALIZADO
+   ========================================================================== */
 .luxury-footer {
-background-color: #020203;
-padding: 90px 0 60px 0;
-border-top: 1px solid rgba(255,255,255,0.05);
-text-align: center; / Centralização absoluta solicitada */
+    background-color: #020203;
+    padding: 90px 0 60px 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
 }
+
 .footer-inner-bounds {
-max-width: 800px;
-margin: 0 auto;
-padding: 0 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
+
 .footer-logo-text {
-font-family: var(--font-brutal);
-font-size: 2.2rem;
-color: var(--silver-pure);
-letter-spacing: 6px;
-margin-bottom: 35px;
+    font-family: var(--font-brutal);
+    font-size: 2.2rem;
+    color: var(--silver-pure);
+    margin-bottom: 35px;
 }
-.footer-divider-line {
-width: 60px;
-height: 1px;
-background-color: rgba(255, 255, 255, 0.15);
-margin: 0 auto 35px auto;
-}
+
 .footer-info-block {
-display: flex;
-flex-direction: column;
-gap: 18px; /* Organização limpa e espaçada das informações técnicas */
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
-.footer-copyright-notice {
-font-size: 0.9rem;
-color: var(--silver-metal);
-font-family: var(--font-display);
-font-weight: 500;
-}
-.footer-distribution, .footer-technical-specs {
-font-size: 0.8rem;
-color: var(--silver-dark);
-letter-spacing: 0.5px;
-}
-.footer-technical-specs {
-font-family: monospace;
-color: rgba(100, 116, 139, 0.7);
-margin-top: 10px;
-}
+
 /* ==========================================================================
-7. SISTEMA DE CARREGAMENTO ESTROBOSCÓPICO (TELA BRAT 4S)
-========================================================================== */
+   6. TELA DE CARREGAMENTO ESTROBOSCÓPICA
+   ========================================================================== */
 .strobe-loader-screen {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background-color: #040405;
-z-index: 10000;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-/* Classe controlada pelo JavaScript para gerar o Flash Estroboscópico Ultra-Rápido */
-.strobe-loader-screen.strobe-flash {
-background-color: #482cc7 !important;
-}
-.strobe-text-wrapper {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 15px;
-text-align: center;
-}
-.strobe-word {
-font-family: 'Syncopate', sans-serif;
-font-size: 5rem;
-font-weight: 900;
-letter-spacing: -3px;
-line-height: 0.9;
-color: var(--silver-pure);
-transition: transform 0.05s linear, opacity 0.05s linear;
-}
-/* Alternância de cores agressiva no texto durante o flash */
-.strobe-loader-screen.strobe-flash .strobe-word {
-color: #000000 !important;
-}
-/* ==========================================================================
-8. COMPORTAMENTO DE SOBRECARGA (MODO GLITCH)
-========================================================================== */
-body.glitch-overload-mode {
-filter: invert(1) hue-rotate(180deg) contrast(1.2);
-animation: micro-jitter 0.2s infinite;
-}
-@keyframes micro-jitter {
-0% { transform: translate(0, 0); }
-50% { transform: translate(1px, -1px); }
-100% { transform: translate(-1px, 1px); }
-}
-/* ==========================================================================
-9. MEDIA QUERIES (DESIGN RESPONSIVO)
-========================================================================== /
-@media (max-width: 1100px) {
-/ Ajusta o container da logo no tablet para manter a proporção ideal */
-.brand-logo-container { max-width: 420px; }
-.grid-two-columns, .album-showcase-grid { grid-template-columns: 1fr; gap: 60px; }
-.audio-profile-grid { grid-template-columns: 1fr; }
-h2.section-title { font-size: 2.2rem; }
-.strobe-word { font-size: 3.5rem; }
-}
-@media (max-width: 768px) {
-.site-header { padding: 20px 30px; }
-/* Faz a logo ficar ainda mais compacta em telas de celulares */
-.brand-logo-container { max-width: 290px; }
-.nav-menu {
-position: fixed;
-top: 90px;
-left: 0;
-width: 100%;
-height: calc(100vh - 90px);
-background-color: var(--bg-main);
-padding: 50px;
-display: none;
-}
-.nav-menu.open { display: block; }
-.nav-menu ul { flex-direction: column; gap: 35px; }
-.menu-toggle { display: flex; }
-/* Animação suave do menu hamburguer se transformando em X */
-.menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.menu-toggle.active span:nth-child(2) { opacity: 0; }
-.menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
-.timeline-item { grid-template-columns: 1fr; gap: 15px; }
-.photo-grid-three { grid-template-columns: 1fr; }
-.strobe-word { font-size: 2.5rem; }
-}
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #040405;z-index: 10000;display: flex;align-items: center;justify-content: center;}.strobe-loader-screen.strobe-flash {background-color: #482cc7 !important;}.strobe-text-wrapper {display: flex;flex-direction: column;align-items: center;gap: 15px;}.strobe-word {font-family: 'Syncopate', sans-serif;font-size: 5rem;font-weight: 900;color: var(--silver-pure);}.strobe-loader-screen.strobe-flash .strobe-word {color: #000000 !important;
+                                                                                                                                                                                                                                                                                                                                                                                                                                           }
+/* ==========================================================================7. DESIGN RESPONSIVO (MEDIA QUERIES)========================================================================== */@media (max-width: 1100px) {.brand-logo-container { max-width: 420px; }.grid-two-columns, .album-showcase-grid { grid-template-columns: 1fr; gap: 60px; }.audio-profile-grid { grid-template-columns: 1fr; }h2.section-title { font-size: 2.2rem; }}@media (max-width: 768px) {.site-header { padding: 20px 30px; }.brand-logo-container { max-width: 290px; }.nav-menu {position: fixed;top: 90px; left: 0; width: 100%; height: calc(100vh - 90px);background-color: var(--bg-main);padding: 50px;display: none;} .nav-menu.open { display: block; }.nav-menu ul { flex-direction: column; gap: 35px; }.menu-toggle { display: flex; }}
