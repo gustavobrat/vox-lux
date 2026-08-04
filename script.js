@@ -1,16 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ==========================================
-    // 1. TELA DE CARREGAMENTO ESTROBOSCÓPICA (EFEITO BRAT COM FADE-OUT)
+    // 1. TELA DE CARREGAMENTO ESTROBOSCÓPICA (COM FADE-OUT SUAVE)
     // ==========================================
     const strobeLoader = document.getElementById('strobeLoader');
     const strobeWords = document.querySelectorAll('.strobe-word');
     
     if (strobeLoader) {
-        // Força o bloqueio do scroll no início
         document.body.style.overflow = 'hidden';
 
-        // Intervalo de piscada rápida (50ms)
         const strobeInterval = setInterval(() => {
             strobeLoader.classList.toggle('strobe-flash');
             
@@ -20,18 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, 50);
 
-        // Garante a liberação do site após 4 segundos
+        // Termina a piscadeira aos 4 segundos e inicia o desbotamento (fade-out)
         setTimeout(() => {
             clearInterval(strobeInterval);
             
-            // APLICA O FADE-OUT SUAVE NA TELA ESTROBOSCÓPICA
+            // Força a transição suave de opacidade e visibilidade via JS
             strobeLoader.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s';
             strobeLoader.style.opacity = '0';
             strobeLoader.style.visibility = 'hidden';
             
-            document.body.style.overflow = ''; // Libera a rolagem do site
-            
-            // Remove o loader do DOM após o término da transição de opacidade
+            document.body.style.overflow = ''; // Devolve o scroll da página
+
+            // Limpa o elemento do DOM para não pesar a página
             setTimeout(() => {
                 if (strobeLoader) strobeLoader.remove();
             }, 600);
@@ -56,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 3. CONTROLE DO MENU DE NAVEGAÇÃO MOBILE
+    // 3. CONTROLE DO MENU MOBILE
     // ==========================================
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
@@ -77,13 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 4. CONSOLE DE ÁUDIO INTERATIVO EDM (RESTAURADO)
+    // 4. CONSOLE DE ÁUDIO DO TERMINAL
     // ==========================================
     const consoleButtons = document.querySelectorAll('.console-tab-btn');
     const consoleStatusText = document.getElementById('consoleStatusText');
     const barNodes = document.querySelectorAll('.bar-node');
 
-    // Seus valores originais exatos recuperados para evitar quebra de sintaxe
+    // Frequências originais restauradas e salvas
     const trackFrequencies = {
         sia: ['40%', '95%', '70%', '100%', '55%', '85%', '60%'],
         walker: ['95%', '30%', '85%', '20%', '90%', '40%', '80%']
@@ -114,21 +112,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
-
-    // ==========================================
-    // 5. MODO SOBRECARGA ESTÉTICA (GLITCH)
-    // ==========================================
-    const glitchTrigger = document.getElementById('glitchTrigger');
-    if (glitchTrigger) {
-        glitchTrigger.addEventListener('click', () => {
-            document.body.classList.toggle('glitch-overload-mode');
-            
-            if (document.body.classList.contains('glitch-overload-mode')) {
-                glitchTrigger.textContent = 'Restaurar Sistema';
-            } else {
-                glitchTrigger.textContent = 'Sobrecarga Estética';
-            }
-        });
-    }
 });
-
