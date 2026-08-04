@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             strobeLoader.classList.toggle('strobe-flash');
             
             strobeWords.forEach(word => {
-                // Em vez de sumir (opacity 0), alterna entre opacidade alta e média para efeito estroboscópico visível
+                // Alterna entre opacidade alta e média para efeito estroboscópico visível
                 word.style.opacity = Math.random() > 0.5 ? '1' : '0.2';
                 word.style.transform = `scale(${0.98 + Math.random() * 0.04}) skew(${Math.random() * 4}deg)`;
             });
@@ -24,7 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Garante a liberação do site após 4 segundos, sem travar
         setTimeout(() => {
             clearInterval(strobeInterval);
-            strobeLoader.classList.add('fade-out-loader');
+            
+            // Aplica a transição de saída suave
+            strobeLoader.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s';
+            strobeLoader.style.opacity = '0';
+            strobeLoader.style.visibility = 'hidden';
+            
             document.body.style.overflow = ''; // Libera a rolagem do site
             
             // Remove o loader do DOM após o término da transição de opacidade
@@ -35,19 +40,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================
-    // 2. EFEITO HOLOGRÁFICO DINÂMICO DE ROLAGEM
+    // 2. EFEITO HOLOGRÁFICO DINÂMICO DE ROLAGEM (OTIMIZADO)
     // ==========================================
     const hologramOverlay = document.getElementById('hologramOverlay');
+    let ticking = false;
     
     if (hologramOverlay) {
         window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            const opacityModifier = 0.2 + (Math.sin(scrollPosition * 0.005) * 0.15);
-            const hueModifier = (scrollPosition * 0.15) % 360;
-            
-            hologramOverlay.style.opacity = opacityModifier;
-            hologramOverlay.style.background = `linear-gradient(${135 + (scrollPosition * 0.08)}deg, rgba(255,255,255,0.02) 0%, rgba(0,242,254,0.05) 50%, rgba(253,38,121,0.05) 100%)`;
-            hologramOverlay.style.backdropFilter = `hue-rotate(${hueModifier}deg)`;
+            // Evita sobrecarregar o navegador usando requestAnimationFrame
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollPosition = window.scrollY;
+                    const opacityModifier = 0.2 + (Math.sin(scrollPosition * 0.005) * 0.15);
+                    const hueModifier = (scrollPosition * 0.15) % 360;
+                    
+                    hologramOverlay.style.opacity = opacityModifier;
+                    hologramOverlay.style.background = `linear-gradient(${135 + (scrollPosition * 0.08)}deg, rgba(255,255,255,0.02) 0%, rgba(0,242,254,0.05) 50%, rgba(253,38,121,0.05) 100%)`;
+                    hologramOverlay.style.backdropFilter = `hue-rotate(${hueModifier}deg)`;
+                    hologramOverlay.style.webkitBackdropFilter = `hue-rotate(${hueModifier}deg)`;
+                    
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
     }
 
@@ -73,16 +88,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // 4. CONSOLE DE ÁUDIO INTERATIVO EDM
+    // 4. CONSOLE DE ÁUDIO INTERATIVO EDM (COM ANIMAÇÃO ORGÂNICA)
     // ==========================================
     const consoleButtons = document.querySelectorAll('.console-tab-btn');
     const consoleStatusText = document.getElementById('consoleStatusText');
     const barNodes = document.querySelectorAll('.bar-node');
+    let equalizerAnimation = null;
 
     const trackFrequencies = {
-        sia: ['40%', '95%', '70%', '100%', '55%', '85%', '60%'],
-        walker: ['95%', '30%', '85%', '20%', '90%', '40%', '80%']
+        sia:,
+        walker: [95, 30, 85, 20, 90, 40, 80]
     };
+
+    function startLiveEqualizer(stream) {
+        // Limpa animações anteriores se houver
+        if (equalizerAnimation) clearInterval(equalizerAnimation);
+
+        // Cria uma oscilação contínua para simular batida de som real
+        equalizerAnimation = setInterval(() => {
+            barNodes.forEach((bar, index) => {
+                const baseHeight = trackFrequencies[stream][index];
+                // Cria uma variação randômica de até 15% para cima ou para baixo
+                const variance = (Math.random() * 30) - 15; 
+                const finalHeight = Math.min(100, Math.max(10, baseHeight + variance));
+                
+                bar.style.height = `${finalHeight}%`;
+            });
+        }, 150); // Velocidade da batida do equalizador
+    }
 
     consoleButtons.forEach(button => {
         button.addEventListener('click', (event) => {
@@ -102,13 +135,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            barNodes.forEach((bar, index) => {
-                if (trackFrequencies[stream] && trackFrequencies[stream][index]) {
-                    bar.style.height = trackFrequencies[stream][index];
-                }
-            });
+            if (trackFrequencies[stream]) {
+                startLiveEqualizer(stream);
+            }
         });
     });
+
+    // Inicializa o equalizador automático na primeira faixa (Sia) caso as barras existam
+    if (barNodes.length > 0) {
+        startLiveEqualizer('sia');
+    }
 
     // ==========================================
     // 5. MODO SOBRECARGA ESTÉTICA (GLITCH)
