@@ -8,7 +8,7 @@
     <!-- Fontes de Impacto e Alta Costura -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Syncopate:wght@700&family=Syne:wght@500;800&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
     
     <!-- Vínculo com o arquivo CSS externo -->
     <link rel="stylesheet" href="style.css">
@@ -18,10 +18,12 @@
     <!-- Overlay Holográfico Fixo na Tela (Efeito de Rolagem) -->
     <div class="hologram-overlay" id="hologramOverlay"></div>
 
-    <!-- CABEÇALHO COM ESPAÇO PARA LOGO E NAVEGAÇÃO -->
+    <!-- CABEÇALHO PREMIUM COM ESPAÇO PARA GIF + LOGO SOBREPOSTA -->
     <header class="site-header">
-        <div class="header-logo">
-            <!-- Espaço reservado para imagem de logo. Caso não use imagem, o texto estilizado assume -->
+        <div class="header-brand-container">
+            <!-- Insira o link do seu GIF de fundo aqui -->
+            <img src="https://placehold.co" alt="Fundo Animado" class="header-bg-gif">
+            <!-- Sua logo centralizada exatamente por cima do GIF -->
             <img src="https://placehold.co" alt="Celeste Logo" class="brand-logo-img">
         </div>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
@@ -40,10 +42,6 @@
 
     <!-- SEÇÃO 1: HERO MANIFESTO (Abertura Comercial de Alto Impacto) -->
     <section id="manifesto" class="hero-section">
-        <div class="hero-video-bg">
-            <!-- Placeholder de vídeo de fundo para o clima industrial-pop -->
-            <div class="video-overlay-tint"></div>
-        </div>
         <div class="hero-content">
             <h1 class="main-title">VOX LUX</h1>
             <p class="hero-subtitle">Um Retrato do Século XXI</p>
@@ -66,7 +64,7 @@
                 </div>
                 <!-- Galeria de Imagens 1 (Espaço para Fotos da Persona) -->
                 <div class="media-gallery">
-                    <div class="photo-placeholder large" style="background-image: url('https://placehold.co');">
+                    
                         <span class="media-tag">Identity / Look 01</span>
                     </div>
                 </div>
@@ -114,20 +112,15 @@
         </div>
     </section>
 
-    <!-- SEÇÃO 4: O ÁLBUM HOMÔNIMO (Showcase Comercial) -->
+    <!-- SEÇÃO 4: O ÁLBUM HOMÔNIMO (Showcase Comercial com Foto) -->
     <section id="album" class="content-section accent-bg">
         <div class="container">
             <h2 class="section-title">Vox Lux: O Long-Play</h2>
             <div class="album-showcase-grid">
-                <div class="album-vinyl-wrapper">
-                    <!-- Representação visual do LP físico metalizado -->
-                    <div class="vinyl-disc-chroma">
-                        <div class="vinyl-center">VOX</div>
-                    </div>
-                </div>
                 <div class="album-details-text">
                     <p class="album-pitch">Disponível em Vinil Cromado de Edição Limitada e em Todas as Plataformas Digitais de Alta Resolução.</p>
-                    <p>O álbum visual homônimo funciona como um manifesto sonoro niilista revestido de pop açucarado. Suas composições operam em uma lógica industrial sônica, projetada para ecoar em arenas hiperlotadas enquanto anestesia o ouvinte contra a dor existencial.</p>
+                    <p class="album-narrative">O álbum visual homônimo funciona como um manifesto sonoro niilista revestido de pop açucarado. Suas composições operam em uma lógica industrial sônica, projetada para ecoar em arenas hiperlotadas enquanto anestesia o ouvinte contra a dor existencial contemporânea.</p>
+                    
                     <ol class="commercial-tracklist">
                         <li><span>01. Wrapped Up</span><span>04:28</span></li>
                         <li><span>02. Blinded by Love</span><span>03:41</span></li>
@@ -136,43 +129,44 @@
                         <li><span>05. Private Girl</span><span>03:38</span></li>
                     </ol>
                 </div>
+                
+                <!-- Espaço para Foto da Capa do Álbum (Substituindo o desenho do vinil) -->
+                <div class="album-media-cover" style="background-image: url('https://placehold.co');">
+                    <div class="media-scanline"></div>
+                    <span class="media-tag">Vox Lux LP / Official Album Artwork</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- SEÇÃO 5: ARQUITETURA SONORA INTERATIVA (Sia vs Scott Walker) -->
-    <section id="audio" class="content-section">
-        <div class="container">
-            <h2 class="section-title">Arquitetura Sonora</h2>
-            <p class="section-intro-text">O ecossistema sonoro do projeto é sustentado por uma dualidade radical de forças artísticas opostas:</p>
-            
-            <div class="dual-audio-cards">
-                <div class="audio-card sound-pop">
-                    <h3>Os Hits Originais por Sia</h3>
-
-    <!-- SEÇÃO 5: ARQUITETURA SONORA (Interação Avançada JS) -->
-    <section id="arquitetura" class="luxury-section">
+       <!-- SEÇÃO 5: ARQUITETURA SONORA (Interação Avançada JS) -->
+    <section id="audio" class="luxury-section">
         <div class="site-bounds">
-            <h2 class="commercial-title">Arquitetura Sonora</h2>
+            <div class="section-header-block">
+                <h2 class="commercial-title">Arquitetura Sonora</h2>
+                <p class="section-intro-text">O ecossistema sônico de Vox Lux é sustentado por uma dualidade radical de forças artísticas opostas: a saturação do EDM mercantilista contra a erupção do pânico orquestral.</p>
+            </div>
             
             <div class="audio-profile-grid">
                 <div class="profile-card pop-profile">
+                    <div class="card-glow-edge"></div>
                     <h3>Os Hits Originais por Sia</h3>
-                    <p>Hinos electropop polidos de rádio que simulam a perfeição mercantilista. São construções melódicas contagiantes com letras que, sob o verniz pop, escondem gritos de socorro e submissão à fama.</p>
+                    <p>Hinos electropop polidos de rádio que simulam a perfeição mercantilista. São construções melódicas contagiantes com batidas sintéticas agressivas e sintetizadores EDM pesados que, sob o verniz pop, escondem gritos de socorro e submissão à fama.</p>
                 </div>
                 <div class="profile-card score-profile">
+                    <div class="card-glow-edge"></div>
                     <h3>A Trilha Incidental de Scott Walker</h3>
-                    <p>Composições sinfônicas dissonantes, operáticas e aterrorizantes. A pontuação orquestral de Walker revela o verdadeiro estado de pânico interior e escuridão que persegue Celeste por trás dos holofotes.</p>
+                    <p>Composições sinfônicas dissonantes, operáticas e aterrorizantes. A pontuação orquestral de Walker revela o verdadeiro estado de pânico interior e a escuridão industrial que persegue Celeste por trás dos holofotes e das luzes estroboscópicas.</p>
                 </div>
             </div>
 
             <!-- INTERAÇÃO JAVASCRIPT: TERMINAL DE MONITORAMENTO DE FREQUÊNCIA -->
             <div class="console-frequency-hub">
+                <div class="console-border-decor"></div>
                 <h3>Console de Frequência de Áudio</h3>
-                <p class="console-desc">Monitore os picos sônicos que moldam a experiência atmosférica de Vox Lux:</p>
+                <p class="console-desc">Monitore os picos sônicos que moldam a experiência atmosférica e os canais de transmissão de Celeste:</p>
                 
                 <div class="console-action-row">
-                    <!-- O atributo data-stream vincula o botão ao comportamento do JavaScript -->
                     <button class="console-tab-btn active" data-stream="sia">Canal Alpha: Electropop (Sia)</button>
                     <button class="console-tab-btn" data-stream="walker">Canal Beta: Tensão (Scott Walker)</button>
                 </div>
@@ -187,17 +181,29 @@
                     <div class="bar-node node-6"></div>
                     <div class="bar-node node-7"></div>
                 </div>
-                <!-- ID correspondente ao script para alteração dinâmica de texto -->
-                <p id="consoleStatusText" class="console-status">Canal Ativo: Emissão Pop Sintética Otimizada</p>
+                <p id="consoleStatusText" class="console-status">// CANAL ATIVO: EMISSÃO POP SINTÉTICA OTIMIZADA // MAX-EDM-OUTPUT</p>
             </div>
         </div>
     </section>
 
-    <!-- RODAPÉ INSTITUCIONAL COMERCIAL -->
+    <!-- RODAPÉ INSTITUCIONAL COMERCIAL (Centralizado e Técnico) -->
     <footer class="luxury-footer">
         <div class="footer-inner-bounds">
             <div class="footer-logo-text">VOX LUX</div>
-            <p class="footer-copyright-notice">Todos os direitos reservados. Produzido em conformidade com as diretrizes estéticas da turnê Vox Lux Tour de Celeste. Distribuído globalmente por Bold Films & Killer Films.</p>
-            <p class="footer-technical-specs">Desenvolvido sob o conceito de design metalizado-holográfico. Imagens e vídeos sob licenciamento promocional.</p>
+            <div class="footer-divider-line"></div>
+            
+            <div class="footer-info-block">
+                <p class="footer-copyright-notice">© 2026 Todos os direitos reservados. Produzido em conformidade com as diretrizes estéticas e corporativas da turnê Vox Lux Tour de Celeste.</p>
+                <p class="footer-distribution">Distribuído globalmente por Bold Films, Killer Films & Neon Cinema.</p>
+                <p class="footer-technical-specs">Frequência: 44.1kHz Pop Industrial / Código: Metalizado-Holográfico. Imagens e vídeos sob licenciamento promocional estrito.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- TELA DE CARREGAMENTO ESTROBOSCÓPICA (EFEITO BRAT / RÁPIDO 4S) -->
+    <div class="strobe-loader-screen" id="strobeLoader">
+        <div class="strobe-text-wrapper">
+            <span class="strobe-word text-celeste">CELESTE</span>
+            <span class="strobe-word text-vox">VOX LUX</span>
+        </div>
+    </div>
