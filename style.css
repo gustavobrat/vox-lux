@@ -607,16 +607,16 @@ top: 0;
 left: 0;
 width: 100vw;
 height: 100vh;
-background-color: var(--bg-main);
+background-color: #040405;
 z-index: 10000;
 display: flex;
 align-items: center;
 justify-content: center;
-transition: opacity 0.6s ease, visibility 0.6s ease;
+transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 /* Classe controlada pelo JavaScript para gerar o Flash Estroboscópico Ultra-Rápido */
 .strobe-loader-screen.strobe-flash {
-background-color: var(--brat-green);
+background-color: #8ace00 !important;
 }
 .strobe-text-wrapper {
 display: flex;
@@ -626,25 +626,25 @@ gap: 15px;
 text-align: center;
 }
 .strobe-word {
-font-family: var(--font-brutal);
+font-family: 'Syncopate', sans-serif;
 font-size: 5rem;
 font-weight: 900;
 letter-spacing: -3px;
 line-height: 0.9;
-transition: var(--transition-fast);
+transition: transform 0.05s linear, opacity 0.05s linear;
 }
 /* Alternância de cores agressiva no texto durante o flash */
 .strobe-loader-screen.strobe-flash .strobe-word {
-color: #000000;
+color: #000000 !important;
 }
 .strobe-loader-screen:not(.strobe-flash) .strobe-word {
-color: var(--silver-pure);
+color:  #ffffff !important;
 }
 /* Efeito de saída controlado por JS no fim dos 4 segundos */
 .fade-out-loader {
-opacity: 0;
-visibility: hidden;
-pointer-events: none;
+opacity: 0 !important;
+visibility: hidden !important;
+pointer-events: none !important;
 }
 /* ==========================================================================
 8. COMPORTAMENTO DE SOBRECARGA (MODO GLITCH)
