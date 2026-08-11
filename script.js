@@ -1,5 +1,5 @@
 /* =========================================================
-   VOX LUX — SCRIPT.JS
+   VOX LUX — JAVASCRIPT
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,797 +9,605 @@ document.addEventListener("DOMContentLoaded", () => {
        HEADER — FADE IN / FADE OUT
     ===================================================== */
 
-    const header =
-        document.getElementById("siteHeader");
+    const dynamicHeader =
+        document.getElementById("dynamicHeader");
 
-    let previousScroll =
-        window.scrollY;
+    let lastScrollTop = 0;
 
-    let ticking = false;
+    if (dynamicHeader) {
 
+        window.addEventListener("scroll", () => {
 
-    function updateHeader() {
-
-        const currentScroll =
-            window.scrollY;
-
-
-        /*
-            Se estiver no topo:
-            header desaparece.
-        */
-
-        if (currentScroll <= 20) {
-
-            header.classList.remove(
-                "header-visible"
-            );
-
-        }
-
-        /*
-            Descendo:
-            header aparece.
-        */
-
-        else if (
-            currentScroll > previousScroll
-        ) {
-
-            header.classList.add(
-                "header-visible"
-            );
-
-        }
-
-        /*
-            Subindo:
-            header desaparece.
-        */
-
-        else if (
-            currentScroll < previousScroll
-        ) {
-
-            header.classList.remove(
-                "header-visible"
-            );
-
-        }
+            const currentScroll =
+                window.pageYOffset ||
+                document.documentElement.scrollTop;
 
 
-        previousScroll =
-            currentScroll;
+            // No topo
+            if (currentScroll <= 20) {
 
-        ticking = false;
-    }
-
-
-    window.addEventListener(
-        "scroll",
-        () => {
-
-            if (!ticking) {
-
-                window.requestAnimationFrame(
-                    updateHeader
+                dynamicHeader.classList.remove(
+                    "visible-fade"
                 );
 
-                ticking = true;
             }
 
-        },
-        { passive: true }
-    );
+            // Descendo
+            else if (currentScroll > lastScrollTop) {
+
+                dynamicHeader.classList.add(
+                    "visible-fade"
+                );
+
+            }
+
+            // Subindo
+            else if (currentScroll < lastScrollTop) {
+
+                dynamicHeader.classList.remove(
+                    "visible-fade"
+                );
+            }
+
+            lastScrollTop =
+                Math.max(currentScroll, 0);
+
+        });
+    }
 
 
     /* =====================================================
        MENU MOBILE
     ===================================================== */
 
-    const menuToggle =
-        document.getElementById("menuToggle");
+    const menuBurger =
+        document.getElementById("menuBurger");
 
     const mainNav =
         document.getElementById("mainNav");
 
+    if (menuBurger && mainNav) {
 
-    menuToggle.addEventListener(
-        "click",
-        () => {
+        menuBurger.addEventListener("click", () => {
 
             const isOpen =
-                mainNav.classList.toggle(
-                    "open"
-                );
+                mainNav.classList.toggle("active");
 
-            menuToggle.classList.toggle(
+            menuBurger.classList.toggle(
                 "active",
                 isOpen
             );
 
-            menuToggle.setAttribute(
+            menuBurger.setAttribute(
                 "aria-expanded",
                 isOpen
             );
-
-        }
-    );
+        });
 
 
-    /*
-        Fecha o menu depois de clicar
-        em qualquer item.
-    */
+        const navLinks =
+            mainNav.querySelectorAll("a");
 
-    mainNav
-        .querySelectorAll("a")
-        .forEach(link => {
+        navLinks.forEach(link => {
 
-            link.addEventListener(
-                "click",
-                () => {
+            link.addEventListener("click", () => {
 
-                    mainNav.classList.remove(
-                        "open"
-                    );
+                mainNav.classList.remove("active");
 
-                    menuToggle.classList.remove(
-                        "active"
-                    );
+                menuBurger.classList.remove("active");
 
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
+                menuBurger.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
 
-                }
-            );
+            });
 
         });
+    }
+
+
+    /* =====================================================
+       BOTÃO HERO
+    ===================================================== */
+
+    const heroButton =
+        document.querySelector(".hero-button");
+
+    if (heroButton) {
+
+        heroButton.addEventListener("click", event => {
+
+            event.preventDefault();
+
+            const album =
+                document.getElementById("album");
+
+            if (album) {
+
+                album.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }
+
+        });
+
+    }
 
 
     /* =====================================================
        PLAYER
     ===================================================== */
 
-    const audio =
-        document.getElementById(
-            "audioPlayer"
-        );
+    const audioEngine =
+        document.getElementById("audioEngine");
 
     const playButton =
-        document.getElementById(
-            "playButton"
-        );
+        document.getElementById("btnPlayPause");
 
-    const previousButton =
-        document.getElementById(
-            "previousTrack"
-        );
+    const currentTitle =
+        document.getElementById("currentTitle");
 
-    const nextButton =
-        document.getElementById(
-            "nextTrack"
-        );
+    const currentArtist =
+        document.getElementById("currentArtist");
 
-    const progressBar =
-        document.getElementById(
-            "progressBar"
-        );
+    const playerTimer =
+        document.getElementById("playerTimer");
 
-    const progressFill =
-        document.getElementById(
-            "progressFill"
-        );
-
-    const currentTime =
-        document.getElementById(
-            "currentTime"
-        );
-
-    const duration =
-        document.getElementById(
-            "duration"
-        );
-
-    const trackTitle =
-        document.getElementById(
-            "trackTitle"
-        );
-
-    const trackArtist =
-        document.getElementById(
-            "trackArtist"
-        );
-
-    const tracks =
-        Array.from(
-            document.querySelectorAll(
-                ".track"
-            )
+    const vinylRecord =
+        document.querySelector(
+            ".vinyl-record-effect"
         );
 
 
-    let currentTrack = 0;
+    if (audioEngine && playButton) {
 
 
-    /*
-        Formata segundos para
-        minutos:segundos.
-    */
+        /* PLAY / PAUSE */
 
-    function formatTime(seconds) {
+        playButton.addEventListener(
+            "click",
+            () => {
 
-        if (!Number.isFinite(seconds)) {
-            return "0:00";
-        }
+                if (audioEngine.paused) {
 
-        const minutes =
-            Math.floor(
-                seconds / 60
-            );
+                    audioEngine.play()
+                        .then(() => {
 
-        const secs =
-            Math.floor(
-                seconds % 60
-            )
-            .toString()
-            .padStart(2, "0");
+                            playButton.textContent =
+                                "❚❚ PAUSAR";
 
-        return `${minutes}:${secs}`;
+                            if (vinylRecord) {
+
+                                vinylRecord.classList.add(
+                                    "spinning"
+                                );
+
+                            }
+
+                        })
+                        .catch(error => {
+
+                            console.log(
+                                "Áudio não disponível:",
+                                error
+                            );
+
+                        });
+
+                } else {
+
+                    audioEngine.pause();
+
+                    playButton.textContent =
+                        "▶ REPRODUZIR";
+
+                    if (vinylRecord) {
+
+                        vinylRecord.classList.remove(
+                            "spinning"
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+
+        /* TIMER */
+
+        audioEngine.addEventListener(
+            "timeupdate",
+            () => {
+
+                const minutes =
+                    Math.floor(
+                        audioEngine.currentTime / 60
+                    );
+
+                const seconds =
+                    Math.floor(
+                        audioEngine.currentTime % 60
+                    );
+
+                const formattedSeconds =
+                    seconds < 10
+                        ? "0" + seconds
+                        : seconds;
+
+                if (playerTimer) {
+
+                    playerTimer.textContent =
+                        `${minutes}:${formattedSeconds}`;
+
+                }
+
+            }
+        );
+
+
+        /* ÁUDIO TERMINOU */
+
+        audioEngine.addEventListener(
+            "ended",
+            () => {
+
+                playButton.textContent =
+                    "▶ REPRODUZIR";
+
+                if (vinylRecord) {
+
+                    vinylRecord.classList.remove(
+                        "spinning"
+                    );
+
+                }
+
+                if (playerTimer) {
+
+                    playerTimer.textContent =
+                        "0:00";
+
+                }
+
+            }
+        );
+
     }
 
 
-    /*
-        Carrega uma faixa.
-    */
+    /* =====================================================
+       TRACKLIST
+    ===================================================== */
 
-    function loadTrack(index) {
+    window.loadTrack =
+        function(title, url, element) {
 
-        if (!tracks.length) {
-            return;
-        }
-
-        currentTrack =
-            (index + tracks.length)
-            % tracks.length;
+            if (!audioEngine) return;
 
 
-        const selectedTrack =
-            tracks[currentTrack];
+            /* Remove active */
 
+            const tracks =
+                document.querySelectorAll(
+                    ".track-row"
+                );
 
-        const title =
-            selectedTrack.dataset.title;
-
-        const artist =
-            selectedTrack.dataset.artist;
-
-        const source =
-            selectedTrack.dataset.audio;
-
-
-        trackTitle.textContent =
-            title;
-
-        trackArtist.textContent =
-            artist;
-
-
-        tracks.forEach(
-            track => {
+            tracks.forEach(track => {
 
                 track.classList.remove(
                     "active"
                 );
 
-            }
-        );
+            });
 
 
-        selectedTrack.classList.add(
-            "active"
-        );
+            /* Ativa a faixa */
 
+            if (element) {
 
-        /*
-            O áudio só é carregado
-            quando existe um arquivo.
-        */
-
-        if (source) {
-
-            audio.src = source;
-
-            audio.load();
-
-        }
-
-
-        progressFill.style.width =
-            "0%";
-
-        currentTime.textContent =
-            "0:00";
-
-        duration.textContent =
-            "0:00";
-
-    }
-
-
-    /*
-        Play / Pause
-    */
-
-    playButton.addEventListener(
-        "click",
-        async () => {
-
-            if (!audio.src) {
-
-                /*
-                    Caso os arquivos ainda
-                    não tenham sido colocados.
-                */
-
-                alert(
-                    "Adicione o arquivo de áudio em assets/audio para reproduzir esta faixa."
+                element.classList.add(
+                    "active"
                 );
 
-                return;
             }
 
 
-            if (audio.paused) {
+            /* Atualiza título */
 
-                try {
+            if (currentTitle) {
 
-                    await audio.play();
-
-                    playButton.textContent =
-                        "❚❚";
-
-                }
-
-                catch (error) {
-
-                    console.warn(
-                        "Não foi possível reproduzir o áudio.",
-                        error
-                    );
-
-                }
+                currentTitle.textContent =
+                    title;
 
             }
 
-            else {
 
-                audio.pause();
+            /* Atualiza artista */
 
-                playButton.textContent =
-                    "▶";
+            if (currentArtist) {
 
-            }
-
-        }
-    );
-
-
-    /*
-        Faixa anterior
-    */
-
-    previousButton.addEventListener(
-        "click",
-        () => {
-
-            loadTrack(
-                currentTrack - 1
-            );
-
-        }
-    );
-
-
-    /*
-        Próxima faixa
-    */
-
-    nextButton.addEventListener(
-        "click",
-        () => {
-
-            loadTrack(
-                currentTrack + 1
-            );
-
-        }
-    );
-
-
-    /*
-        Atualização do player
-    */
-
-    audio.addEventListener(
-        "loadedmetadata",
-        () => {
-
-            duration.textContent =
-                formatTime(
-                    audio.duration
-                );
-
-        }
-    );
-
-
-    audio.addEventListener(
-        "timeupdate",
-        () => {
-
-            currentTime.textContent =
-                formatTime(
-                    audio.currentTime
-                );
-
-
-            if (
-                audio.duration &&
-                Number.isFinite(
-                    audio.duration
-                )
-            ) {
-
-                const percentage =
-                    (
-                        audio.currentTime /
-                        audio.duration
-                    ) * 100;
-
-
-                progressFill.style.width =
-                    `${percentage}%`;
+                currentArtist.textContent =
+                    "Sia · Vox Lux";
 
             }
 
-        }
-    );
+
+            /* Troca o arquivo */
+
+            audioEngine.pause();
+
+            audioEngine.currentTime = 0;
+
+            audioEngine.src = url;
+
+            audioEngine.load();
 
 
-    /*
-        Ao terminar:
-        passa automaticamente
-        para a próxima faixa.
-    */
+            /* Tenta reproduzir */
 
-    audio.addEventListener(
-        "ended",
-        () => {
-
-            loadTrack(
-                currentTrack + 1
-            );
-
-            audio.play()
+            audioEngine.play()
                 .then(() => {
 
-                    playButton.textContent =
-                        "❚❚";
+                    if (playButton) {
+
+                        playButton.textContent =
+                            "❚❚ PAUSAR";
+
+                    }
+
+                    if (vinylRecord) {
+
+                        vinylRecord.classList.add(
+                            "spinning"
+                        );
+
+                    }
 
                 })
                 .catch(() => {
 
-                    playButton.textContent =
-                        "▶";
+                    if (playButton) {
+
+                        playButton.textContent =
+                            "▶ REPRODUZIR";
+
+                    }
 
                 });
 
-        }
-    );
 
+            if (playerTimer) {
 
-    /*
-        Clique na barra de progresso.
-    */
+                playerTimer.textContent =
+                    "0:00";
 
-    progressBar.addEventListener(
-        "click",
-        event => {
-
-            if (!audio.duration) {
-                return;
             }
 
-
-            const rect =
-                progressBar.getBoundingClientRect();
-
-
-            const position =
-                event.clientX -
-                rect.left;
-
-
-            const percentage =
-                position /
-                rect.width;
-
-
-            audio.currentTime =
-                percentage *
-                audio.duration;
-
-        }
-    );
-
-
-    /*
-        Clique nas músicas.
-    */
-
-    tracks.forEach(
-        (track, index) => {
-
-            track.addEventListener(
-                "click",
-                () => {
-
-                    loadTrack(index);
-
-                }
-            );
-
-        }
-    );
-
-
-    /*
-        Carrega a primeira faixa.
-    */
-
-    loadTrack(0);
+        };
 
 
     /* =====================================================
        PERSONAGENS
     ===================================================== */
 
-    const characterTabs =
-        document.querySelectorAll(
-            ".character-tab"
-        );
-
-    const characterName =
+    const castDisplayBox =
         document.getElementById(
-            "characterName"
-        );
-
-    const characterRole =
-        document.getElementById(
-            "characterRole"
-        );
-
-    const characterDescription =
-        document.getElementById(
-            "characterDescription"
-        );
-
-    const characterActor =
-        document.getElementById(
-            "characterActor"
-        );
-
-    const characterImage =
-        document.getElementById(
-            "characterImage"
+            "castDisplayBox"
         );
 
 
-    const characters = {
+    const castDatabase = {
 
         celeste: {
+
+            index: "01",
+
+            role: "PROTAGONISTA",
 
             name:
                 "Celeste Montgomery",
 
-            role:
-                "PROTAGONISTA",
-
-            actor:
+            actors:
                 "Natalie Portman / Raffey Cassidy",
 
-            image:
-                "assets/images/celeste.jpg",
-
-            description:
-                "Interpretada por Raffey Cassidy na juventude e Natalie Portman na fase adulta, Celeste é o centro da narrativa. Sua trajetória transforma um acontecimento traumático em capital cultural e, posteriormente, em uma carreira construída pela indústria do entretenimento."
-
-        },
-
-
-        eleanor: {
-
-            name:
-                "Eleanor Montgomery",
-
-            role:
-                "IRMÃ",
-
-            actor:
-                "Stacy Martin",
-
-            image:
-                "assets/images/eleanor.jpg",
-
-            description:
-                "Eleanor é a irmã mais velha de Celeste e participa da formação artística da personagem. Sua presença representa uma ligação com a vida anterior à fama e funciona como contraponto ao universo de espetáculo construído ao redor da protagonista."
+            biography:
+                "Celeste é o centro do filme e representa a transformação de uma experiência traumática em uma persona pública de grande alcance. Sua trajetória revela a tensão entre identidade individual e imagem construída pela indústria cultural."
 
         },
 
 
         manager: {
 
+            index: "02",
+
+            role: "GESTÃO",
+
             name:
-                "O Manager",
+                "O Empresário",
 
-            role:
-                "GESTÃO DE CARREIRA",
-
-            actor:
+            actors:
                 "Jude Law",
 
-            image:
-                "assets/images/manager.jpg",
-
-            description:
-                "Interpretado por Jude Law, o empresário representa a dimensão estratégica da carreira de Celeste. Sua atuação está diretamente ligada à administração da imagem, dos compromissos profissionais e da máquina de comunicação que sustenta a persona pública da artista."
+            biography:
+                "O empresário representa a dimensão corporativa da carreira de Celeste. Sua função evidencia a relação entre estratégia de imagem, gestão de crises, negócios e construção de uma carreira musical de grande escala."
 
         },
 
 
-        albertine: {
+        eleanor: {
+
+            index: "03",
+
+            role: "FAMÍLIA",
 
             name:
-                "Albertine",
+                "Eleanor Montgomery",
 
-            role:
-                "NOVA GERAÇÃO",
+            actors:
+                "Stacy Martin",
 
-            actor:
-                "Raffey Cassidy",
-
-            image:
-                "assets/images/albertine.jpg",
-
-            description:
-                "Albertine, filha de Celeste, estabelece uma relação entre a estrela consolidada e uma nova geração que cresceu dentro das consequências da fama da mãe."
+            biography:
+                "Eleanor estabelece uma conexão com a dimensão familiar e privada da protagonista. Sua presença ajuda a evidenciar a distância entre a pessoa existente nos bastidores e a persona criada para o público."
 
         }
 
     };
 
 
-    characterTabs.forEach(
-        tab => {
+    window.switchCast =
+        function(characterKey) {
 
-            tab.addEventListener(
-                "click",
-                () => {
+            if (!castDisplayBox) return;
 
-                    const key =
-                        tab.dataset.character;
+            const character =
+                castDatabase[characterKey];
 
-                    const character =
-                        characters[key];
+            if (!character) return;
 
 
-                    if (!character) {
-                        return;
-                    }
+            /* Botões */
+
+            const tabs =
+                document.querySelectorAll(
+                    ".cast-tab"
+                );
+
+            tabs.forEach(tab => {
+
+                tab.classList.remove(
+                    "active"
+                );
+
+            });
 
 
-                    characterTabs.forEach(
-                        item => {
+            /* Determina botão */
 
-                            item.classList.remove(
-                                "active"
-                            );
+            const buttons = {
 
-                        }
-                    );
+                celeste: 0,
 
+                manager: 1,
 
-                    tab.classList.add(
-                        "active"
-                    );
+                eleanor: 2
+
+            };
 
 
-                    characterName.textContent =
-                        character.name;
+            if (
+                tabs[buttons[characterKey]]
+            ) {
 
-                    characterRole.textContent =
-                        character.role;
+                tabs[
+                    buttons[characterKey]
+                ].classList.add(
+                    "active"
+                );
 
-                    characterActor.textContent =
-                        character.actor;
-
-                    characterDescription.textContent =
-                        character.description;
-
-
-                    characterImage.style.opacity =
-                        "0";
+            }
 
 
-                    setTimeout(
-                        () => {
+            /* Animação */
 
-                            characterImage.src =
-                                character.image;
+            castDisplayBox.style.opacity =
+                "0";
 
-                            characterImage.alt =
-                                character.name;
+            castDisplayBox.style.transform =
+                "translateY(12px)";
 
-                            characterImage.style.opacity =
-                                "1";
 
-                        },
-                        180
-                    );
+            setTimeout(() => {
 
-                }
-            );
+                castDisplayBox.innerHTML = `
 
-        }
-    );
+                    <div class="cast-index">
+                        ${character.index}
+                    </div>
+
+                    <div>
+
+                        <span class="cast-role">
+                            ${character.role}
+                        </span>
+
+                        <h3>
+                            ${character.name}
+                        </h3>
+
+                        <span class="actor-credit">
+                            ${character.actors}
+                        </span>
+
+                        <p>
+                            ${character.biography}
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                castDisplayBox.style.opacity =
+                    "1";
+
+                castDisplayBox.style.transform =
+                    "translateY(0)";
+
+
+            }, 180);
+
+        };
 
 
     /* =====================================================
        GALERIA
     ===================================================== */
 
-    const galleryMainImage =
+    const galleryThumbs =
         document.getElementById(
-            "galleryMainImage"
+            "galleryThumbs"
         );
 
-    const galleryCaption =
+    const showcaseImg =
+        document.getElementById(
+            "galleryShowcase"
+        );
+
+    const captionOverlay =
         document.getElementById(
             "galleryCaption"
         );
 
-    const galleryThumbs =
-        document.querySelectorAll(
-            ".gallery-thumb"
-        );
+
+    if (
+        galleryThumbs &&
+        showcaseImg &&
+        captionOverlay
+    ) {
+
+        const thumbs =
+            galleryThumbs.querySelectorAll(
+                ".thumb-wrapper"
+            );
 
 
-    galleryThumbs.forEach(
-        thumb => {
+        thumbs.forEach(thumb => {
 
             thumb.addEventListener(
                 "click",
                 () => {
 
-                    const image =
-                        thumb.dataset.image;
+                    thumbs.forEach(item => {
 
-                    const caption =
-                        thumb.dataset.caption;
+                        item.classList.remove(
+                            "active"
+                        );
 
-
-                    galleryThumbs.forEach(
-                        item => {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
+                    });
 
 
                     thumb.classList.add(
@@ -807,58 +615,309 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                    galleryMainImage.style.opacity =
+                    const largeUrl =
+                        thumb.getAttribute(
+                            "data-large"
+                        );
+
+                    const caption =
+                        thumb.getAttribute(
+                            "data-caption"
+                        );
+
+
+                    if (!largeUrl) return;
+
+
+                    showcaseImg.style.opacity =
                         "0";
 
 
-                    setTimeout(
-                        () => {
+                    setTimeout(() => {
 
-                            galleryMainImage.src =
-                                image;
+                        showcaseImg.src =
+                            largeUrl;
 
-                            galleryCaption.textContent =
+                        showcaseImg.style.opacity =
+                            "1";
+
+
+                        if (caption) {
+
+                            captionOverlay.textContent =
                                 caption;
 
-                            galleryMainImage.style.opacity =
-                                "1";
+                        }
 
-                        },
-                        180
-                    );
+                    }, 180);
 
                 }
             );
 
-        }
+        });
+
+    }
 
 
     /* =====================================================
-       ESC — FECHA MENU
+       GRÁFICO
     ===================================================== */
 
-    document.addEventListener(
-        "keydown",
-        event => {
+    const chartControls =
+        document.getElementById(
+            "chartControls"
+        );
 
-            if (event.key === "Escape") {
 
-                mainNav.classList.remove(
-                    "open"
-                );
+    const chartDataset = {
 
-                menuToggle.classList.remove(
-                    "active"
-                );
+        geral: {
 
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
+            pop: 50,
 
-            }
+            ost: 50,
+
+            sint: 75,
+
+            desc:
+                "Mapeamento geral da obra: combinação entre linguagem pop, atmosfera cinematográfica e elementos instrumentais."
+
+        },
+
+
+        sia: {
+
+            pop: 100,
+
+            ost: 0,
+
+            sint: 95,
+
+            desc:
+                "Predominância da linguagem pop: estruturas eletrônicas, melodias de grande escala e estética voltada à performance."
+
+        },
+
+
+        walker: {
+
+            pop: 10,
+
+            ost: 90,
+
+            sint: 40,
+
+            desc:
+                "Predominância da dimensão orquestral: arranjos, texturas instrumentais e atmosfera cinematográfica."
 
         }
-    );
+
+    };
+
+
+    if (chartControls) {
+
+        const buttons =
+            chartControls.querySelectorAll(
+                ".chart-toggle-btn"
+            );
+
+
+        buttons.forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    buttons.forEach(btn => {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    const filter =
+                        button.getAttribute(
+                            "data-filter"
+                        );
+
+
+                    const data =
+                        chartDataset[filter];
+
+
+                    if (!data) return;
+
+
+                    const barPop =
+                        document.getElementById(
+                            "barPop"
+                        );
+
+                    const barOst =
+                        document.getElementById(
+                            "barOst"
+                        );
+
+                    const barSint =
+                        document.getElementById(
+                            "barSint"
+                        );
+
+
+                    const labelPop =
+                        document.getElementById(
+                            "labelPop"
+                        );
+
+                    const labelOst =
+                        document.getElementById(
+                            "labelOst"
+                        );
+
+                    const labelSint =
+                        document.getElementById(
+                            "labelSint"
+                        );
+
+
+                    const description =
+                        document.getElementById(
+                            "chartDescriptionText"
+                        );
+
+
+                    if (barPop)
+                        barPop.style.width =
+                            data.pop + "%";
+
+
+                    if (barOst)
+                        barOst.style.width =
+                            data.ost + "%";
+
+
+                    if (barSint)
+                        barSint.style.width =
+                            data.sint + "%";
+
+
+                    if (labelPop)
+                        labelPop.textContent =
+                            data.pop + "%";
+
+
+                    if (labelOst)
+                        labelOst.textContent =
+                            data.ost + "%";
+
+
+                    if (labelSint)
+                        labelSint.textContent =
+                            data.sint + "%";
+
+
+                    if (description)
+                        description.textContent =
+                            data.desc;
+
+                }
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       ANO DO FOOTER
+    ===================================================== */
+
+    const yearElement =
+        document.getElementById(
+            "currentYear"
+        );
+
+
+    if (yearElement) {
+
+        yearElement.textContent =
+            new Date().getFullYear();
+
+    }
+
+
+    /* =====================================================
+       LINKS INTERNOS
+       Scroll suave + fechamento do menu
+    ===================================================== */
+
+    document.querySelectorAll(
+        'a[href^="#"]'
+    ).forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                const targetId =
+                    link.getAttribute("href");
+
+                if (
+                    !targetId ||
+                    targetId === "#"
+                ) return;
+
+
+                const target =
+                    document.querySelector(
+                        targetId
+                    );
+
+
+                if (!target) return;
+
+
+                event.preventDefault();
+
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+
+                if (mainNav) {
+
+                    mainNav.classList.remove(
+                        "active"
+                    );
+
+                }
+
+                if (menuBurger) {
+
+                    menuBurger.classList.remove(
+                        "active"
+                    );
+
+                    menuBurger.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+
+            }
+        );
+
+    });
 
 });
