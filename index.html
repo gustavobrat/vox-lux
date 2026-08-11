@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOX LUX — Official Release & Production Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Helvetica+Neue:wght@400;500;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- CABEÇALHO PROFISSIONAL COM FADE AUTOMÁTICO -->
+    <header id="dynamicHeader">
+        <div class="nav-container">
+            <h1 class="brand-logo">VOX<span>LUX</span></h1>
+            <button class="menu-burger" id="menuBurger" aria-label="Alternar Menu">
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#sinopse">O Filme</a></li>
+                    <li><a href="#album">Trilha Sonora</a></li>
+                    <li><a href="#elenco">Ficha Técnica</a></li>
+                    <li><a href="#manifesto">Análise Teórica</a></li>
+                    <li><a href="#midia">Galeria & Trailer</a></li>
+                    <li><a href="#metricas">Distribuição Musical</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO CORPORATIVO (ESPAÇO AMPLO PARA GIF COM OVERLAY PROFISSIONAL) -->
+    <section class="mega-hero-experience">
+        <!-- Substitua este src pela URL final ou caminho local do seu arquivo .gif -->
+        <img class="hero-bg-gif" src="https://unsplash.com" alt="Vox Lux Cinematic Atmosphere">
+        <div class="hero-tint-overlay"></div>
+        
+        <div class="hero-branding-wrapper">
+            <!-- LOGOTIPO INTEGRADO SOBRE O GIF -->
+            <div class="movie-main-logo">
+                <h2>VOX LUX</h2>
+                <span class="logo-sub">ANÁLISE DE PRODUÇÃO E ESTRUTURA MERCADOLÓGICA</span>
+            </div>
+            
+            <!-- DIRECIONAMENTO DIRETO PARA O PLAYER -->
+            <a href="#album" class="btn-listen-album">OUVIR O ÁLBUM</a>
+        </div>
+    </section>
+
+    <main>
+        
+        <!-- SEÇÃO 1: O FILME -->
+        <section id="sinopse" class="promo-section">
+            <div class="content-grid">
+                <div class="text-block">
+                    <span class="section-label">01 / ESTRUTURA NARRATIVA</span>
+                    <h3>Desenvolvimento Crítico e Executivo</h3>
+                    <p>Estruturado de forma cronológica por meio de capítulos formais que acompanham as transformações culturais da virada do milênio, <strong>Vox Lux</strong> apresenta o percurso profissional de Celeste Montgomery. O projeto estuda o fenômeno da fama a partir de um incidente inicial ocorrido em 1999, que projeta a personagem ao mercado fonográfico internacional.</p>
+                    <p>O roteiro examina os mecanismos de negócios e a gestão de imagem pública na indústria do entretenimento global. A obra traça um paralelo técnico entre as demandas comerciais de uma grande turnê de arenas e o isolamento operacional enfrentado por artistas de alta performance sob contratos corporativos.</p>
+                </div>
+                <div class="visual-static-box">
+                    <div class="glitch-text-element">PRODUÇÃO 2018</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: O ÁLBUM (PLAYER DE ÁUDIO COM 5 TRACKS REAIS) -->
+        <section id="album" class="promo-section dark-bg">
+            <div class="section-header-center">
+                <span class="section-label">02 / PRODUTO FONOGRÁFICO</span>
+                <h3>Vox Lux: Album Oficial de Lançamento</h3>
+                <p>Análise de faixas pop originais escritas por **Sia** em conjunto com a ambientação instrumental e orquestral.</p>
+            </div>
+
+            <div class="album-experience-container">
+                <div class="now-playing-card">
+                    <div class="album-art-simulated">
+                        <div class="vinyl-record-effect"></div>
+                    </div>
+                    <div class="track-meta">
+                        <h4 id="currentTitle">Wrapped Up</h4>
+                        <p id="currentArtist">Celeste Montgomery (Composição: Sia)</p>
+                        
+                        <!-- Engine nativa do navegador -->
+                        <audio id="audioEngine" src="https://soundhelix.com"></audio>
+                        
+                        <div class="custom-player-controls">
+                            <button id="btnPlayPause" class="player-main-btn">▶ REPRODUZIR</button>
+                            <span id="playerTimer" class="timer-display">0:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tracklist Oficial Requerida com 5 Músicas -->
+                <div class="tracklist-container">
+                    <div class="track-row active" onclick="loadTrack('Wrapped Up', 'https://soundhelix.com', this)">
+                        <span class="track-num">01</span>
+                        <span class="track-title">Wrapped Up</span>
+                        <span class="track-duration">3:42</span>
+                    </div>
+                    <div class="track-row" onclick="loadTrack('Saved', 'https://soundhelix.com', this)">
+                        <span class="track-num">02</span>
+                        <span class="track-title">Saved</span>
+                        <span class="track-duration">3:15</span>
+                    </div>
+                    <div class="track-row" onclick="loadTrack('Your Body Talk', 'https://soundhelix.com', this)">
+                        <span class="track-num">03</span>
+                        <span class="track-title">Your Body Talk</span>
+                        <span class="track-duration">4:02</span>
+                    </div>
+                    <div class="track-row" onclick="loadTrack('Blind Spot', 'https://soundhelix.com', this)">
+                        <span class="track-num">04</span>
+                        <span class="track-title">Blind Spot</span>
+                        <span class="track-duration">2:58</span>
+                    </div>
+                    <div class="track-row" onclick="loadTrack('Ecstasy', 'https://soundhelix.com', this)">
+                        <span class="track-num">05</span>
+                        <span class="track-title">Ecstasy</span>
+                        <span class="track-duration">3:50</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: PERSONAGENS E FICHA TÉCNICA -->
+        <section id="elenco" class="promo-section">
+            <span class="section-label">03 / PERFIL DOS PERSONAGENS</span>
+            <h3>Ficha Técnica e Núcleos de Atuação</h3>
+            
+            <div class="interactive-cast-module">
+                <div class="cast-selectors">
+                    <button class="cast-tab active" onclick="switchCast('celeste')">Celeste Montgomery</button>
+                    <button class="cast-tab" onclick="switchCast('manager')">O Empresário</button>
+                    <button class="cast-tab" onclick="switchCast('eleanor')">Eleanor Montgomery</button>
+                </div>
+                
+                <div id="castDisplayBox" class="cast-display-content">
+                    <h4>Celeste Montgomery</h4>
+                    <span class="actor-credit">Interpretação: Natalie Portman (Adulta) / Raffey Cassidy (Jovem)</span>
+                    <p>A personagem central representa as demandas psicológicas exigidas pelo estrelato de massa. Iniciando sua trajetória através de uma comoção nacional que se converteu em ativo midiático, Celeste se desenvolve sob o gerenciamento de contratos corporativos que gradualmente fragmentam sua identidade pessoal em prol do rendimento comercial.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 4: ANÁLISE TEÓRICA -->
+        <section id="manifesto" class="promo-section cinematic-quote-bg">
+            <div class="quote-tint"></div>
+            <div class="quote-wrapper">
+                <span class="section-label">04 / MARCO ACADÊMICO</span>
+                <blockquote>"A obra propõe uma análise sobre os paralelos estruturais entre eventos de grande impacto midiático e as engrenagens de engajamento do mercado pop contemporâneo."</blockquote>
+                <p class="manifesto-subtext">A cinematografia de Brady Corbet constrói um estudo de caso sobre a Sociedade do Espetáculo. Em vez de focar apenas no arco biográfico tradicional, o filme funciona como um ensaio sociológico sobre os métodos que a indústria de bens culturais utiliza para processar e rentabilizar a atenção pública em larga escala.</p>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 5: GALERIA E ESPAÇO DO TRAILER -->
+        <section id="midia" class="promo-section dark-bg">
+            <div class="section-header-center">
+                <span class="section-label">05 / ARQUIVO AUDIOVISUAL DE PRODUÇÃO</span>
+                <h3>Galeria Expositiva e Trailer Promocional</h3>
+            </div>
+
+            <!-- ESPAÇO PARA O VÍDEO (TRAILER OFICIAL) -->
+            <div class="video-trailer-container">
