@@ -1,0 +1,1280 @@
+```css
+/* =========================================================
+   VOX LUX — STYLE.CSS
+   Compatível com o HTML atualizado
+========================================================= */
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #08080a;
+    color: #cfcbd6;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+:root {
+    --brand-magenta: #e6004c;
+    --brand-blue: #0073e6;
+    --studio-dark: #121216;
+    --studio-border: #1f1f26;
+    --clean-white: #ffffff;
+    --muted: #8c8c94;
+    --text-dark: #6a6a72;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    background-color: rgba(8, 8, 10, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid var(--studio-border);
+
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    z-index: 3000;
+
+    opacity: 0;
+    transform: translateY(-20px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+}
+
+header.visible-fade {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 1500px;
+    margin: 0 auto;
+
+    padding: 20px 5%;
+}
+
+.brand-logo {
+    font-family: "Space Grotesk", sans-serif;
+    color: var(--clean-white);
+
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+}
+
+.brand-logo span {
+    color: var(--brand-magenta);
+}
+
+
+/* NAV */
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav ul li a {
+    color: var(--muted);
+
+    text-decoration: none;
+
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+
+    transition: color 0.2s ease;
+}
+
+nav ul li a:hover {
+    color: var(--brand-magenta);
+}
+
+
+/* BURGER */
+
+.menu-burger {
+    display: none;
+
+    background: none;
+    border: none;
+
+    cursor: pointer;
+
+    width: 28px;
+    height: 20px;
+
+    position: relative;
+}
+
+.menu-burger span {
+    display: block;
+
+    width: 100%;
+    height: 2px;
+
+    background-color: var(--clean-white);
+
+    position: absolute;
+
+    transition: all 0.3s ease;
+}
+
+.menu-burger span:first-child {
+    top: 2px;
+}
+
+.menu-burger span:last-child {
+    bottom: 2px;
+}
+
+.menu-burger.active span:first-child {
+    transform: rotate(45deg);
+    top: 9px;
+}
+
+.menu-burger.active span:last-child {
+    transform: rotate(-45deg);
+    bottom: 9px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.mega-hero-experience {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+    min-height: 650px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.hero-bg-gif {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 1;
+
+    filter: saturate(0.75) contrast(1.05);
+}
+
+.hero-tint-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(8, 8, 10, 0.35) 0%,
+            rgba(8, 8, 10, 0.55) 50%,
+            #08080a 100%
+        );
+
+    z-index: 2;
+}
+
+.hero-branding-wrapper {
+    position: relative;
+
+    z-index: 5;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 35px;
+
+    padding: 0 20px;
+}
+
+.movie-main-logo h2 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(3.5rem, 9vw, 7rem);
+
+    color: var(--clean-white);
+
+    letter-spacing: 15px;
+    line-height: 1;
+
+    font-weight: 700;
+
+    margin-right: -15px;
+
+    text-shadow:
+        0 0 30px rgba(255, 255, 255, 0.08);
+}
+
+.logo-sub {
+    display: block;
+
+    font-size: 0.75rem;
+
+    color: #aaaab2;
+
+    letter-spacing: 3px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    margin-top: 18px;
+
+    max-width: 800px;
+
+    line-height: 1.5;
+}
+
+
+/* BOTÃO HERO */
+
+.btn-listen-album {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+
+    color: var(--clean-white);
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+
+    padding: 16px 45px;
+
+    font-family: inherit;
+
+    font-weight: 700;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.btn-listen-album:hover {
+    background-color: var(--clean-white);
+    border-color: var(--clean-white);
+    color: #08080a;
+}
+
+
+/* =========================================================
+   SEÇÕES
+========================================================= */
+
+main {
+    width: 100%;
+}
+
+.promo-section {
+    padding: 110px 5%;
+
+    max-width: 1500px;
+    margin: 0 auto;
+
+    border-bottom: 1px solid var(--studio-border);
+}
+
+.dark-bg {
+    background-color: #0d0d11;
+
+    max-width: none;
+
+    width: 100%;
+}
+
+.section-label {
+    color: var(--brand-magenta);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 3px;
+
+    font-weight: 700;
+
+    display: block;
+
+    margin-bottom: 14px;
+}
+
+.promo-section h3 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+
+    color: var(--clean-white);
+
+    margin-bottom: 30px;
+
+    font-weight: 700;
+
+    line-height: 1.15;
+}
+
+
+/* =========================================================
+   SEÇÃO O FILME
+========================================================= */
+
+.content-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+.text-block p {
+    margin-bottom: 20px;
+
+    color: #9a9a9f;
+
+    text-align: justify;
+}
+
+.text-block strong {
+    color: var(--clean-white);
+}
+
+.visual-static-box {
+    background-color: var(--studio-dark);
+
+    height: 380px;
+
+    border: 1px solid var(--studio-border);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.visual-static-box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border: 1px solid rgba(230, 0, 76, 0.12);
+
+    transform: rotate(45deg);
+}
+
+.glitch-text-element {
+    position: relative;
+    z-index: 2;
+
+    font-size: 1rem;
+
+    color: #55555e;
+
+    letter-spacing: 8px;
+
+    font-weight: 700;
+
+    border: 1px solid var(--studio-border);
+
+    padding: 20px 40px;
+}
+
+
+/* =========================================================
+   HEADER CENTRAL
+========================================================= */
+
+.section-header-center {
+    text-align: center;
+
+    max-width: 850px;
+
+    margin: 0 auto 60px;
+}
+
+.section-header-center p {
+    color: #777780;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   ALBUM / PLAYER
+========================================================= */
+
+.album-experience-container {
+    display: grid;
+
+    grid-template-columns: 400px 1fr;
+
+    gap: 40px;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    background-color: var(--studio-dark);
+
+    border: 1px solid var(--studio-border);
+
+    padding: 40px;
+}
+
+.now-playing-card {
+    border-right: 1px solid var(--studio-border);
+
+    padding-right: 40px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.album-art-simulated {
+    width: 200px;
+    height: 200px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #252530 0 5%,
+            #16161d 6% 40%,
+            #111116 41% 100%
+        );
+
+    border: 1px solid var(--studio-border);
+
+    margin-bottom: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.vinyl-record-effect {
+    width: 80%;
+    height: 80%;
+
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #0d0d10 0px,
+            #202027 2px,
+            #101014 4px
+        );
+
+    border: 1px solid #30303a;
+
+    position: relative;
+
+    transition:
+        border-color 0.3s ease,
+        transform 0.2s linear;
+}
+
+.vinyl-record-effect::after {
+    content: "";
+
+    position: absolute;
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    background: var(--brand-magenta);
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.vinyl-record-effect.spinning {
+    animation: vinylSpin 2.5s linear infinite;
+
+    border-color: var(--brand-magenta);
+}
+
+@keyframes vinylSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.track-meta h4 {
+    font-size: 1.3rem;
+
+    color: var(--clean-white);
+
+    margin-bottom: 5px;
+}
+
+.track-meta p {
+    font-size: 0.8rem;
+
+    color: var(--text-dark);
+
+    margin-bottom: 20px;
+}
+
+.custom-player-controls {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+.player-main-btn {
+    background-color: var(--clean-white);
+
+    color: #08080a;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    font-weight: 700;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.player-main-btn:hover {
+    background-color: var(--brand-magenta);
+
+    color: var(--clean-white);
+}
+
+.timer-display {
+    font-size: 0.9rem;
+
+    color: #8c8c94;
+
+    font-family: monospace;
+
+    margin-left: 5px;
+}
+
+
+/* TRACKLIST */
+
+.tracklist-container {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.track-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.track-row:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.track-row.active {
+    border-left: 3px solid var(--brand-magenta);
+
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+.track-num {
+    color: var(--brand-magenta);
+
+    font-weight: 700;
+
+    margin-right: 20px;
+}
+
+.track-title {
+    flex-grow: 1;
+
+    color: var(--clean-white);
+
+    font-weight: 500;
+}
+
+.track-duration {
+    color: var(--text-dark);
+
+    font-family: monospace;
+
+    font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   CAST / FICHA TÉCNICA
+========================================================= */
+
+.interactive-cast-module {
+    margin-top: 40px;
+
+    background-color: var(--studio-dark);
+
+    border: 1px solid var(--studio-border);
+}
+
+.cast-selectors {
+    display: flex;
+
+    border-bottom: 1px solid var(--studio-border);
+}
+
+.cast-tab {
+    flex: 1;
+
+    background: none;
+
+    border: none;
+
+    color: #6a6a72;
+
+    padding: 20px;
+
+    cursor: pointer;
+
+    font-size: 0.8rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    font-weight: 700;
+
+    transition: all 0.2s;
+
+    font-family: inherit;
+}
+
+.cast-tab:hover {
+    color: var(--clean-white);
+}
+
+.cast-tab.active {
+    color: var(--clean-white);
+
+    border-bottom: 2px solid var(--brand-magenta);
+
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.cast-display-content {
+    padding: 40px;
+}
+
+.cast-display-content h4 {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 1.6rem;
+
+    color: var(--clean-white);
+
+    margin-bottom: 5px;
+}
+
+.cast-display-content p {
+    color: #8c8c94;
+}
+
+.actor-credit {
+    font-size: 0.8rem;
+
+    color: var(--brand-magenta);
+
+    display: block;
+
+    margin-bottom: 20px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   MARCO VISUAL / QUOTE
+========================================================= */
+
+.cinematic-quote-bg {
+    position: relative;
+
+    background:
+        linear-gradient(
+            rgba(8, 8, 10, 0.94),
+            rgba(8, 8, 10, 0.98)
+        ),
+        url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=2000&q=80")
+        center / cover;
+
+    text-align: center;
+
+    padding: 140px 10%;
+}
+
+.quote-tint {
+    display: none;
+}
+
+.quote-wrapper {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+}
+
+.quote-wrapper blockquote {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+
+    color: var(--clean-white);
+
+    line-height: 1.45;
+
+    margin-bottom: 30px;
+
+    font-weight: 400;
+}
+
+.manifesto-subtext {
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    color: #8c8c94;
+}
+
+
+/* =========================================================
+   TRAILER
+========================================================= */
+
+.video-trailer-container {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: 0 auto 60px;
+
+    border: 1px solid var(--studio-border);
+
+    overflow: hidden;
+}
+
+.trailer-placeholder {
+    min-height: 500px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 50px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(230, 0, 76, 0.08),
+            transparent 50%
+        ),
+        #09090c;
+}
+
+.trailer-placeholder h4 {
+    font-family: "Space Grotesk", sans-serif;
+
+    color: var(--clean-white);
+
+    font-size: 3rem;
+
+    letter-spacing: 8px;
+
+    margin-bottom: 15px;
+}
+
+.trailer-placeholder p {
+    color: #777780;
+
+    max-width: 500px;
+
+    margin-bottom: 35px;
+}
+
+.video-placeholder {
+    width: 80%;
+
+    min-height: 70px;
+
+    border: 1px solid var(--studio-border);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #55555e;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 3px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+    background-color: #040405;
+
+    color: var(--clean-white);
+
+    border-top: 1px solid var(--studio-border);
+
+    padding: 70px 5% 25px;
+}
+
+.footer-container {
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr
+        1fr
+        1fr
+        1.5fr;
+
+    gap: 50px;
+
+    padding-bottom: 55px;
+}
+
+.footer-brand h2 {
+    font-family: "Space Grotesk", sans-serif;
+
+    margin-bottom: 14px;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    letter-spacing: -1px;
+}
+
+.footer-brand h2 span {
+    color: var(--brand-magenta);
+}
+
+.footer-brand p {
+    max-width: 300px;
+
+    margin: 0;
+
+    color: #777780;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.footer-info {
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+
+    padding-left: 22px;
+}
+
+.footer-label {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #66666f;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.footer-info p {
+    margin: 0;
+
+    color: #aaaab2;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding-top: 22px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    color: #55555e;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   RESPONSIVO — TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+    .content-grid {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+    .album-experience-container {
+        grid-template-columns: 1fr;
+    }
+
+    .now-playing-card {
+        border-right: none;
+
+        border-bottom: 1px solid var(--studio-border);
+
+        padding-right: 0;
+
+        padding-bottom: 40px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 35px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVO — MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .nav-container {
+        padding: 18px 6%;
+    }
+
+    .menu-burger {
+        display: block;
+    }
+
+    nav {
+        display: none;
+
+        position: absolute;
+
+        top: 67px;
+
+        left: 0;
+
+        width: 100%;
+
+        background-color: rgba(8, 8, 10, 0.98);
+
+        backdrop-filter: blur(15px);
+
+        border-bottom: 1px solid var(--studio-border);
+
+        padding: 25px 20px;
+    }
+
+    nav.active {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 22px;
+    }
+
+    .mega-hero-experience {
+        min-height: 600px;
+    }
+
+    .movie-main-logo h2 {
+        font-size: 3.2rem;
+
+        letter-spacing: 7px;
+
+        margin-right: -7px;
+    }
+
+    .logo-sub {
+        font-size: 0.6rem;
+
+        letter-spacing: 2px;
+    }
+
+    .promo-section {
+        padding: 80px 6%;
+    }
+
+    .album-experience-container {
+        padding: 25px;
+    }
+
+    .cast-selectors {
+        flex-direction: column;
+    }
+
+    .cast-tab {
+        border-bottom: 1px solid var(--studio-border);
+    }
+
+    .cast-display-content {
+        padding: 30px 25px;
+    }
+
+    .cinematic-quote-bg {
+        padding: 100px 7%;
+    }
+
+    .trailer-placeholder {
+        min-height: 400px;
+
+        padding: 30px 20px;
+    }
+
+    .trailer-placeholder h4 {
+        font-size: 2rem;
+
+        letter-spacing: 5px;
+    }
+
+    .video-placeholder {
+        width: 100%;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+
+        gap: 28px;
+
+        padding-bottom: 35px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+
+    .footer-info {
+        border-left: none;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+        padding: 20px 0 0;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        line-height: 1.6;
+    }
+}
+
+
+/* =========================================================
+   MOBILE PEQUENO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .brand-logo {
+        font-size: 1.2rem;
+
+        letter-spacing: 3px;
+    }
+
+    .movie-main-logo h2 {
+        font-size: 2.5rem;
+
+        letter-spacing: 5px;
+
+        margin-right: -5px;
+    }
+
+    .btn-listen-album {
+        width: 100%;
+
+        padding: 15px 20px;
+    }
+
+    .album-art-simulated {
+        width: 170px;
+        height: 170px;
+    }
+
+    .track-row {
+        padding: 17px 10px;
+    }
+
+    .track-duration {
+        display: none;
+    }
+
+    .footer-bottom {
+        font-size: 9px;
+    }
+}
+```
