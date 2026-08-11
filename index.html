@@ -4,27 +4,22 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="Vox Lux — análise cinematográfica, musical e mercadológica do filme de Brady Corbet."
-    >
+    <meta name="description"
+          content="Vox Lux — análise cinematográfica, musical e mercadológica do filme de Brady Corbet.">
 
-    <title>VOX LUX — Análise Cinematográfica</title>
+    <title>VOX LUX — Análise Cinematográfica e Musical</title>
 
-    <!-- Google Fonts -->
+    <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -34,74 +29,82 @@
          HEADER
     ====================================================== -->
 
-    <header id="siteHeader">
+    <header id="dynamicHeader">
 
-        <div class="header-inner">
+        <div class="nav-container">
 
-            <a href="#inicio" class="brand">
+            <a href="#inicio" class="brand-logo">
                 VOX<span>LUX</span>
             </a>
 
-            <nav class="main-nav" id="mainNav">
+            <button
+                class="menu-burger"
+                id="menuBurger"
+                aria-label="Abrir menu"
+                aria-expanded="false">
 
-                <a href="#filme">O Filme</a>
-                <a href="#musica">Trilha Sonora</a>
-                <a href="#personagens">Personagens</a>
-                <a href="#analise">Análise</a>
-                <a href="#galeria">Galeria</a>
-                <a href="#ficha">Ficha Técnica</a>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+            <nav id="mainNav">
+
+                <ul>
+
+                    <li>
+                        <a href="#sinopse">O Filme</a>
+                    </li>
+
+                    <li>
+                        <a href="#album">Trilha Sonora</a>
+                    </li>
+
+                    <li>
+                        <a href="#elenco">Personagens</a>
+                    </li>
+
+                    <li>
+                        <a href="#manifesto">Análise</a>
+                    </li>
+
+                    <li>
+                        <a href="#midia">Galeria</a>
+                    </li>
+
+                    <li>
+                        <a href="#metricas">Métricas</a>
+                    </li>
+
+                </ul>
 
             </nav>
-
-            <button
-                class="menu-toggle"
-                id="menuToggle"
-                aria-label="Abrir menu"
-                aria-expanded="false"
-            >
-                <span></span>
-                <span></span>
-            </button>
 
         </div>
 
     </header>
 
 
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
     <main>
 
-        <!-- =================================================
-             HERO
-        ================================================== -->
+        <section id="inicio" class="hero">
 
-        <section
-            class="hero"
-            id="inicio"
-        >
-
-            <!--
-                TROQUE PELO SEU ARQUIVO:
-
-                assets/images/hero.jpg
-            -->
-
-            <img
-                class="hero-image"
-                src="assets/images/hero.jpg"
-                alt="Atmosfera visual de Vox Lux"
-                width="1920"
-                height="1080"
-                fetchpriority="high"
-            >
-
-            <div class="hero-overlay"></div>
+            <!-- Você pode substituir por imagens/hero.jpg -->
+            <div class="hero-background"></div>
 
             <div class="hero-grid"></div>
+
+            <div class="hero-overlay"></div>
 
             <div class="hero-content">
 
                 <span class="eyebrow">
-                    CINEMA • MÚSICA • ESPETÁCULO
+                    BRADY CORBET · 2018
                 </span>
 
                 <h1>
@@ -109,38 +112,35 @@
                     <span>LUX</span>
                 </h1>
 
-                <p class="hero-description">
-                    Uma análise sobre fama, identidade,
-                    espetáculo e indústria cultural.
+                <p class="hero-subtitle">
+                    FAMA · ESPETÁCULO · INDÚSTRIA · IDENTIDADE
                 </p>
 
-                <div class="hero-actions">
+                <p class="hero-description">
+                    Uma análise da construção da persona artística,
+                    da indústria musical e dos mecanismos de
+                    transformação da atenção pública em espetáculo.
+                </p>
 
-                    <a
-                        href="#filme"
-                        class="button button-primary"
-                    >
-                        EXPLORAR O FILME
-                    </a>
-
-                    <a
-                        href="#musica"
-                        class="button button-outline"
-                    >
-                        TRILHA SONORA
-                    </a>
-
-                </div>
+                <a href="#album" class="hero-button">
+                    EXPLORAR O PROJETO
+                    <span>↓</span>
+                </a>
 
             </div>
 
-            <div class="hero-bottom">
+            <div class="hero-side-info">
 
-                <span>BRADY CORBET</span>
+                <span>FILM</span>
+                <span>01</span>
 
-                <span>2018</span>
+            </div>
 
-                <span>NEON</span>
+            <div class="hero-bottom-line">
+
+                <span>VOX LUX / ANALYSIS</span>
+
+                <span>2018 — 2026</span>
 
             </div>
 
@@ -151,96 +151,77 @@
              SEÇÃO 01 — O FILME
         ================================================== -->
 
-        <section
-            class="section section-film"
-            id="filme"
-        >
+        <section id="sinopse" class="section">
 
             <div class="section-number">
-                01
+                01 / 06
             </div>
 
             <div class="section-heading">
 
-                <span class="section-tag">
-                    O FILME
+                <span class="section-label">
+                    ESTRUTURA NARRATIVA
                 </span>
 
                 <h2>
-                    A fabricação
-                    <em>de uma estrela.</em>
+                    O filme por trás
+                    <em>do espetáculo.</em>
                 </h2>
 
             </div>
 
+            <div class="content-grid">
 
-            <div class="film-layout">
-
-                <div class="film-text">
+                <div class="text-content">
 
                     <p class="lead">
-                        <strong>Vox Lux</strong> acompanha a ascensão
-                        de Celeste Montgomery, uma adolescente que
-                        transforma uma experiência traumática em
-                        ponto de partida para uma carreira musical.
+                        <strong>Vox Lux</strong>, dirigido por Brady Corbet,
+                        acompanha a ascensão de Celeste Montgomery após um
+                        acontecimento traumático que transforma sua trajetória
+                        pessoal em fenômeno midiático.
                     </p>
 
                     <p>
-                        Dirigido e escrito por Brady Corbet, o filme
-                        percorre duas fases da vida de Celeste:
-                        sua formação como estrela no início dos anos
-                        2000 e sua existência como ícone pop em 2017.
+                        Dividido em capítulos, o filme acompanha diferentes
+                        momentos da vida da protagonista e estabelece uma
+                        relação direta entre trauma, fama, consumo cultural
+                        e construção de imagem pública.
                     </p>
 
                     <p>
-                        A narrativa utiliza a trajetória da personagem
-                        para observar a relação entre trauma,
-                        celebridade, consumo cultural e construção
-                        de imagem pública.
-                    </p>
-
-                    <p>
-                        Em vez de apresentar uma biografia convencional,
-                        Corbet constrói uma obra fragmentada, teatral
-                        e deliberadamente desconfortável, na qual
-                        o espetáculo se torna parte da própria
-                        linguagem do filme.
+                        A narrativa desloca o foco da tradicional história
+                        de ascensão de uma estrela para uma investigação
+                        sobre os mecanismos que transformam acontecimentos,
+                        emoções e identidades em produtos de entretenimento.
                     </p>
 
                 </div>
 
+                <div class="info-panel">
 
-                <div class="film-facts">
-
-                    <div class="fact-card">
-
-                        <span>ANO</span>
-                        <strong>2018</strong>
-
-                    </div>
-
-                    <div class="fact-card">
-
-                        <span>DIREÇÃO</span>
+                    <div class="panel-line">
+                        <span>Direção</span>
                         <strong>Brady Corbet</strong>
-
                     </div>
 
-                    <div class="fact-card">
-
-                        <span>ROTEIRO</span>
-                        <strong>
-                            Brady Corbet<br>
-                            Mona Fastvold
-                        </strong>
-
+                    <div class="panel-line">
+                        <span>Ano</span>
+                        <strong>2018</strong>
                     </div>
 
-                    <div class="fact-card">
+                    <div class="panel-line">
+                        <span>Gênero</span>
+                        <strong>Drama / Musical</strong>
+                    </div>
 
-                        <span>DURAÇÃO</span>
-                        <strong>110 min</strong>
+                    <div class="panel-line">
+                        <span>Protagonista</span>
+                        <strong>Celeste Montgomery</strong>
+                    </div>
 
+                    <div class="panel-line">
+                        <span>Distribuição</span>
+                        <strong>Neon</strong>
                     </div>
 
                 </div>
@@ -251,261 +232,233 @@
 
 
         <!-- =================================================
-             SEÇÃO 02 — MÚSICA
+             SEÇÃO 02 — ÁLBUM
         ================================================== -->
 
-        <section
-            class="section section-music"
-            id="musica"
-        >
+        <section id="album" class="section section-dark">
 
             <div class="section-number">
-                02
+                02 / 06
             </div>
 
             <div class="section-heading centered">
 
-                <span class="section-tag">
-                    TRILHA SONORA
+                <span class="section-label">
+                    PRODUTO FONOGRÁFICO
                 </span>
 
                 <h2>
-                    Pop como
-                    <em>personagem.</em>
+                    Vox Lux:
+                    <em>Music From the Motion Picture</em>
                 </h2>
 
                 <p>
-                    As canções originais de Sia coexistem com
-                    a trilha de Scott Walker, criando o contraste
-                    entre a música pop de Celeste e a dimensão
-                    mais experimental do filme.
+                    A música funciona como extensão da construção da
+                    persona pública de Celeste, combinando composição
+                    pop e atmosfera cinematográfica.
                 </p>
 
             </div>
 
 
-            <div class="music-player">
+            <div class="album-player">
 
-                <div class="player-cover">
+                <!-- PLAYER -->
 
-                    <!-- Troque pela sua imagem -->
+                <div class="player-card">
 
-                    <img
-                        id="albumCover"
-                        src="assets/images/album.jpg"
-                        alt="Arte visual da trilha de Vox Lux"
-                        width="700"
-                        height="700"
-                        loading="lazy"
-                    >
+                    <div class="album-art">
 
-                    <div class="cover-overlay">
+                        <div class="album-art-inner">
 
-                        <span>VOX LUX</span>
+                            <span>VOX</span>
+                            <strong>LUX</strong>
 
-                        <small>
-                            ORIGINAL MOTION PICTURE SOUNDTRACK
-                        </small>
+                        </div>
+
+                        <div class="vinyl-record-effect">
+                            <div class="vinyl-center"></div>
+                        </div>
 
                     </div>
 
-                </div>
 
+                    <div class="track-meta">
 
-                <div class="player-interface">
+                        <span class="now-playing">
+                            NOW PLAYING
+                        </span>
 
-                    <span class="player-label">
-                        NOW PLAYING
-                    </span>
+                        <h3 id="currentTitle">
+                            Wrapped Up
+                        </h3>
 
-                    <h3 id="trackTitle">
-                        Wrapped Up
-                    </h3>
+                        <p id="currentArtist">
+                            Sia · Vox Lux
+                        </p>
 
-                    <p id="trackArtist">
-                        Natalie Portman / Raffey Cassidy
-                    </p>
+                        <audio
+                            id="audioEngine"
+                            preload="metadata">
+                        </audio>
 
+                        <div class="custom-player-controls">
 
-                    <div class="progress-area">
+                            <button
+                                id="btnPlayPause"
+                                class="player-main-btn">
 
-                        <div
-                            class="progress-bar"
-                            id="progressBar"
-                        >
-                            <div
-                                class="progress-fill"
-                                id="progressFill"
-                            ></div>
-                        </div>
+                                ▶ REPRODUZIR
 
-                        <div class="time-row">
+                            </button>
 
-                            <span id="currentTime">
+                            <span
+                                id="playerTimer"
+                                class="timer-display">
+
                                 0:00
-                            </span>
 
-                            <span id="duration">
-                                0:00
                             </span>
 
                         </div>
 
                     </div>
 
+                </div>
 
-                    <div class="player-controls">
 
-                        <button
-                            id="previousTrack"
-                            class="control-button"
-                            aria-label="Faixa anterior"
-                        >
-                            ‹
-                        </button>
+                <!-- TRACKLIST -->
 
-                        <button
-                            id="playButton"
-                            class="play-button"
-                            aria-label="Reproduzir"
-                        >
-                            ▶
-                        </button>
+                <div class="tracklist-container">
 
-                        <button
-                            id="nextTrack"
-                            class="control-button"
-                            aria-label="Próxima faixa"
-                        >
-                            ›
-                        </button>
+                    <div class="tracklist-header">
+
+                        <span>
+                            TRACKLIST
+                        </span>
+
+                        <span>
+                            05 TRACKS
+                        </span>
 
                     </div>
 
 
-                    <audio id="audioPlayer"></audio>
+                    <div
+                        class="track-row active"
+                        onclick="loadTrack(
+                            'Wrapped Up',
+                            'audio/wrapped-up.mp3',
+                            this
+                        )">
+
+                        <span class="track-num">
+                            01
+                        </span>
+
+                        <span class="track-title">
+                            Wrapped Up
+                        </span>
+
+                        <span class="track-duration">
+                            03:42
+                        </span>
+
+                    </div>
 
 
-                    <div class="player-note">
-                        Arquivos de áudio locais podem ser adicionados
-                        em <strong>assets/audio/</strong>.
+                    <div
+                        class="track-row"
+                        onclick="loadTrack(
+                            'Hologram',
+                            'audio/hologram.mp3',
+                            this
+                        )">
+
+                        <span class="track-num">
+                            02
+                        </span>
+
+                        <span class="track-title">
+                            Hologram
+                        </span>
+
+                        <span class="track-duration">
+                            03:39
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="track-row"
+                        onclick="loadTrack(
+                            'I Will Return',
+                            'audio/i-will-return.mp3',
+                            this
+                        )">
+
+                        <span class="track-num">
+                            03
+                        </span>
+
+                        <span class="track-title">
+                            I Will Return
+                        </span>
+
+                        <span class="track-duration">
+                            03:54
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="track-row"
+                        onclick="loadTrack(
+                            'Blown Away',
+                            'audio/blown-away.mp3',
+                            this
+                        )">
+
+                        <span class="track-num">
+                            04
+                        </span>
+
+                        <span class="track-title">
+                            Blown Away
+                        </span>
+
+                        <span class="track-duration">
+                            03:32
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="track-row"
+                        onclick="loadTrack(
+                            'Lion Song',
+                            'audio/lion-song.mp3',
+                            this
+                        )">
+
+                        <span class="track-num">
+                            05
+                        </span>
+
+                        <span class="track-title">
+                            Lion Song
+                        </span>
+
+                        <span class="track-duration">
+                            03:44
+                        </span>
+
                     </div>
 
                 </div>
-
-            </div>
-
-
-            <div class="track-list">
-
-                <button
-                    class="track active"
-                    data-title="Wrapped Up"
-                    data-artist="Natalie Portman / Raffey Cassidy"
-                    data-audio="assets/audio/wrapped-up.mp3"
-                >
-
-                    <span class="track-index">
-                        01
-                    </span>
-
-                    <span class="track-name">
-                        Wrapped Up
-                    </span>
-
-                    <span class="track-credit">
-                        Sia / Greg Kurstin
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="track"
-                    data-title="Alive"
-                    data-artist="Raffey Cassidy"
-                    data-audio="assets/audio/alive.mp3"
-                >
-
-                    <span class="track-index">
-                        02
-                    </span>
-
-                    <span class="track-name">
-                        Alive
-                    </span>
-
-                    <span class="track-credit">
-                        Sia / Grant Michaels
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="track"
-                    data-title="Your Body Talk"
-                    data-artist="Raffey Cassidy"
-                    data-audio="assets/audio/your-body-talk.mp3"
-                >
-
-                    <span class="track-index">
-                        03
-                    </span>
-
-                    <span class="track-name">
-                        Your Body Talk
-                    </span>
-
-                    <span class="track-credit">
-                        Sia / Chris Braide
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="track"
-                    data-title="Hologram (Smoke and Mirrors)"
-                    data-artist="Raffey Cassidy"
-                    data-audio="assets/audio/hologram.mp3"
-                >
-
-                    <span class="track-index">
-                        04
-                    </span>
-
-                    <span class="track-name">
-                        Hologram (Smoke and Mirrors)
-                    </span>
-
-                    <span class="track-credit">
-                        Sia / Fernando Garibay
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="track"
-                    data-title="Blinded by Love"
-                    data-artist="Natalie Portman"
-                    data-audio="assets/audio/blinded-by-love.mp3"
-                >
-
-                    <span class="track-index">
-                        05
-                    </span>
-
-                    <span class="track-name">
-                        Blinded by Love
-                    </span>
-
-                    <span class="track-credit">
-                        Sia / Fernando Garibay
-                    </span>
-
-                </button>
 
             </div>
 
@@ -516,109 +469,88 @@
              SEÇÃO 03 — PERSONAGENS
         ================================================== -->
 
-        <section
-            class="section"
-            id="personagens"
-        >
+        <section id="elenco" class="section">
 
             <div class="section-number">
-                03
+                03 / 06
             </div>
 
             <div class="section-heading">
 
-                <span class="section-tag">
-                    PERSONAGENS
+                <span class="section-label">
+                    PERFIL DOS PERSONAGENS
                 </span>
 
                 <h2>
-                    Pessoas por trás
-                    <em>do espetáculo.</em>
+                    As pessoas
+                    <em>por trás da persona.</em>
                 </h2>
 
             </div>
 
 
-            <div class="character-module">
+            <div class="cast-module">
 
-                <div class="character-tabs">
+                <div class="cast-selectors">
 
                     <button
-                        class="character-tab active"
-                        data-character="celeste"
-                    >
-                        Celeste
+                        class="cast-tab active"
+                        onclick="switchCast('celeste')">
+
+                        CELESTE
+
                     </button>
 
                     <button
-                        class="character-tab"
-                        data-character="eleanor"
-                    >
-                        Eleanor
+                        class="cast-tab"
+                        onclick="switchCast('manager')">
+
+                        EMPRESÁRIO
+
                     </button>
 
                     <button
-                        class="character-tab"
-                        data-character="manager"
-                    >
-                        Manager
-                    </button>
+                        class="cast-tab"
+                        onclick="switchCast('eleanor')">
 
-                    <button
-                        class="character-tab"
-                        data-character="albertine"
-                    >
-                        Albertine
+                        ELEANOR
+
                     </button>
 
                 </div>
 
 
-                <div class="character-content">
+                <div
+                    id="castDisplayBox"
+                    class="cast-display">
 
-                    <div class="character-image">
-
-                        <img
-                            id="characterImage"
-                            src="assets/images/celeste.jpg"
-                            alt="Celeste Montgomery"
-                            width="900"
-                            height="1100"
-                            loading="lazy"
-                        >
-
+                    <div class="cast-index">
+                        01
                     </div>
 
+                    <div>
 
-                    <div class="character-information">
-
-                        <span
-                            class="section-tag"
-                            id="characterRole"
-                        >
+                        <span class="cast-role">
                             PROTAGONISTA
                         </span>
 
-                        <h3 id="characterName">
+                        <h3>
                             Celeste Montgomery
                         </h3>
 
-                        <p id="characterDescription">
-                            Interpretada por Raffey Cassidy na juventude
-                            e Natalie Portman na fase adulta, Celeste é
-                            o centro da narrativa. Sua trajetória transforma
-                            um acontecimento traumático em capital cultural
-                            e, posteriormente, em uma carreira construída
-                            pela indústria do entretenimento.
+                        <span class="actor-credit">
+                            Natalie Portman /
+                            Raffey Cassidy
+                        </span>
+
+                        <p>
+                            Celeste é o centro do filme e representa
+                            a transformação de uma experiência traumática
+                            em uma persona pública de grande alcance.
+                            Sua trajetória revela a tensão entre identidade
+                            individual e imagem construída pela indústria
+                            cultural.
                         </p>
-
-                        <div class="character-meta">
-
-                            <span id="characterActor">
-                                Natalie Portman / Raffey Cassidy
-                            </span>
-
-                        </div>
 
                     </div>
 
@@ -633,85 +565,38 @@
              SEÇÃO 04 — ANÁLISE
         ================================================== -->
 
-        <section
-            class="section section-analysis"
-            id="analise"
-        >
+        <section id="manifesto" class="analysis-section">
 
             <div class="analysis-background"></div>
 
-            <div class="section-number">
-                04
-            </div>
-
             <div class="analysis-content">
 
-                <span class="section-tag">
-                    ANÁLISE CRÍTICA
+                <span class="section-label">
+                    04 / MARCO TEÓRICO
                 </span>
 
-                <h2>
-                    Quando o trauma
-                    <br>
-                    vira <em>produto.</em>
-                </h2>
+                <div class="violet-line"></div>
 
-                <p class="analysis-lead">
-                    <strong>Vox Lux</strong> questiona a maneira como
-                    a indústria cultural transforma acontecimentos,
-                    personalidades e emoções em produtos de consumo.
+                <blockquote>
+                    “A fama não aparece apenas como resultado:
+                    ela se torna uma estrutura que reorganiza
+                    a própria identidade.”
+                </blockquote>
+
+                <p>
+                    Vox Lux pode ser interpretado como um estudo sobre
+                    a Sociedade do Espetáculo e sobre a maneira como
+                    a indústria cultural transforma atenção em valor
+                    econômico. A imagem de Celeste deixa de ser apenas
+                    representação e passa a funcionar como produto.
                 </p>
 
-                <div class="analysis-grid">
+                <div class="analysis-tags">
 
-                    <article>
-
-                        <span>01</span>
-
-                        <h3>
-                            Espetáculo
-                        </h3>
-
-                        <p>
-                            A fama deixa de ser apenas consequência
-                            do talento e passa a funcionar como
-                            sistema de produção de identidade.
-                        </p>
-
-                    </article>
-
-
-                    <article>
-
-                        <span>02</span>
-
-                        <h3>
-                            Imagem
-                        </h3>
-
-                        <p>
-                            Celeste constrói uma persona pública que
-                            gradualmente se distancia da pessoa por
-                            trás do personagem.
-                        </p>
-
-                    </article>
-
-
-                    <article>
-
-                        <span>03</span>
-
-                        <h3>
-                            Consumo
-                        </h3>
-
-                        <p>
-                            O sofrimento individual é convertido em
-                            narrativa, música, performance e mercadoria.
-                        </p>
-
-                    </article>
+                    <span>FAMA</span>
+                    <span>ESPETÁCULO</span>
+                    <span>CONSUMO</span>
+                    <span>IDENTIDADE</span>
 
                 </div>
 
@@ -724,29 +609,26 @@
              SEÇÃO 05 — GALERIA
         ================================================== -->
 
-        <section
-            class="section"
-            id="galeria"
-        >
+        <section id="midia" class="section section-dark">
 
             <div class="section-number">
-                05
+                05 / 06
             </div>
 
             <div class="section-heading centered">
 
-                <span class="section-tag">
-                    GALERIA
+                <span class="section-label">
+                    ARQUIVO AUDIOVISUAL
                 </span>
 
                 <h2>
-                    A estética do
-                    <em>espetáculo.</em>
+                    Galeria
+                    <em>cinematográfica.</em>
                 </h2>
 
                 <p>
-                    Substitua os arquivos abaixo pelas imagens
-                    que você selecionar para a apresentação.
+                    Adicione suas próprias imagens na pasta
+                    <strong>imagens/</strong>.
                 </p>
 
             </div>
@@ -754,92 +636,122 @@
 
             <div class="gallery">
 
-                <figure class="gallery-main">
+                <div class="gallery-main-viewer">
 
                     <img
-                        id="galleryMainImage"
-                        src="assets/images/gallery-01.jpg"
-                        alt="Imagem de Vox Lux"
-                        width="1600"
-                        height="900"
-                        loading="lazy"
-                    >
+                        id="galleryShowcase"
+                        src="imagens/hero.jpg"
+                        alt="Imagem principal de Vox Lux">
 
-                    <figcaption id="galleryCaption">
-                        A construção visual da persona de Celeste.
-                    </figcaption>
+                    <div
+                        id="galleryCaption"
+                        class="gallery-caption">
 
-                </figure>
+                        VOX LUX — ARQUIVO VISUAL
 
+                    </div>
 
-                <div class="gallery-thumbnails">
-
-                    <button
-                        class="gallery-thumb active"
-                        data-image="assets/images/gallery-01.jpg"
-                        data-caption="A construção visual da persona de Celeste."
-                    >
-
-                        <img
-                            src="assets/images/gallery-01.jpg"
-                            alt="Galeria 1"
-                            width="400"
-                            height="250"
-                            loading="lazy"
-                        >
-
-                    </button>
+                </div>
 
 
-                    <button
-                        class="gallery-thumb"
-                        data-image="assets/images/gallery-02.jpg"
-                        data-caption="Performance e espetáculo como linguagem."
-                    >
+                <div
+                    id="galleryThumbs"
+                    class="gallery-thumbnails-grid">
+
+
+                    <div
+                        class="thumb-wrapper active"
+                        data-large="imagens/hero.jpg"
+                        data-caption="VOX LUX — ATMOSFERA CINEMATOGRÁFICA">
 
                         <img
-                            src="assets/images/gallery-02.jpg"
-                            alt="Galeria 2"
-                            width="400"
-                            height="250"
-                            loading="lazy"
-                        >
+                            src="imagens/hero.jpg"
+                            alt="Vox Lux">
 
-                    </button>
+                    </div>
 
 
-                    <button
-                        class="gallery-thumb"
-                        data-image="assets/images/gallery-03.jpg"
-                        data-caption="Celeste e a dimensão pública da fama."
-                    >
+                    <div
+                        class="thumb-wrapper"
+                        data-large="imagens/cena-01.jpg"
+                        data-caption="CELESTE — CONSTRUÇÃO DA PERSONA">
 
                         <img
-                            src="assets/images/gallery-03.jpg"
-                            alt="Galeria 3"
-                            width="400"
-                            height="250"
-                            loading="lazy"
-                        >
+                            src="imagens/cena-01.jpg"
+                            alt="Celeste">
 
-                    </button>
+                    </div>
 
 
-                    <button
-                        class="gallery-thumb"
-                        data-image="assets/images/gallery-04.jpg"
-                        data-caption="A estética pop como mecanismo de identidade."
-                    >
+                    <div
+                        class="thumb-wrapper"
+                        data-large="imagens/cena-02.jpg"
+                        data-caption="PERFORMANCE — ESPETÁCULO E CONSUMO">
 
                         <img
-                            src="assets/images/gallery-04.jpg"
-                            alt="Galeria 4"
-                            width="400"
-                            height="250"
-                            loading="lazy"
-                        >
+                            src="imagens/cena-02.jpg"
+                            alt="Performance">
 
-                    </button>
+                    </div>
+
+
+                    <div
+                        class="thumb-wrapper"
+                        data-large="imagens/cena-03.jpg"
+                        data-caption="IDENTIDADE — BASTIDORES">
+
+                        <img
+                            src="imagens/cena-03.jpg"
+                            alt="Bastidores">
+
+                    </div>
+
+
+                    <div
+                        class="thumb-wrapper"
+                        data-large="imagens/cena-04.jpg"
+                        data-caption="VOX LUX — ARQUIVO DE PRODUÇÃO">
+
+                        <img
+                            src="imagens/cena-04.jpg"
+                            alt="Produção">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TRAILER -->
+
+            <div class="trailer-section">
+
+                <span class="section-label">
+                    MATERIAL PROMOCIONAL
+                </span>
+
+                <h3>
+                    Trailer oficial
+                </h3>
+
+                <div class="video-trailer-container">
+
+                    <!-- Substitua pelo embed do trailer -->
+
+                    <div class="video-placeholder">
+
+                        <span>TRAILER</span>
+
+                        <strong>
+                            VOX LUX
+                        </strong>
+
+                        <small>
+                            Adicione aqui o iframe do trailer oficial.
+                        </small>
+
+                    </div>
 
                 </div>
 
@@ -849,118 +761,164 @@
 
 
         <!-- =================================================
-             SEÇÃO 06 — FICHA TÉCNICA
+             SEÇÃO 06 — MÉTRICAS
         ================================================== -->
 
-        <section
-            class="section section-credits"
-            id="ficha"
-        >
+        <section id="metricas" class="section">
 
             <div class="section-number">
-                06
+                06 / 06
             </div>
 
             <div class="section-heading">
 
-                <span class="section-tag">
-                    FICHA TÉCNICA
+                <span class="section-label">
+                    DISTRIBUIÇÃO MUSICAL
                 </span>
 
                 <h2>
-                    Por trás
-                    <em>de Vox Lux.</em>
+                    Música como
+                    <em>produto.</em>
                 </h2>
 
-            </div>
-
-
-            <div class="credits-grid">
-
-                <div class="credit">
-
-                    <span>Direção</span>
-
-                    <strong>
-                        Brady Corbet
-                    </strong>
-
-                </div>
-
-
-                <div class="credit">
-
-                    <span>Roteiro</span>
-
-                    <strong>
-                        Brady Corbet<br>
-                        Mona Fastvold
-                    </strong>
-
-                </div>
-
-
-                <div class="credit">
-
-                    <span>Elenco principal</span>
-
-                    <strong>
-                        Natalie Portman<br>
-                        Raffey Cassidy<br>
-                        Jude Law<br>
-                        Stacy Martin
-                    </strong>
-
-                </div>
-
-
-                <div class="credit">
-
-                    <span>Música</span>
-
-                    <strong>
-                        Sia<br>
-                        Scott Walker
-                    </strong>
-
-                </div>
-
-
-                <div class="credit">
-
-                    <span>Direção de fotografia</span>
-
-                    <strong>
-                        Lol Crawley
-                    </strong>
-
-                </div>
-
-
-                <div class="credit">
-
-                    <span>Distribuição</span>
-
-                    <strong>
-                        NEON
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <div class="sources-note">
-
-                <span>
-                    PROJETO ACADÊMICO
-                </span>
-
                 <p>
-                    Página desenvolvida para fins educacionais,
-                    com conteúdo informativo sobre o filme
-                    <em>Vox Lux</em> (2018).
+                    Painel visual para representar diferentes
+                    dimensões da construção sonora do filme.
                 </p>
+
+            </div>
+
+
+            <div class="data-chart-dashboard">
+
+                <div
+                    id="chartControls"
+                    class="chart-controls">
+
+                    <button
+                        class="chart-toggle-btn active"
+                        data-filter="geral">
+
+                        VISÃO GERAL
+
+                    </button>
+
+                    <button
+                        class="chart-toggle-btn"
+                        data-filter="sia">
+
+                        POP
+
+                    </button>
+
+                    <button
+                        class="chart-toggle-btn"
+                        data-filter="walker">
+
+                        ORQUESTRAL
+
+                    </button>
+
+                </div>
+
+
+                <div class="visual-bars-container">
+
+
+                    <div class="bar-data-row">
+
+                        <div class="bar-title-label">
+                            Linguagem Pop
+                        </div>
+
+                        <div class="bar-wrapper-line">
+
+                            <div
+                                id="barPop"
+                                class="bar-fill-indicator color-pink"
+                                style="width: 50%;">
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="labelPop"
+                            class="bar-percentage-value">
+
+                            50%
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-data-row">
+
+                        <div class="bar-title-label">
+                            Atmosfera Orquestral
+                        </div>
+
+                        <div class="bar-wrapper-line">
+
+                            <div
+                                id="barOst"
+                                class="bar-fill-indicator color-violet"
+                                style="width: 50%;">
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="labelOst"
+                            class="bar-percentage-value">
+
+                            50%
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-data-row">
+
+                        <div class="bar-title-label">
+                            Elementos Sintéticos
+                        </div>
+
+                        <div class="bar-wrapper-line">
+
+                            <div
+                                id="barSint"
+                                class="bar-fill-indicator color-blue"
+                                style="width: 75%;">
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="labelSint"
+                            class="bar-percentage-value">
+
+                            75%
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-explanatory-footer">
+
+                    <p id="chartDescriptionText">
+
+                        Mapeamento geral da obra: combinação
+                        entre linguagem pop, atmosfera cinematográfica
+                        e elementos instrumentais.
+
+                    </p>
+
+                </div>
 
             </div>
 
@@ -973,95 +931,63 @@
          FOOTER
     ====================================================== -->
 
-    <footer class="site-footer">
+    <footer>
 
         <div class="footer-top">
 
             <div class="footer-brand">
 
-                <a href="#inicio">
+                <a href="#inicio" class="footer-logo">
                     VOX<span>LUX</span>
                 </a>
 
                 <p>
-                    Cinema, música e a fabricação
-                    contemporânea da fama.
+                    Análise cinematográfica, musical e mercadológica
+                    do universo de Vox Lux.
                 </p>
 
             </div>
 
 
-            <div class="footer-column">
+            <div class="footer-navigation">
 
-                <span>
-                    NAVEGAÇÃO
-                </span>
+                <span>NAVEGAÇÃO</span>
 
-                <a href="#filme">
-                    O Filme
-                </a>
-
-                <a href="#musica">
-                    Trilha Sonora
-                </a>
-
-                <a href="#personagens">
-                    Personagens
-                </a>
+                <a href="#sinopse">O Filme</a>
+                <a href="#album">Trilha Sonora</a>
+                <a href="#elenco">Personagens</a>
+                <a href="#manifesto">Análise</a>
+                <a href="#midia">Galeria</a>
 
             </div>
 
 
-            <div class="footer-column">
+            <div class="footer-project">
 
-                <span>
-                    EXPLORAR
-                </span>
+                <span>PROJETO</span>
 
-                <a href="#analise">
-                    Análise
-                </a>
-
-                <a href="#galeria">
-                    Galeria
-                </a>
-
-                <a href="#ficha">
-                    Ficha Técnica
-                </a>
-
-            </div>
-
-
-            <div class="footer-status">
-
-                <span class="status-dot"></span>
-
-                <div>
-
-                    <strong>
-                        PROJETO ONLINE
-                    </strong>
-
-                    <small>
-                        Página acadêmica • 2026
-                    </small>
-
-                </div>
+                <p>
+                    Projeto acadêmico desenvolvido na modalidade
+                    de site programado em HTML, CSS e JavaScript.
+                </p>
 
             </div>
 
         </div>
 
 
+        <div class="footer-line"></div>
+
+
         <div class="footer-bottom">
 
             <span>
-                VOX LUX — 2018
+                VOX LUX / DIGITAL ARCHIVE
             </span>
 
             <span>
-                Projeto desenvolvido para fins educacionais
+                © <span id="currentYear">2026</span>
+                — PROJETO ACADÊMICO
             </span>
 
             <a href="#inicio">
@@ -1073,6 +999,7 @@
     </footer>
 
 
+    <!-- JAVASCRIPT -->
     <script src="script.js"></script>
 
 </body>
