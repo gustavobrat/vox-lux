@@ -543,13 +543,13 @@ button {
 
     bottom: 25px;
 
-    left: 4vw;
+    left: 0;
 
-    right: 4vw;
+    right: 0;
 
     display: flex;
 
-    justify-content: space-between;
+    justify-content: center;
 
     align-items: center;
 
