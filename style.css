@@ -812,7 +812,7 @@ h2 em {
 
     object-fit: cover;
 
-    object-position: 40% center;
+    object-position: 30% center;
    
     filter:
         saturate(.82)
