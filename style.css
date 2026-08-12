@@ -812,6 +812,8 @@ h2 em {
 
     object-fit: cover;
 
+    object-position: 40% center;
+   
     filter:
         saturate(.82)
         contrast(1.05);
