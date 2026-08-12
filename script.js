@@ -1,734 +1,871 @@
-```javascript
-/* =====================================================
+/* =========================================================
    VOX LUX — JAVASCRIPT
-===================================================== */
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =================================================
-       HEADER — FADE IN / FADE OUT
-    ================================================= */
 
-    const header = document.getElementById("dynamicHeader");
+    /* =====================================================
+       PRELOADER
+    ===================================================== */
 
-    let lastScroll = window.scrollY;
-
-    window.addEventListener("scroll", () => {
-
-        const currentScroll = window.scrollY;
-
-        if (currentScroll > 80 && currentScroll > lastScroll) {
-
-            // descendo
-            header.classList.add("visible-fade");
-
-        } else if (currentScroll < lastScroll) {
-
-            // subindo
-            header.classList.remove("visible-fade");
-
-        }
-
-        if (currentScroll <= 20) {
-            header.classList.remove("visible-fade");
-        }
-
-        lastScroll = currentScroll;
-
-    });
+    const preloader =
+        document.getElementById("preloader");
 
 
-    /* =================================================
-       MENU MOBILE
-    ================================================= */
+    function hidePreloader() {
 
-    const menuBurger = document.getElementById("menuBurger");
-    const mainNav = document.getElementById("mainNav");
+        if (!preloader) return;
 
-    if (menuBurger && mainNav) {
+        preloader.classList.add("hidden");
 
-        menuBurger.addEventListener("click", () => {
+    }
 
-            const isOpen = mainNav.classList.toggle("active");
 
-            menuBurger.setAttribute(
-                "aria-expanded",
-                isOpen
+    window.addEventListener(
+        "load",
+        () => {
+
+            setTimeout(
+                hidePreloader,
+                700
             );
 
-        });
+        }
+    );
 
 
-        const navLinks = mainNav.querySelectorAll("a");
+    /* Evita que o preloader fique preso
+       caso alguma mídia demore */
+
+    setTimeout(
+        hidePreloader,
+        4000
+    );
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    const header =
+        document.querySelector(".site-header");
+
+
+    function updateHeader() {
+
+        if (!header) return;
+
+        if (window.scrollY > 70) {
+
+            header.classList.add("scrolled");
+
+        } else {
+
+            header.classList.remove("scrolled");
+
+        }
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateHeader,
+        { passive: true }
+    );
+
+
+    updateHeader();
+
+
+    /* =====================================================
+       MENU MOBILE
+    ===================================================== */
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    const mainNav =
+        document.getElementById("mainNav");
+
+
+    if (menuToggle && mainNav) {
+
+
+        menuToggle.addEventListener(
+            "click",
+            () => {
+
+                const isOpen =
+                    mainNav.classList.toggle(
+                        "open"
+                    );
+
+
+                menuToggle.classList.toggle(
+                    "active",
+                    isOpen
+                );
+
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+
+
+                document.body.classList.toggle(
+                    "menu-open",
+                    isOpen
+                );
+
+            }
+        );
+
+
+        const navLinks =
+            mainNav.querySelectorAll("a");
+
 
         navLinks.forEach(link => {
 
-            link.addEventListener("click", () => {
-
-                mainNav.classList.remove("active");
-
-                menuBurger.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            });
-
-        });
-
-    }
-
-
-    /* =================================================
-       PLAYER DE MÚSICA
-    ================================================= */
-
-    const audio = document.getElementById("audioEngine");
-
-    const playButton =
-        document.getElementById("btnPlayPause");
-
-    const currentTitle =
-        document.getElementById("currentTitle");
-
-    const currentArtist =
-        document.getElementById("currentArtist");
-
-    const timer =
-        document.getElementById("playerTimer");
-
-    const duration =
-        document.getElementById("playerDuration");
-
-    const progress =
-        document.getElementById("progressBar");
-
-    const vinyl =
-        document.querySelector(".vinyl");
-
-    const tracks =
-        document.querySelectorAll(".track-row");
-
-
-    let currentTrack = 0;
-
-
-    /* FORMATA TEMPO */
-
-    function formatTime(seconds) {
-
-        if (!Number.isFinite(seconds)) {
-            return "0:00";
-        }
-
-        const minutes =
-            Math.floor(seconds / 60);
-
-        const secs =
-            Math.floor(seconds % 60);
-
-        return `${minutes}:${secs
-            .toString()
-            .padStart(2, "0")}`;
-
-    }
-
-
-    /* CARREGAR TRACK */
-
-    function loadTrack(index, autoPlay = false) {
-
-        if (!tracks[index]) return;
-
-        const track = tracks[index];
-
-        const title =
-            track.dataset.title;
-
-        const artist =
-            track.dataset.artist;
-
-        const source =
-            track.dataset.src;
-
-
-        currentTrack = index;
-
-
-        /* Atualiza interface */
-
-        currentTitle.textContent = title;
-
-        currentArtist.textContent =
-            artist;
-
-
-        /* Atualiza música */
-
-        audio.src = source;
-
-        audio.load();
-
-
-        /* Marca track */
-
-        tracks.forEach(item => {
-            item.classList.remove("active");
-        });
-
-        track.classList.add("active");
-
-
-        timer.textContent = "0:00";
-
-        duration.textContent = "0:00";
-
-        progress.value = 0;
-
-
-        if (autoPlay) {
-
-            const playPromise =
-                audio.play();
-
-            if (playPromise !== undefined) {
-
-                playPromise
-                    .then(() => {
-
-                        playButton.textContent =
-                            "Ⅱ";
-
-                        vinyl.classList.add(
-                            "spinning"
-                        );
-
-                    })
-                    .catch(() => {
-
-                        /*
-                            O navegador pode bloquear
-                            autoplay. Nesse caso,
-                            o usuário pode apertar Play.
-                        */
-
-                        playButton.textContent =
-                            "▶";
-
-                    });
-
-            }
-
-        }
-
-    }
-
-
-    /* CARREGA PRIMEIRA FAIXA */
-
-    if (tracks.length > 0) {
-        loadTrack(0, false);
-    }
-
-
-    /* CLIQUE NAS TRACKS */
-
-    tracks.forEach((track, index) => {
-
-        track.addEventListener("click", () => {
-
-            loadTrack(index, true);
-
-        });
-
-    });
-
-
-    /* PLAY / PAUSE */
-
-    if (playButton) {
-
-        playButton.addEventListener("click", () => {
-
-            if (!audio.src) {
-                loadTrack(currentTrack, false);
-            }
-
-
-            if (audio.paused) {
-
-                audio.play()
-                    .then(() => {
-
-                        playButton.textContent =
-                            "Ⅱ";
-
-                        vinyl.classList.add(
-                            "spinning"
-                        );
-
-                    })
-                    .catch(error => {
-
-                        console.log(
-                            "Não foi possível reproduzir:",
-                            error
-                        );
-
-                    });
-
-            } else {
-
-                audio.pause();
-
-                playButton.textContent =
-                    "▶";
-
-                vinyl.classList.remove(
-                    "spinning"
-                );
-
-            }
-
-        });
-
-    }
-
-
-    /* TEMPO */
-
-    audio.addEventListener(
-        "timeupdate",
-        () => {
-
-            timer.textContent =
-                formatTime(
-                    audio.currentTime
-                );
-
-            if (
-                audio.duration &&
-                Number.isFinite(audio.duration)
-            ) {
-
-                const percentage =
-                    (audio.currentTime /
-                    audio.duration) * 100;
-
-                progress.value =
-                    percentage;
-
-            }
-
-        }
-    );
-
-
-    /* DURAÇÃO */
-
-    audio.addEventListener(
-        "loadedmetadata",
-        () => {
-
-            duration.textContent =
-                formatTime(audio.duration);
-
-        }
-    );
-
-
-    /* BARRA DE PROGRESSO */
-
-    if (progress) {
-
-        progress.addEventListener(
-            "input",
-            () => {
-
-                if (
-                    audio.duration &&
-                    Number.isFinite(audio.duration)
-                ) {
-
-                    audio.currentTime =
-                        (progress.value / 100) *
-                        audio.duration;
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* QUANDO A MÚSICA TERMINA */
-
-    audio.addEventListener(
-        "ended",
-        () => {
-
-            vinyl.classList.remove(
-                "spinning"
-            );
-
-            playButton.textContent =
-                "▶";
-
-
-            /*
-                Toca automaticamente
-                a próxima música.
-            */
-
-            const nextTrack =
-                currentTrack + 1;
-
-            if (nextTrack < tracks.length) {
-
-                loadTrack(
-                    nextTrack,
-                    true
-                );
-
-            }
-
-        }
-    );
-
-
-    /* =================================================
-       PERSONAGENS
-    ================================================= */
-
-    const castTabs =
-        document.querySelectorAll(".cast-tab");
-
-    const castName =
-        document.getElementById("castName");
-
-    const castActor =
-        document.getElementById("castActor");
-
-    const castBiography =
-        document.getElementById("castBiography");
-
-    const castImage =
-        document.getElementById("castImage");
-
-
-    const characters = {
-
-        celeste: {
-
-            name:
-                "Celeste Montgomery",
-
-            actor:
-                "Interpretação: Natalie Portman / Raffey Cassidy",
-
-            image:
-                "assets/celeste.jpg",
-
-            biography:
-                "A personagem central representa as demandas psicológicas exigidas pelo estrelato de massa. Sua trajetória transforma um acontecimento traumático em uma plataforma para construção de imagem, reconhecimento e poder comercial."
-
-        },
-
-
-        manager: {
-
-            name:
-                "O Empresário",
-
-            actor:
-                "Interpretação: Jude Law",
-
-            image:
-                "assets/manager.jpg",
-
-            biography:
-                "O empresário representa a dimensão corporativa da carreira de Celeste. Sua função está ligada à administração da imagem pública, negociações, contratos, apresentações e estratégias necessárias para transformar uma artista em uma marca internacional."
-
-        },
-
-
-        eleanor: {
-
-            name:
-                "Eleanor Montgomery",
-
-            actor:
-                "Interpretação: Stacy Martin",
-
-            image:
-                "assets/eleanor.jpg",
-
-            biography:
-                "Eleanor funciona como uma presença ligada ao passado e às relações pessoais de Celeste. Sua existência ajuda a revelar a distância entre a identidade privada da personagem e a persona pública construída pela indústria."
-
-        }
-
-    };
-
-
-    castTabs.forEach(tab => {
-
-        tab.addEventListener(
-            "click",
-            () => {
-
-                const character =
-                    characters[
-                        tab.dataset.character
-                    ];
-
-                if (!character) return;
-
-
-                castTabs.forEach(item => {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
-                });
-
-                tab.classList.add(
-                    "active"
-                );
-
-
-                /* Atualiza texto */
-
-                castName.textContent =
-                    character.name;
-
-                castActor.textContent =
-                    character.actor;
-
-                castBiography.textContent =
-                    character.biography;
-
-
-                /* Atualiza foto */
-
-                castImage.style.opacity =
-                    "0";
-
-
-                setTimeout(() => {
-
-                    castImage.src =
-                        character.image;
-
-                    castImage.alt =
-                        character.name;
-
-                    castImage.style.opacity =
-                        "1";
-
-                }, 180);
-
-            }
-        );
-
-    });
-
-
-    /* =================================================
-       GALERIA
-    ================================================= */
-
-    const galleryThumbs =
-        document.querySelectorAll(
-            ".gallery-thumb"
-        );
-
-    const galleryImage =
-        document.getElementById(
-            "galleryShowcase"
-        );
-
-    const galleryCaption =
-        document.getElementById(
-            "galleryCaption"
-        );
-
-
-    galleryThumbs.forEach(
-        thumb => {
-
-            thumb.addEventListener(
+            link.addEventListener(
                 "click",
                 () => {
 
-                    const image =
-                        thumb.dataset.image;
-
-                    const caption =
-                        thumb.dataset.caption;
-
-
-                    galleryThumbs.forEach(
-                        item => {
-
-                            item.classList.remove(
-                                "active"
-                            );
-
-                        }
+                    mainNav.classList.remove(
+                        "open"
                     );
 
-                    thumb.classList.add(
+                    menuToggle.classList.remove(
                         "active"
                     );
 
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
 
-                    galleryImage.style.opacity =
-                        "0";
-
-
-                    setTimeout(() => {
-
-                        galleryImage.src =
-                            image;
-
-                        galleryCaption.textContent =
-                            caption;
-
-                        galleryImage.style.opacity =
-                            "1";
-
-                    }, 200);
+                    document.body.classList.remove(
+                        "menu-open"
+                    );
 
                 }
             );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       REVEAL AO ROLAR
+    ===================================================== */
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+
+    if (
+        "IntersectionObserver"
+        in window
+    ) {
+
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target
+                                .classList
+                                .add("visible");
+
+
+                            revealObserver
+                                .unobserve(
+                                    entry.target
+                                );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(
+            element => {
+
+                revealObserver.observe(
+                    element
+                );
+
+            }
+        );
+
+
+    } else {
+
+        revealElements.forEach(
+            element => {
+
+                element.classList.add(
+                    "visible"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       PLAYER DO ÁLBUM
+    ===================================================== */
+
+    const tracks =
+        document.querySelectorAll(".track");
+
+
+    let currentAudio = null;
+
+    let currentTrack = null;
+
+
+    tracks.forEach(track => {
+
+
+        const button =
+            track.querySelector(
+                ".play-button"
+            );
+
+
+        const progress =
+            track.querySelector(
+                ".track-progress div"
+            );
+
+
+        const audio =
+            document.createElement("audio");
+
+
+        audio.src =
+            track.dataset.track;
+
+
+        audio.preload =
+            "metadata";
+
+
+        track.appendChild(audio);
+
+
+        /* -----------------------------------------------
+           PLAY / PAUSE
+        ------------------------------------------------ */
+
+
+        button.addEventListener(
+            "click",
+            async () => {
+
+
+                /* Se é a música atual */
+
+                if (
+                    currentAudio === audio
+                ) {
+
+
+                    if (
+                        audio.paused
+                    ) {
+
+                        try {
+
+                            await audio.play();
+
+                            track.classList.add(
+                                "playing"
+                            );
+
+                            button.textContent =
+                                "❚❚";
+
+                        } catch (error) {
+
+                            console.warn(
+                                "Não foi possível reproduzir o áudio:",
+                                error
+                            );
+
+                        }
+
+
+                    } else {
+
+                        audio.pause();
+
+                        track.classList.remove(
+                            "playing"
+                        );
+
+                        button.textContent =
+                            "▶";
+
+                    }
+
+
+                    return;
+
+                }
+
+
+                /* ---------------------------------------
+                   PARA QUALQUER OUTRA MÚSICA
+                --------------------------------------- */
+
+
+                if (currentAudio) {
+
+                    currentAudio.pause();
+
+                    currentAudio.currentTime = 0;
+
+
+                    if (currentTrack) {
+
+                        currentTrack
+                            .classList
+                            .remove(
+                                "playing"
+                            );
+
+
+                        const oldButton =
+                            currentTrack
+                                .querySelector(
+                                    ".play-button"
+                                );
+
+
+                        if (oldButton) {
+
+                            oldButton.textContent =
+                                "▶";
+
+                        }
+
+
+                        const oldProgress =
+                            currentTrack
+                                .querySelector(
+                                    ".track-progress div"
+                                );
+
+
+                        if (oldProgress) {
+
+                            oldProgress.style.width =
+                                "0%";
+
+                        }
+
+                    }
+
+                }
+
+
+                /* ---------------------------------------
+                   NOVA MÚSICA
+                --------------------------------------- */
+
+
+                currentAudio = audio;
+
+                currentTrack = track;
+
+
+                try {
+
+                    await audio.play();
+
+                    track.classList.add(
+                        "playing"
+                    );
+
+                    button.textContent =
+                        "❚❚";
+
+                } catch (error) {
+
+                    console.warn(
+                        "Arquivo de áudio não encontrado ou bloqueado:",
+                        audio.src
+                    );
+
+                    track.classList.remove(
+                        "playing"
+                    );
+
+                    button.textContent =
+                        "▶";
+
+                }
+
+            }
+        );
+
+
+        /* -----------------------------------------------
+           PROGRESSO
+        ------------------------------------------------ */
+
+        audio.addEventListener(
+            "timeupdate",
+            () => {
+
+                if (
+                    !audio.duration ||
+                    !Number.isFinite(
+                        audio.duration
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                const percentage =
+                    (
+                        audio.currentTime /
+                        audio.duration
+                    ) * 100;
+
+
+                progress.style.width =
+                    `${percentage}%`;
+
+            }
+        );
+
+
+        /* -----------------------------------------------
+           FIM DA MÚSICA
+        ------------------------------------------------ */
+
+        audio.addEventListener(
+            "ended",
+            () => {
+
+                track.classList.remove(
+                    "playing"
+                );
+
+                button.textContent =
+                    "▶";
+
+                progress.style.width =
+                    "0%";
+
+
+                currentAudio = null;
+
+                currentTrack = null;
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       GALERIA
+    ===================================================== */
+
+    const galleryTrack =
+        document.getElementById(
+            "galleryTrack"
+        );
+
+
+    const slides =
+        document.querySelectorAll(
+            ".gallery-slide"
+        );
+
+
+    const previousButton =
+        document.getElementById(
+            "previousImage"
+        );
+
+
+    const nextButton =
+        document.getElementById(
+            "nextImage"
+        );
+
+
+    const currentCounter =
+        document.getElementById(
+            "galleryCurrent"
+        );
+
+
+    const totalCounter =
+        document.getElementById(
+            "galleryTotal"
+        );
+
+
+    let currentSlide = 0;
+
+
+    const totalSlides =
+        slides.length;
+
+
+    if (totalCounter) {
+
+        totalCounter.textContent =
+            String(totalSlides)
+                .padStart(2, "0");
+
+    }
+
+
+    function updateGallery() {
+
+
+        if (!galleryTrack) return;
+
+
+        galleryTrack.style.transform =
+            `translateX(-${currentSlide * 100}%)`;
+
+
+        if (currentCounter) {
+
+            currentCounter.textContent =
+                String(currentSlide + 1)
+                    .padStart(2, "0");
+
+        }
+
+    }
+
+
+    function nextSlide() {
+
+        if (totalSlides === 0) return;
+
+
+        currentSlide =
+            (currentSlide + 1)
+            % totalSlides;
+
+
+        updateGallery();
+
+    }
+
+
+    function previousSlide() {
+
+        if (totalSlides === 0) return;
+
+
+        currentSlide =
+            (
+                currentSlide -
+                1 +
+                totalSlides
+            ) % totalSlides;
+
+
+        updateGallery();
+
+    }
+
+
+    if (nextButton) {
+
+        nextButton.addEventListener(
+            "click",
+            nextSlide
+        );
+
+    }
+
+
+    if (previousButton) {
+
+        previousButton.addEventListener(
+            "click",
+            previousSlide
+        );
+
+    }
+
+
+    /* =====================================================
+       TECLADO
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+
+            if (
+                event.key ===
+                "ArrowRight"
+            ) {
+
+                nextSlide();
+
+            }
+
+
+            if (
+                event.key ===
+                "ArrowLeft"
+            ) {
+
+                previousSlide();
+
+            }
+
+
+            /* ESC fecha lightbox */
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeLightbox();
+
+            }
 
         }
     );
 
 
-    /* =================================================
-       GRÁFICO
-    ================================================= */
+    /* =====================================================
+       SWIPE MOBILE
+    ===================================================== */
 
-    const chartButtons =
-        document.querySelectorAll(
-            ".chart-toggle"
+    let touchStartX = 0;
+
+    let touchEndX = 0;
+
+
+    if (galleryTrack) {
+
+
+        galleryTrack.addEventListener(
+            "touchstart",
+            event => {
+
+                touchStartX =
+                    event.changedTouches[0]
+                        .screenX;
+
+            },
+            {
+                passive: true
+            }
         );
 
 
-    const datasets = {
+        galleryTrack.addEventListener(
+            "touchend",
+            event => {
 
-        geral: {
-
-            pop: 50,
-            ost: 50,
-            sint: 75,
-
-            description:
-                "O projeto combina elementos de música pop, texturas eletrônicas e composição orquestral para representar diferentes dimensões da narrativa."
-
-        },
+                touchEndX =
+                    event.changedTouches[0]
+                        .screenX;
 
 
-        pop: {
-
-            pop: 100,
-            ost: 20,
-            sint: 95,
-
-            description:
-                "O filtro pop enfatiza as estruturas comerciais, eletrônicas e sintéticas associadas à persona pública de Celeste."
-
-        },
+                const difference =
+                    touchStartX -
+                    touchEndX;
 
 
-        orquestral: {
+                if (
+                    Math.abs(difference) <
+                    50
+                ) {
 
-            pop: 30,
-            ost: 100,
-            sint: 45,
+                    return;
 
-            description:
-                "O filtro orquestral evidencia o papel das texturas instrumentais e da composição de Scott Walker na construção da atmosfera cinematográfica."
-
-        }
-
-    };
+                }
 
 
-    chartButtons.forEach(button => {
+                if (
+                    difference > 0
+                ) {
 
-        button.addEventListener(
+                    nextSlide();
+
+                } else {
+
+                    previousSlide();
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       LIGHTBOX DA GALERIA
+    ===================================================== */
+
+    let activeLightbox = null;
+
+
+    function closeLightbox() {
+
+        if (!activeLightbox) return;
+
+
+        activeLightbox.classList.remove(
+            "visible"
+        );
+
+
+        setTimeout(
+            () => {
+
+                if (activeLightbox) {
+
+                    activeLightbox.remove();
+
+                    activeLightbox = null;
+
+                }
+
+            },
+            300
+        );
+
+    }
+
+
+    slides.forEach(slide => {
+
+
+        slide.addEventListener(
             "click",
             () => {
 
-                const filter =
-                    button.dataset.filter;
 
-                const data =
-                    datasets[filter];
-
-                if (!data) return;
+                const image =
+                    slide.querySelector("img");
 
 
-                chartButtons.forEach(
-                    item => {
+                if (!image) return;
 
-                        item.classList.remove(
-                            "active"
+
+                closeLightbox();
+
+
+                const lightbox =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                lightbox.className =
+                    "image-lightbox";
+
+
+                lightbox.innerHTML = `
+
+                    <button
+                        class="lightbox-close"
+                        type="button"
+                        aria-label="Fechar imagem"
+                    >
+                        ×
+                    </button>
+
+                    <img
+                        src="${image.src}"
+                        alt="${image.alt}"
+                    >
+
+                `;
+
+
+                document.body.appendChild(
+                    lightbox
+                );
+
+
+                activeLightbox =
+                    lightbox;
+
+
+                requestAnimationFrame(
+                    () => {
+
+                        lightbox.classList.add(
+                            "visible"
                         );
 
                     }
                 );
 
-                button.classList.add(
-                    "active"
+
+                const closeButton =
+                    lightbox.querySelector(
+                        ".lightbox-close"
+                    );
+
+
+                closeButton.addEventListener(
+                    "click",
+                    closeLightbox
                 );
 
 
-                document.getElementById(
-                    "barPop"
-                ).style.width =
-                    `${data.pop}%`;
+                lightbox.addEventListener(
+                    "click",
+                    event => {
 
+                        if (
+                            event.target ===
+                            lightbox
+                        ) {
 
-                document.getElementById(
-                    "barOst"
-                ).style.width =
-                    `${data.ost}%`;
+                            closeLightbox();
 
+                        }
 
-                document.getElementById(
-                    "barSint"
-                ).style.width =
-                    `${data.sint}%`;
-
-
-                document.getElementById(
-                    "labelPop"
-                ).textContent =
-                    `${data.pop}%`;
-
-
-                document.getElementById(
-                    "labelOst"
-                ).textContent =
-                    `${data.ost}%`;
-
-
-                document.getElementById(
-                    "labelSint"
-                ).textContent =
-                    `${data.sint}%`;
-
-
-                document.getElementById(
-                    "chartDescriptionText"
-                ).textContent =
-                    data.description;
+                    }
+                );
 
             }
         );
@@ -736,32 +873,173 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* =================================================
-       BOTÃO VOLTAR AO TOPO
-    ================================================= */
+    /* =====================================================
+       TRAILER
+    ===================================================== */
 
-    const topButton =
-        document.querySelector(
-            '.footer-bottom a[href="#inicio"]'
+    const trailerVideo =
+        document.getElementById(
+            "trailerVideo"
         );
 
-    if (topButton) {
 
-        topButton.addEventListener(
+    const videoOverlay =
+        document.getElementById(
+            "videoOverlay"
+        );
+
+
+    const playTrailer =
+        document.getElementById(
+            "playTrailer"
+        );
+
+
+    if (
+        trailerVideo &&
+        videoOverlay &&
+        playTrailer
+    ) {
+
+
+        playTrailer.addEventListener(
             "click",
-            event => {
+            async () => {
 
-                event.preventDefault();
+                try {
 
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
+                    await trailerVideo.play();
+
+                    videoOverlay.classList.add(
+                        "hidden"
+                    );
+
+                } catch (error) {
+
+                    console.warn(
+                        "Não foi possível reproduzir o trailer.",
+                        error
+                    );
+
+                }
+
+            }
+        );
+
+
+        trailerVideo.addEventListener(
+            "play",
+            () => {
+
+                videoOverlay.classList.add(
+                    "hidden"
+                );
+
+            }
+        );
+
+
+        trailerVideo.addEventListener(
+            "pause",
+            () => {
+
+                if (
+                    !trailerVideo.ended
+                ) {
+
+                    videoOverlay.classList.remove(
+                        "hidden"
+                    );
+
+                }
+
+            }
+        );
+
+
+        trailerVideo.addEventListener(
+            "ended",
+            () => {
+
+                videoOverlay.classList.remove(
+                    "hidden"
+                );
 
             }
         );
 
     }
 
+
+    /* =====================================================
+       PARALLAX DA HOME
+    ===================================================== */
+
+    const heroBackground =
+        document.querySelector(
+            ".hero-background"
+        );
+
+
+    let ticking = false;
+
+
+    function updateParallax() {
+
+
+        if (
+            !heroBackground ||
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches
+        ) {
+
+            ticking = false;
+
+            return;
+
+        }
+
+
+        const scroll =
+            window.scrollY;
+
+
+        if (
+            scroll <
+            window.innerHeight
+        ) {
+
+            heroBackground.style.transform =
+                `scale(1.08) translateY(${scroll * .12}px)`;
+
+        }
+
+
+        ticking = false;
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (!ticking) {
+
+                window.requestAnimationFrame(
+                    updateParallax
+                );
+
+                ticking = true;
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
 });
-```
