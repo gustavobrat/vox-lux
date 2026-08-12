@@ -553,6 +553,8 @@ button {
 
     align-items: center;
 
+    gap: 2rem;
+
     font-size: .52rem;
 
     letter-spacing: .18em;
