@@ -19,20 +19,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         preloader.classList.add("hidden");
 
+       setTimeout(() => {
+          preloader.remove();
+       }, 900);
     }
 
-
-    window.addEventListener(
-        "load",
-        () => {
-
-            setTimeout(
-                hidePreloader,
-                700
-            );
-
+if (document.readyState === "complete") {
+   setTimeout(hidePreloader, 500);
+} else {
+    window.addEventListener("load", () => {
+       setTimeout(hidePreloader, 500);
+    });
         }
-    );
+setTimeout(hidePreloader, 3000);
 
 
     /* Evita que o preloader fique preso
