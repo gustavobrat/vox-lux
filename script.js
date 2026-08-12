@@ -2,45 +2,94 @@
    VOX LUX — JAVASCRIPT
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
 
+/* =========================================================
+   PRELOADER
+   Fica na tela por 5 segundos e depois desaparece.
+   É independente do restante do JavaScript.
+========================================================= */
 
-    /* =====================================================
-       PRELOADER
-    ===================================================== */
+(function () {
 
     const preloader =
         document.getElementById("preloader");
 
+    if (!preloader) return;
+
+    let removed = false;
+
 
     function hidePreloader() {
 
-        if (!preloader) return;
+        if (removed) return;
+
+        removed = true;
 
         preloader.classList.add("hidden");
 
-       setTimeout(() => {
-          preloader.remove();
-       }, 900);
+
+        setTimeout(() => {
+
+            if (
+                preloader &&
+                preloader.parentNode
+            ) {
+
+                preloader.parentNode.removeChild(
+                    preloader
+                );
+
+            }
+
+        }, 900);
+
     }
 
-if (document.readyState === "complete") {
-   setTimeout(hidePreloader, 500);
-} else {
-    window.addEventListener("load", () => {
-       setTimeout(hidePreloader, 500);
-    });
-        }
-setTimeout(hidePreloader, 3000);
+
+    /*
+       O contador começa quando o navegador
+       termina de carregar o documento.
+    */
+
+    const startPreloaderTimer = () => {
+
+        setTimeout(
+            hidePreloader,
+            5000
+        );
+
+    };
 
 
-    /* Evita que o preloader fique preso
-       caso alguma mídia demore */
+    if (
+        document.readyState === "complete"
+    ) {
 
-    setTimeout(
-        hidePreloader,
-        4000
-    );
+        startPreloaderTimer();
+
+    } else {
+
+        window.addEventListener(
+            "load",
+            startPreloaderTimer,
+            {
+                once: true
+            }
+        );
+
+    }
+
+})();
+
+
+
+/* =========================================================
+   RESTANTE DO SITE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
 
     /* =====================================================
@@ -48,20 +97,27 @@ setTimeout(hidePreloader, 3000);
     ===================================================== */
 
     const header =
-        document.querySelector(".site-header");
+        document.querySelector(
+            ".site-header"
+        );
 
 
     function updateHeader() {
 
         if (!header) return;
 
+
         if (window.scrollY > 70) {
 
-            header.classList.add("scrolled");
+            header.classList.add(
+                "scrolled"
+            );
 
         } else {
 
-            header.classList.remove("scrolled");
+            header.classList.remove(
+                "scrolled"
+            );
 
         }
 
@@ -71,11 +127,14 @@ setTimeout(hidePreloader, 3000);
     window.addEventListener(
         "scroll",
         updateHeader,
-        { passive: true }
+        {
+            passive: true
+        }
     );
 
 
     updateHeader();
+
 
 
     /* =====================================================
@@ -83,18 +142,27 @@ setTimeout(hidePreloader, 3000);
     ===================================================== */
 
     const menuToggle =
-        document.getElementById("menuToggle");
+        document.getElementById(
+            "menuToggle"
+        );
+
 
     const mainNav =
-        document.getElementById("mainNav");
+        document.getElementById(
+            "mainNav"
+        );
 
 
-    if (menuToggle && mainNav) {
+    if (
+        menuToggle &&
+        mainNav
+    ) {
 
 
         menuToggle.addEventListener(
             "click",
             () => {
+
 
                 const isOpen =
                     mainNav.classList.toggle(
@@ -124,38 +192,47 @@ setTimeout(hidePreloader, 3000);
 
 
         const navLinks =
-            mainNav.querySelectorAll("a");
-
-
-        navLinks.forEach(link => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    mainNav.classList.remove(
-                        "open"
-                    );
-
-                    menuToggle.classList.remove(
-                        "active"
-                    );
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                    document.body.classList.remove(
-                        "menu-open"
-                    );
-
-                }
+            mainNav.querySelectorAll(
+                "a"
             );
 
-        });
+
+        navLinks.forEach(
+            link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+
+                        mainNav.classList.remove(
+                            "open"
+                        );
+
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+
+                        document.body.classList.remove(
+                            "menu-open"
+                        );
+
+                    }
+                );
+
+            }
+        );
 
     }
+
 
 
     /* =====================================================
@@ -163,12 +240,13 @@ setTimeout(hidePreloader, 3000);
     ===================================================== */
 
     const revealElements =
-        document.querySelectorAll(".reveal");
+        document.querySelectorAll(
+            ".reveal"
+        );
 
 
     if (
-        "IntersectionObserver"
-        in window
+        "IntersectionObserver" in window
     ) {
 
 
@@ -176,25 +254,32 @@ setTimeout(hidePreloader, 3000);
             new IntersectionObserver(
                 entries => {
 
-                    entries.forEach(entry => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            entry.target
-                                .classList
-                                .add("visible");
+                    entries.forEach(
+                        entry => {
 
 
-                            revealObserver
-                                .unobserve(
-                                    entry.target
-                                );
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+
+                                entry.target
+                                    .classList
+                                    .add(
+                                        "visible"
+                                    );
+
+
+                                revealObserver
+                                    .unobserve(
+                                        entry.target
+                                    );
+
+                            }
 
                         }
-
-                    });
+                    );
 
                 },
                 {
@@ -216,6 +301,7 @@ setTimeout(hidePreloader, 3000);
 
     } else {
 
+
         revealElements.forEach(
             element => {
 
@@ -229,12 +315,15 @@ setTimeout(hidePreloader, 3000);
     }
 
 
+
     /* =====================================================
        PLAYER DO ÁLBUM
     ===================================================== */
 
     const tracks =
-        document.querySelectorAll(".track");
+        document.querySelectorAll(
+            ".track"
+        );
 
 
     let currentAudio = null;
@@ -242,254 +331,307 @@ setTimeout(hidePreloader, 3000);
     let currentTrack = null;
 
 
-    tracks.forEach(track => {
+    tracks.forEach(
+        track => {
 
 
-        const button =
-            track.querySelector(
-                ".play-button"
+            const button =
+                track.querySelector(
+                    ".play-button"
+                );
+
+
+            const progress =
+                track.querySelector(
+                    ".track-progress div"
+                );
+
+
+            if (
+                !button ||
+                !progress
+            ) return;
+
+
+            const audio =
+                document.createElement(
+                    "audio"
+                );
+
+
+            audio.src =
+                track.dataset.track;
+
+
+            audio.preload =
+                "metadata";
+
+
+            track.appendChild(
+                audio
             );
 
 
-        const progress =
-            track.querySelector(
-                ".track-progress div"
-            );
+
+            /* =============================================
+               PLAY / PAUSE
+            ============================================= */
+
+            button.addEventListener(
+                "click",
+                async () => {
 
 
-        const audio =
-            document.createElement("audio");
-
-
-        audio.src =
-            track.dataset.track;
-
-
-        audio.preload =
-            "metadata";
-
-
-        track.appendChild(audio);
-
-
-        /* -----------------------------------------------
-           PLAY / PAUSE
-        ------------------------------------------------ */
-
-
-        button.addEventListener(
-            "click",
-            async () => {
-
-
-                /* Se é a música atual */
-
-                if (
-                    currentAudio === audio
-                ) {
-
+                    /* -------------------------------------
+                       Se já é a música atual
+                    ------------------------------------- */
 
                     if (
-                        audio.paused
+                        currentAudio === audio
                     ) {
 
-                        try {
 
-                            await audio.play();
-
-                            track.classList.add(
-                                "playing"
-                            );
-
-                            button.textContent =
-                                "❚❚";
-
-                        } catch (error) {
-
-                            console.warn(
-                                "Não foi possível reproduzir o áudio:",
-                                error
-                            );
-
-                        }
+                        if (
+                            audio.paused
+                        ) {
 
 
-                    } else {
+                            try {
 
-                        audio.pause();
-
-                        track.classList.remove(
-                            "playing"
-                        );
-
-                        button.textContent =
-                            "▶";
-
-                    }
+                                await audio.play();
 
 
-                    return;
-
-                }
-
-
-                /* ---------------------------------------
-                   PARA QUALQUER OUTRA MÚSICA
-                --------------------------------------- */
-
-
-                if (currentAudio) {
-
-                    currentAudio.pause();
-
-                    currentAudio.currentTime = 0;
-
-
-                    if (currentTrack) {
-
-                        currentTrack
-                            .classList
-                            .remove(
-                                "playing"
-                            );
-
-
-                        const oldButton =
-                            currentTrack
-                                .querySelector(
-                                    ".play-button"
+                                track.classList.add(
+                                    "playing"
                                 );
 
 
-                        if (oldButton) {
+                                button.textContent =
+                                    "❚❚";
 
-                            oldButton.textContent =
+                            } catch (error) {
+
+                                console.warn(
+                                    "Não foi possível reproduzir o áudio:",
+                                    error
+                                );
+
+                            }
+
+
+                        } else {
+
+
+                            audio.pause();
+
+
+                            track.classList.remove(
+                                "playing"
+                            );
+
+
+                            button.textContent =
                                 "▶";
 
                         }
 
 
-                        const oldProgress =
+                        return;
+
+                    }
+
+
+
+                    /* =====================================
+                       PARA A MÚSICA ANTERIOR
+                    ===================================== */
+
+                    if (
+                        currentAudio
+                    ) {
+
+
+                        currentAudio.pause();
+
+
+                        currentAudio.currentTime =
+                            0;
+
+
+                        if (
                             currentTrack
-                                .querySelector(
-                                    ".track-progress div"
+                        ) {
+
+
+                            currentTrack
+                                .classList
+                                .remove(
+                                    "playing"
                                 );
 
 
-                        if (oldProgress) {
+                            const oldButton =
+                                currentTrack
+                                    .querySelector(
+                                        ".play-button"
+                                    );
 
-                            oldProgress.style.width =
-                                "0%";
+
+                            if (
+                                oldButton
+                            ) {
+
+                                oldButton.textContent =
+                                    "▶";
+
+                            }
+
+
+                            const oldProgress =
+                                currentTrack
+                                    .querySelector(
+                                        ".track-progress div"
+                                    );
+
+
+                            if (
+                                oldProgress
+                            ) {
+
+                                oldProgress.style.width =
+                                    "0%";
+
+                            }
 
                         }
 
                     }
 
+
+
+                    /* =====================================
+                       DEFINE A NOVA MÚSICA
+                    ===================================== */
+
+                    currentAudio =
+                        audio;
+
+
+                    currentTrack =
+                        track;
+
+
+                    try {
+
+
+                        await audio.play();
+
+
+                        track.classList.add(
+                            "playing"
+                        );
+
+
+                        button.textContent =
+                            "❚❚";
+
+
+                    } catch (error) {
+
+
+                        console.warn(
+                            "Arquivo de áudio não encontrado ou bloqueado:",
+                            audio.src
+                        );
+
+
+                        track.classList.remove(
+                            "playing"
+                        );
+
+
+                        button.textContent =
+                            "▶";
+
+
+                    }
+
                 }
+            );
 
 
-                /* ---------------------------------------
-                   NOVA MÚSICA
-                --------------------------------------- */
+
+            /* =============================================
+               PROGRESSO DA MÚSICA
+            ============================================= */
+
+            audio.addEventListener(
+                "timeupdate",
+                () => {
 
 
-                currentAudio = audio;
+                    if (
+                        !audio.duration ||
+                        !Number.isFinite(
+                            audio.duration
+                        )
+                    ) {
 
-                currentTrack = track;
+                        return;
+
+                    }
 
 
-                try {
+                    const percentage =
+                        (
+                            audio.currentTime /
+                            audio.duration
+                        ) * 100;
 
-                    await audio.play();
 
-                    track.classList.add(
-                        "playing"
-                    );
+                    progress.style.width =
+                        `${percentage}%`;
 
-                    button.textContent =
-                        "❚❚";
+                }
+            );
 
-                } catch (error) {
 
-                    console.warn(
-                        "Arquivo de áudio não encontrado ou bloqueado:",
-                        audio.src
-                    );
+
+            /* =============================================
+               FIM DA MÚSICA
+            ============================================= */
+
+            audio.addEventListener(
+                "ended",
+                () => {
+
 
                     track.classList.remove(
                         "playing"
                     );
 
+
                     button.textContent =
                         "▶";
 
-                }
 
-            }
-        );
+                    progress.style.width =
+                        "0%";
 
 
-        /* -----------------------------------------------
-           PROGRESSO
-        ------------------------------------------------ */
+                    currentAudio =
+                        null;
 
-        audio.addEventListener(
-            "timeupdate",
-            () => {
 
-                if (
-                    !audio.duration ||
-                    !Number.isFinite(
-                        audio.duration
-                    )
-                ) {
-
-                    return;
+                    currentTrack =
+                        null;
 
                 }
+            );
 
+        }
+    );
 
-                const percentage =
-                    (
-                        audio.currentTime /
-                        audio.duration
-                    ) * 100;
-
-
-                progress.style.width =
-                    `${percentage}%`;
-
-            }
-        );
-
-
-        /* -----------------------------------------------
-           FIM DA MÚSICA
-        ------------------------------------------------ */
-
-        audio.addEventListener(
-            "ended",
-            () => {
-
-                track.classList.remove(
-                    "playing"
-                );
-
-                button.textContent =
-                    "▶";
-
-                progress.style.width =
-                    "0%";
-
-
-                currentAudio = null;
-
-                currentTrack = null;
-
-            }
-        );
-
-    });
 
 
     /* =====================================================
@@ -539,11 +681,17 @@ setTimeout(hidePreloader, 3000);
         slides.length;
 
 
-    if (totalCounter) {
+    if (
+        totalCounter
+    ) {
 
         totalCounter.textContent =
-            String(totalSlides)
-                .padStart(2, "0");
+            String(
+                totalSlides
+            ).padStart(
+                2,
+                "0"
+            );
 
     }
 
@@ -551,18 +699,26 @@ setTimeout(hidePreloader, 3000);
     function updateGallery() {
 
 
-        if (!galleryTrack) return;
+        if (
+            !galleryTrack
+        ) return;
 
 
         galleryTrack.style.transform =
             `translateX(-${currentSlide * 100}%)`;
 
 
-        if (currentCounter) {
+        if (
+            currentCounter
+        ) {
 
             currentCounter.textContent =
-                String(currentSlide + 1)
-                    .padStart(2, "0");
+                String(
+                    currentSlide + 1
+                ).padStart(
+                    2,
+                    "0"
+                );
 
         }
 
@@ -571,12 +727,16 @@ setTimeout(hidePreloader, 3000);
 
     function nextSlide() {
 
-        if (totalSlides === 0) return;
+
+        if (
+            totalSlides === 0
+        ) return;
 
 
         currentSlide =
-            (currentSlide + 1)
-            % totalSlides;
+            (
+                currentSlide + 1
+            ) % totalSlides;
 
 
         updateGallery();
@@ -586,7 +746,10 @@ setTimeout(hidePreloader, 3000);
 
     function previousSlide() {
 
-        if (totalSlides === 0) return;
+
+        if (
+            totalSlides === 0
+        ) return;
 
 
         currentSlide =
@@ -602,7 +765,9 @@ setTimeout(hidePreloader, 3000);
     }
 
 
-    if (nextButton) {
+    if (
+        nextButton
+    ) {
 
         nextButton.addEventListener(
             "click",
@@ -612,7 +777,9 @@ setTimeout(hidePreloader, 3000);
     }
 
 
-    if (previousButton) {
+    if (
+        previousButton
+    ) {
 
         previousButton.addEventListener(
             "click",
@@ -620,6 +787,7 @@ setTimeout(hidePreloader, 3000);
         );
 
     }
+
 
 
     /* =====================================================
@@ -651,10 +819,9 @@ setTimeout(hidePreloader, 3000);
             }
 
 
-            /* ESC fecha lightbox */
-
             if (
-                event.key === "Escape"
+                event.key ===
+                "Escape"
             ) {
 
                 closeLightbox();
@@ -663,6 +830,7 @@ setTimeout(hidePreloader, 3000);
 
         }
     );
+
 
 
     /* =====================================================
@@ -674,12 +842,15 @@ setTimeout(hidePreloader, 3000);
     let touchEndX = 0;
 
 
-    if (galleryTrack) {
+    if (
+        galleryTrack
+    ) {
 
 
         galleryTrack.addEventListener(
             "touchstart",
             event => {
+
 
                 touchStartX =
                     event.changedTouches[0]
@@ -696,6 +867,7 @@ setTimeout(hidePreloader, 3000);
             "touchend",
             event => {
 
+
                 touchEndX =
                     event.changedTouches[0]
                         .screenX;
@@ -707,8 +879,9 @@ setTimeout(hidePreloader, 3000);
 
 
                 if (
-                    Math.abs(difference) <
-                    50
+                    Math.abs(
+                        difference
+                    ) < 50
                 ) {
 
                     return;
@@ -737,16 +910,21 @@ setTimeout(hidePreloader, 3000);
     }
 
 
+
     /* =====================================================
        LIGHTBOX DA GALERIA
     ===================================================== */
 
-    let activeLightbox = null;
+    let activeLightbox =
+        null;
 
 
     function closeLightbox() {
 
-        if (!activeLightbox) return;
+
+        if (
+            !activeLightbox
+        ) return;
 
 
         activeLightbox.classList.remove(
@@ -757,11 +935,17 @@ setTimeout(hidePreloader, 3000);
         setTimeout(
             () => {
 
-                if (activeLightbox) {
+
+                if (
+                    activeLightbox
+                ) {
+
 
                     activeLightbox.remove();
 
-                    activeLightbox = null;
+
+                    activeLightbox =
+                        null;
 
                 }
 
@@ -772,104 +956,112 @@ setTimeout(hidePreloader, 3000);
     }
 
 
-    slides.forEach(slide => {
+    slides.forEach(
+        slide => {
 
 
-        slide.addEventListener(
-            "click",
-            () => {
+            slide.addEventListener(
+                "click",
+                () => {
 
 
-                const image =
-                    slide.querySelector("img");
-
-
-                if (!image) return;
-
-
-                closeLightbox();
-
-
-                const lightbox =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                lightbox.className =
-                    "image-lightbox";
-
-
-                lightbox.innerHTML = `
-
-                    <button
-                        class="lightbox-close"
-                        type="button"
-                        aria-label="Fechar imagem"
-                    >
-                        ×
-                    </button>
-
-                    <img
-                        src="${image.src}"
-                        alt="${image.alt}"
-                    >
-
-                `;
-
-
-                document.body.appendChild(
-                    lightbox
-                );
-
-
-                activeLightbox =
-                    lightbox;
-
-
-                requestAnimationFrame(
-                    () => {
-
-                        lightbox.classList.add(
-                            "visible"
+                    const image =
+                        slide.querySelector(
+                            "img"
                         );
 
-                    }
-                );
+
+                    if (
+                        !image
+                    ) return;
 
 
-                const closeButton =
-                    lightbox.querySelector(
-                        ".lightbox-close"
+                    closeLightbox();
+
+
+                    const lightbox =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    lightbox.className =
+                        "image-lightbox";
+
+
+                    lightbox.innerHTML = `
+
+                        <button
+                            class="lightbox-close"
+                            type="button"
+                            aria-label="Fechar imagem"
+                        >
+                            ×
+                        </button>
+
+                        <img
+                            src="${image.src}"
+                            alt="${image.alt}"
+                        >
+
+                    `;
+
+
+                    document.body.appendChild(
+                        lightbox
                     );
 
 
-                closeButton.addEventListener(
-                    "click",
-                    closeLightbox
-                );
+                    activeLightbox =
+                        lightbox;
 
 
-                lightbox.addEventListener(
-                    "click",
-                    event => {
+                    requestAnimationFrame(
+                        () => {
 
-                        if (
-                            event.target ===
-                            lightbox
-                        ) {
-
-                            closeLightbox();
+                            lightbox.classList.add(
+                                "visible"
+                            );
 
                         }
+                    );
 
-                    }
-                );
 
-            }
-        );
+                    const closeButton =
+                        lightbox.querySelector(
+                            ".lightbox-close"
+                        );
 
-    });
+
+                    closeButton.addEventListener(
+                        "click",
+                        closeLightbox
+                    );
+
+
+                    lightbox.addEventListener(
+                        "click",
+                        event => {
+
+
+                            if (
+                                event.target ===
+                                lightbox
+                            ) {
+
+                                closeLightbox();
+
+                            }
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+    );
+
 
 
     /* =====================================================
@@ -905,15 +1097,20 @@ setTimeout(hidePreloader, 3000);
             "click",
             async () => {
 
+
                 try {
 
+
                     await trailerVideo.play();
+
 
                     videoOverlay.classList.add(
                         "hidden"
                     );
 
+
                 } catch (error) {
+
 
                     console.warn(
                         "Não foi possível reproduzir o trailer.",
@@ -941,6 +1138,7 @@ setTimeout(hidePreloader, 3000);
         trailerVideo.addEventListener(
             "pause",
             () => {
+
 
                 if (
                     !trailerVideo.ended
@@ -970,6 +1168,7 @@ setTimeout(hidePreloader, 3000);
     }
 
 
+
     /* =====================================================
        PARALLAX DA HOME
     ===================================================== */
@@ -980,7 +1179,8 @@ setTimeout(hidePreloader, 3000);
         );
 
 
-    let ticking = false;
+    let ticking =
+        false;
 
 
     function updateParallax() {
@@ -993,7 +1193,10 @@ setTimeout(hidePreloader, 3000);
             ).matches
         ) {
 
-            ticking = false;
+
+            ticking =
+                false;
+
 
             return;
 
@@ -1009,13 +1212,15 @@ setTimeout(hidePreloader, 3000);
             window.innerHeight
         ) {
 
+
             heroBackground.style.transform =
                 `scale(1.08) translateY(${scroll * .12}px)`;
 
         }
 
 
-        ticking = false;
+        ticking =
+            false;
 
     }
 
@@ -1024,13 +1229,19 @@ setTimeout(hidePreloader, 3000);
         "scroll",
         () => {
 
-            if (!ticking) {
+
+            if (
+                !ticking
+            ) {
+
 
                 window.requestAnimationFrame(
                     updateParallax
                 );
 
-                ticking = true;
+
+                ticking =
+                    true;
 
             }
 
